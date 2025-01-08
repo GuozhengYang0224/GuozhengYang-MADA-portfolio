@@ -1,16 +1,18 @@
 ---
-title: "My website and data analysis portfolio"
+title: "Yang's website and data analysis portfolio"
 ---
 
-**Feel free to change the text below any way you want 😁!**
+**This website is for EPID/BIOS 8060E.**
 
-# Hello
+# Hi there!
 
-### And hello again
+### My name is Guozheng Yang.
 
-Welcome to **my website** and _data analysis portfolio._ 
+### I'm a first-year PhD student at UGA.
 
+### I'm in the Epid & Bios department.
 
-* Please use the `Menu Bar` above to look around.
-* Have fun!
+Welcome to **my website** and *data analysis portfolio.*
 
+-   Please use the `Menu Bar` above to look around.
+-   Have fun!

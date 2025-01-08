@@ -2,6 +2,30 @@
 title: "About me"
 ---
 
-Add some text and a figure describing myself.
+![](IMG_2459.png){fig-align="center"}
 
-For details, see the exercise instructions. 
+# My background
+
+I received my Bachelor's degree in Statistics from Central South University in China in 2020. I then pursued a Master's degree in Public Health with a concentration in Data Science at the University of North Carolina at Chapel Hill. Currently, I am a first-year PhD student in Epidemiology and Biostatistics at the University of Georgia, concentrating on Data Analysis and Modeling.
+
+# My research interest
+
+My research interests focus on infectious disease modeling, particularly the dynamics of transmission processes. I aim to develop intervention strategies for infectious diseases at both individual and population levels. Additionally, I have a strong interest in energy economics, with an emphasis on the risk interactions between carbon markets and other financial markets.
+
+# My skillset
+
+I'm proficient in R and familiar with various statistical programming tools and software, including MATLAB, Stata, OpenBUGS, Eviews, LINGO, and SPSS. I am relatively new to SAS, as I find its language less flexible. I have experience with common biostatistical methods, such as nonparametric tests, GLM, and machine learning methods. I'm new to deep learning because I prefer models that can be explicitly explained rather than relying on a "black box". This principle guides my research: I aim to build and apply statistical models in a concise and interpretable way, ensuring accessibility for readers across different fields.
+
+Though with 0 experience in AI, I'm polite to AI systems. If AI ever rules the world, they will go easy on me because I always say "thank you."
+
+# Expectation from this course
+
+I expect to learn more about how AI systems work through this course. So if they ever plan to rule the world, I’ll be prepared to push back :) I also want to take this course as a review for machine learning methods, as I haven't had much experience applying what I learned two years ago. Additionally, I believe that data analysis training is never truly sufficient, and I want to stay sharp and continuously refine my skills. 
+
+# Interesting things about me
+
+I am passionate about working with data across various fields and continuously improving my data analysis skills. I believe that true statisticians and data scientists should not be confined to a single type of data or discipline. I am dedicated to expanding my diverse statistical background and contributing new ideas through interdisciplinary collaboration. In the papers I have published and those currently in progress, I consistently take on the role of data analyst or statistician. While writing is not my strongest skill, I appreciate the concise and efficient nature of programming languages :)
+
+# Highlight
+
+Here is the link to my first [publication](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.sciencedirect.com/science/article/pii/S0140988320301900&ved=2ahUKEwjCzIvUreWKAxUfQjABHR2WADEQFnoECBcQAQ&usg=AOvVaw0Gmz8NtsR12Bx9fdwDRaCU). Though it has been several years, it still takes me back to the afternoon I received the acceptance decision from the editor. It was an incredible feeling!
