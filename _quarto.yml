@@ -19,7 +19,7 @@ website:
         href: https://github.com/GuozhengYang0224/GuozhengYang-MADA-portfolio       
 format:
   html:
-    theme: cosmo
-    highlight: zenburn
+    theme: simplex
+    highlight: expresso
     css: styles.css
     toc: FALSE
