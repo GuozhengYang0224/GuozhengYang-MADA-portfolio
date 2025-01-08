@@ -20,6 +20,6 @@ website:
 format:
   html:
     theme: simplex
-    highlight: expresso
+    highlight: tango
     css: styles.css
     toc: FALSE
