@@ -20,7 +20,7 @@ Though with 0 experience in AI, I'm polite to AI systems. If AI ever rules the w
 
 # Expectation from this course
 
-I expect to learn more about how AI systems work through this course. So if they ever plan to rule the world, I’ll be prepared to push back :) I also want to take this course as a review for machine learning methods, as I haven't had much experience applying what I learned two years ago. Additionally, I believe that data analysis training is never truly sufficient, and I want to stay sharp and continuously refine my skills. 
+I expect to learn more about how AI systems work through this course. So if they ever plan to rule the world, I'll be prepared to push back :) I also want to take this course as a review for machine learning methods, as I haven't had much experience applying what I learned two years ago. Additionally, I believe that data analysis training is never truly sufficient, and I want to stay sharp and continuously refine my skills.
 
 # Interesting things about me
 
