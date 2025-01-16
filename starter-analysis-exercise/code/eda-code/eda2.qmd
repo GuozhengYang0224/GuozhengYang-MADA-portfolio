@@ -108,13 +108,13 @@ ggsave(filename = figure_file, plot=p4)
 ```{r}
 p5 <- mydata %>% ggplot(aes(x=Major, y=Weight, color = Major)) + geom_boxplot()
 plot(p5)
-figure_file = here("starter-analysis-exercise","results","figures","height-major-stratified.png")
+figure_file = here("starter-analysis-exercise","results","figures","major-weight-boxplot.png")
 ggsave(filename = figure_file, plot=p5) 
 ```
 ```{r}
 p6 <- mydata %>% ggplot(aes(x=Weight, y=Salary)) + geom_point()
 plot(p6)
-figure_file = here("starter-analysis-exercise","results","figures","height-major-stratified.png")
+figure_file = here("starter-analysis-exercise","results","figures","weight-salary-scatter.png")
 ggsave(filename = figure_file, plot=p6) 
 ```
 # Notes
