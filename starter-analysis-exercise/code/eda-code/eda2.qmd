@@ -106,9 +106,9 @@ ggsave(filename = figure_file, plot=p4)
 ```
 
 ```{r}
-p5 <- mydata %>% ggplot(aes(x=Major, y=Weight, color = Major)) + geom_boxplot()
+p5 <- mydata %>% ggplot(aes(x=Major, y=Height, color = Major)) + geom_boxplot()
 plot(p5)
-figure_file = here("starter-analysis-exercise","results","figures","major-weight-boxplot.png")
+figure_file = here("starter-analysis-exercise","results","figures","major-height-boxplot.png")
 ggsave(filename = figure_file, plot=p5) 
 ```
 ```{r}

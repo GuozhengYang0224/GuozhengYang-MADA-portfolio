@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="quarto-0.9.80">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="author" content="Your Name">
+  <meta name="author" content="Guozheng Yang">
   <title>Guozheng Yang’s Data Analysis Portfolio - Manuscript/Report Template for a Data Analysis Project</title>
   <style>
     code{white-space: pre-wrap;}
@@ -126,7 +126,10 @@
 
 
 
-<div class="quarto-title"><h1 class="title display-7">Manuscript/Report Template for a Data Analysis Project</h1></div><div class="quarto-title-meta"><div><div class="quarto-title-meta-heading">Author</div><div class="quarto-title-meta-contents"><div class="quarto-title-authors"><p>Your Name</p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">Invalid Date</p></div></div></div></header>
+<div class="quarto-title"><h1 class="title display-7">Manuscript/Report Template for a Data Analysis Project</h1></div><div class="quarto-title-meta"><div><div class="quarto-title-meta-heading">Author</div><div class="quarto-title-meta-contents"><div class="quarto-title-authors"><p>Guozheng Yang</p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">Invalid Date</p></div></div></div></header>
+<p><strong>Vincent Nguyen contributed to this exercise!!!</strong></p>
+<p><strong>Thanks for help from Alexis Gonzalez and Hope Grismer!!!</strong></p>
+<p><strong>LET’S GO GROUP 3!!!</strong></p>
 <p>The structure below is one possible setup for a data analysis project (including the course project). For a manuscript, adjust as needed. You don’t need to have exactly these sections, but the content covering those sections should be addressed.</p>
 <p>This uses MS Word as output format. <a href="https://quarto.org/docs/output-formats/ms-word.html">See here</a> for more information. You can switch to other formats, like html or pdf. See <a href="https://quarto.org/">the Quarto documentation</a> for other formats.</p>
 <div class="cell">
@@ -145,7 +148,7 @@
 </section>
 <section id="description-of-data-and-data-source" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="description-of-data-and-data-source"><span class="header-section-number">2.2</span> Description of data and data source</h2>
-<p><em>Describe what the data is, what it contains, where it is from, etc. Eventually this might be part of a methods section.</em></p>
+<p><em>Describe what the data is, what it contains, where it is from, etc. Eventually this might be part of a methods section.</em> <em>I added two more columns to the data file, namely <em>Salary</em> and <em>Major</em>. The <em>Salary</em> column contains annual salaries as numeric values. The <em>Major</em> column has categorical values denoting different majors.</em></p>
 </section>
 <section id="questionshypotheses-to-be-addressed" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="questionshypotheses-to-be-addressed"><span class="header-section-number">2.3</span> Questions/Hypotheses to be addressed</h2>
@@ -185,21 +188,26 @@
 <table class="table table-sm table-striped">
 <caption>Table 1: Data summary table.</caption>
 <colgroup>
+<col style="width: 3%">
 <col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 6%">
 <col style="width: 7%">
 <col style="width: 5%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 8%">
-<col style="width: 9%">
-<col style="width: 6%">
-<col style="width: 5%">
 <col style="width: 5%">
 <col style="width: 6%">
-<col style="width: 6%">
-<col style="width: 6%">
-<col style="width: 6%">
-<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -207,6 +215,11 @@
 <th style="text-align: left;">skim_variable</th>
 <th style="text-align: right;">n_missing</th>
 <th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">character.min</th>
+<th style="text-align: right;">character.max</th>
+<th style="text-align: right;">character.empty</th>
+<th style="text-align: right;">character.n_unique</th>
+<th style="text-align: right;">character.whitespace</th>
 <th style="text-align: left;">factor.ordered</th>
 <th style="text-align: right;">factor.n_unique</th>
 <th style="text-align: left;">factor.top_counts</th>
@@ -222,10 +235,37 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Major</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">factor</td>
 <td style="text-align: left;">Gender</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">FALSE</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: left;">M: 4, F: 3, O: 2</td>
@@ -238,11 +278,16 @@
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">numeric</td>
 <td style="text-align: left;">Height</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
@@ -255,11 +300,16 @@
 <td style="text-align: right;">183</td>
 <td style="text-align: left;">▂▁▃▃▇</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">numeric</td>
 <td style="text-align: left;">Weight</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
@@ -271,6 +321,28 @@
 <td style="text-align: right;">80</td>
 <td style="text-align: right;">110</td>
 <td style="text-align: left;">▇▂▃▂▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">Salary</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">75588.11111</td>
+<td style="text-align: right;">20803.94505</td>
+<td style="text-align: right;">49877</td>
+<td style="text-align: right;">65012</td>
+<td style="text-align: right;">66685</td>
+<td style="text-align: right;">90400</td>
+<td style="text-align: right;">109841</td>
+<td style="text-align: left;">▅▇▂▅▂</td>
 </tr>
 </tbody>
 </table>
@@ -368,8 +440,41 @@
 <p>{{&lt; pagebreak &gt;}}</p>
 </section>
 </section>
-<section id="references" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> References</h1>
+<section id="vincents-work" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Vincent’s work</h1>
+<section id="boxplot-of-height-major" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="boxplot-of-height-major"><span class="header-section-number">6.1</span> Boxplot of Height ~ Major</h2>
+<p><em>To explore if the distribution of height has difference across different majors, we made a boxplot of height grouped by major. As shown, observations whose major is Economics, Math, or Statistics have a higher height compared to those whose major is Biology or History. However, only a few observations were left after data cleaning. According to the plot, only one observation was left for Biology, Economics, and History. The too small sample size makes the finding not convincing.</em></p>
+<p><a href="#fig-result-boxplot">Figure&nbsp;2</a> shows the boxplot of height grouped by major.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-result-boxplot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../../results/figures/major-height-boxplot.png" class="img-fluid figure-img" width="1050"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 2: Height stratified by major.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="scatterplot-of-salary-weight" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="scatterplot-of-salary-weight"><span class="header-section-number">6.2</span> Scatterplot of Salary ~ Weight</h2>
+<p><em>The scatterplot below shows the relationship between salary and weight. There is generally a positive association between salary and weight. However, the variance is not constant as the variation in salary is greater at higher weights. A logarithmic transformation for salary could possibly solve this problem as the two variables are not on the same scale.</em></p>
+<p><a href="#fig-result-scatterplot">Figure&nbsp;3</a> shows the scatterplot of salary and weight.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-result-scatterplot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../../results/figures/weight-salary-scatter.png" class="img-fluid figure-img" width="1050"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 3: Height stratified by major.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="references" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> References</h1>
 
 
 
