@@ -2,4 +2,220 @@
 title: "R Coding Exercise"
 ---
 
-Placeholder file for the future R coding exercise.
+Below is a basic analysis for the *gapminder* dataset from *dslabs*.
+
+# Load packages and dataset
+
+```{r}
+# Load required package
+library(dslabs) # This package has the gapminder dataset
+library(tidyverse)
+library(ggplot2)
+
+# Look at help file for gapminder data
+help(gapminder)
+```
+
+Let's take a look at the dataset first. I want to get an overview of the number of observations, the number of variables, the class of each variable, and the distribution of each variable. 
+
+```{r}
+# Determine the type of gapminder
+class(gapminder)
+
+# Get an overview of data structure: whole dataset
+str(gapminder)
+
+# Get a summary of data: whole dataset
+summary(gapminder)
+```
+
+# Sub-dataset for African countries
+
+I'm particularly interested in observations from African countries. I'm filtering all rows by the variable *Africa*. The sub-dataset is named *africadata*. 
+
+```{r}
+# Filter observations from Africa
+africadata <- gapminder %>% filter(continent=="Africa")
+```
+
+Now let's get an overview of the sub-dataset. It should contain 2907 observations.
+
+```{r}
+# Get an overview of data structure: africadata
+str(africadata)
+
+# Get a summary of data: africadata
+summary(africadata)
+```
+
+Now I'm creating two new sub-datasets from *africadata*. One of them only contains variables *infant_mortality* and *life_expectancy*, named *inf_life*. The other one only contains variables *population* and *life_expectancy*, named *pop_life*.
+
+```{r}
+# New dataset inf_life: infant_mortality & life_expectancy
+inf_life <- africadata %>% select(infant_mortality, life_expectancy)
+
+# New dataset pop_life: population & life_expectancy
+pop_life <- africadata %>% select(population, life_expectancy)
+```
+
+Let's take a look at the two new sub-datasets. 
+
+```{r}
+# Get an overview of data structure: inf_life
+str(inf_life)
+# Get a summary of data: inf_life
+summary(inf_life)
+
+# Get an overview of data structure: pop_life
+str(pop_life)
+# Get a summary of data: pop_life
+summary(pop_life)
+```
+
+# Plotting
+
+Next, let's look at the relationship between life expectancy and infant mortality in African countries. I'm plotting a scatterplot to show their correlation using the *ggplot2* package. 
+
+```{r}
+# Scatterplot for life_expectancy ~ infant_mortality
+p_inf_life <- ggplot(inf_life, aes(x=infant_mortality, y=life_expectancy))+
+  geom_point(color="skyblue3", size=1.2)+
+  theme_bw()+
+  labs(title="Relationship between life expectancy and infant mortality", 
+       x="Infant mortality", y="Life expectancy")+
+  theme(axis.title.x=element_text(size=10, color="black", face="bold"),
+        axis.title.y=element_text(size=10, color="black", face="bold"),
+        axis.text.x=element_text(color="black", size=8),
+        axis.text.y=element_text(color="black", size=8),
+        plot.title=element_text(size=15, color="black", face="bold"))
+p_inf_life
+```
+
+As shown, in African countries, life expectancy is negatively associated with infant mortality. This makes sense as lower life expectancy is related to higher infant mortality. Of note, we receive a warning message saying *"Removed 226 rows containing missing values or values outside the scale range (`geom_point()`)."*. This is likely caused by missing values in the *inf_life* dataset.
+
+Then, let's make another scatterplot for life expectancy and population size. As shown in the output above, values in the *population* varialbe are much larger due to its scale. To avoid a too sparse scatterplot, I take the logarithmic transformation of *population* to make the plot. 
+
+```{r}
+# Scatterplot for life_expectancy ~ population
+p_pop_life <- ggplot(pop_life, aes(x=population, y=life_expectancy))+
+  geom_point(color="palevioletred3", size=1.2)+
+  scale_x_log10()+ # To make the X-axis log-transformed
+  theme_bw()+
+  labs(title="Relationship between life expectancy and population size", 
+       x="Population size (log-transformed)", y="Life expectancy")+
+  theme(axis.title.x=element_text(size=10, color="black", face="bold"),
+        axis.title.y=element_text(size=10, color="black", face="bold"),
+        axis.text.x=element_text(color="black", size=8),
+        axis.text.y=element_text(color="black", size=8),
+        plot.title=element_text(size=15, color="black", face="bold"))
+p_pop_life
+```
+
+The plot above shows that life expectancy and population size generally follow a positive association. The code also output a warning message similar to the previous one because of missing values. 
+
+I noticed that both figures above show strips of points. It seems like the points are grouped by some categories and the positive/negative association exists within in each category. Now let's take another look at the data structure and find out why. 
+
+```{r}
+# Get an overview of data structure: africadata
+str(africadata)
+
+# Get a summary of data: africadata
+summary(africadata)
+```
+
+Note that there are two variables *country* and *year*, denoting the data source for each observation. In this case, the variable *country* serves as a classification, stratifying each observation into the country it belongs. Each country have a different annually record of population size, infant mortality, and life expectancy. Hence, the strips of points actually denote strips of different countries.
+
+I also notice that there are missing values in *infant_mortality* from *africadata*. Here I output the number of missing values in *infant_mortality* by year.
+
+```{r}
+# Total number of NAs in infant_mortality from africadata
+sum(is.na(africadata$infant_mortality))
+
+# Count the number of NAs in infant_mortality by year
+table_NA <- africadata %>% 
+  group_by(year) %>% 
+  summarize(count_NA=sum(is.na(infant_mortality)))
+t(table_NA) # Transpose the table since it's too long
+```
+
+As shown, there are missing values in *infant_mortality* from 1960 to 1981 and 2016. No NAs were found from 1982 to 2015. Here we extract data from only 2000 and create a new sub-dataset from *africadata*. We also need to check the filtered sub-dataset. 
+
+```{r}
+# Filter observations in 2000 from africadata
+africadata2000 <- africadata %>% filter(year==2000)
+
+# Get an overview of data structure: africadata
+str(africadata2000)
+
+# Get a summary of data: africadata
+summary(africadata2000)
+```
+
+Here I extract the required variables for plots from only the sub-dataset of year 2000.
+
+```{r}
+# New dataset inf_life of 2000: infant_mortality & life_expectancy
+inf_life2000 <- africadata2000 %>% select(infant_mortality, life_expectancy)
+
+# New dataset pop_life of 2000: population & life_expectancy
+pop_life2000 <- africadata2000 %>% select(population, life_expectancy)
+```
+
+Below I make the scatterplots for *life_expectancy* ~ *infant_mortality* and *life_expectancy* ~ *population* again but only using data from year 2000.
+
+```{r}
+# Scatterplot for life_expectancy ~ infant_mortality of year 2000
+p_inf_life2 <- ggplot(inf_life2000, aes(x=infant_mortality, y=life_expectancy))+
+  geom_point(color="skyblue3", size=2)+
+  theme_bw()+
+  labs(title="Relationship between life expectancy and infant mortality in 2000", 
+       x="Infant mortality", y="Life expectancy")+
+  theme(axis.title.x=element_text(size=10, color="black", face="bold"),
+        axis.title.y=element_text(size=10, color="black", face="bold"),
+        axis.text.x=element_text(color="black", size=8),
+        axis.text.y=element_text(color="black", size=8),
+        plot.title=element_text(size=15, color="black", face="bold"))
+p_inf_life2
+
+# Scatterplot for life_expectancy ~ population of year 2000
+p_pop_life2 <- ggplot(pop_life2000, aes(x=population, y=life_expectancy))+
+  geom_point(color="palevioletred3", size=2)+
+  scale_x_log10()+ # To make the X-axis log-transformed
+  theme_bw()+
+  labs(title="Relationship between life expectancy and population size in 2000", 
+       x="Population size (log-transformed)", y="Life expectancy")+
+  theme(axis.title.x=element_text(size=10, color="black", face="bold"),
+        axis.title.y=element_text(size=10, color="black", face="bold"),
+        axis.text.x=element_text(color="black", size=8),
+        axis.text.y=element_text(color="black", size=8),
+        plot.title=element_text(size=15, color="black", face="bold"))
+p_pop_life2
+```
+
+As expected, life expectancy is negatively correlated to infant mortality, and has a generally positive association with population size. This is consistent with our previous findings. Notably, we don't receive the warning message this time as no missing values exist in the data of year 2000.
+
+# Model fitting
+
+To provide statistical inference from their association, I want to fit simple linear regression models. First of all, I use life expectancy as the response and infant mortality as the predictor to fit the model. 
+
+```{r}
+# Linear regression: life_expectancy ~ infant_mortality
+fit1 <- lm(life_expectancy ~ infant_mortality, data=inf_life2000)
+summary(fit1) # Output the fitting result
+```
+
+Based on the output above, the coefficient of *infant_mortality* is -0.18916 (se=0.02896) with a p-value less than 0.05. Under the 95% confidence level, we have enough evidence to reject the null hypothesis and conclude that the coefficient of *infant_mortality* is not zero. This confirms the negative association between life expectancy and infant_mortality.
+
+Next, I fit another linear regression using life expectancy as the response and population size as the predictor. But before that, I want to apply the logarithmic transformation to *population* because of its large scale.
+
+```{r}
+# Log-transformation for population size
+pop_life2000$log_population <- log(pop_life2000$population, 10)
+
+# Linear regression: life_expectancy ~ log_population
+fit2 <- lm(life_expectancy ~ log_population, data=pop_life2000)
+summary(fit2) # Output the fitting result
+```
+
+As shown, the coefficient of *log_population* is -1.315 (se=1.829) with a p-value=0.476. Under the 95% confidence level, we fail to reject the null hypothesis that the coefficient of *log_population* is zero. This means the association between life expectancy and population size is not statistically significant.
+
