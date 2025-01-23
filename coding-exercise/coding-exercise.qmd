@@ -219,3 +219,95 @@ summary(fit2) # Output the fitting result
 
 As shown, the coefficient of *log_population* is -1.315 (se=1.829) with a p-value=0.476. Under the 95% confidence level, we fail to reject the null hypothesis that the coefficient of *log_population* is zero. This means the association between life expectancy and population size is not statistically significant.
 
+
+# Another dataset from dslabs
+*This section was contributed by Connor Norris.*
+
+I have chosen to do an exploratory analysis of the olive dataset from the dslabs package. As stated on its help page, the dataset contains data on the "percentage of eight fatty acids in the lipid fraction of 572 Italian olive oils," as well as geographic data.
+
+## Exploratory Analysis
+```{r}
+#Examine data structure of the complete dataset
+str(olive) #Get structure
+
+summary(olive) #Get a data summary
+
+class(olive) #Determine the class of R object of the dataset
+```
+
+The complete olive dataset has 572 observations with 10 variables. Two of the variables are factors: one with 3 levels denoting the region an olive oil was from, and one with nine levels denoting the area in Italy an olive oil was from. The other variables are all numeric, denoting the percent composition of individual fatty acids within each olive oil. The area with the most data points was South Apulia (n=`{r} nrow(filter(olive, area == "South-Apulia"))`). The two most abundant fatty acids were oleic and palmitic acid with medians of `{r} median(olive$oleic)` and `{r} median(olive$palmitic)`, respectively.
+
+## Plotting
+The following shows a series of boxplots showing the distribution of oleic acid percent compositions across different areas of Italy.
+```{r}
+#Plot boxplots of oleic acid composition by area in Italy
+ggplot(olive, aes(x = area, y = oleic)) + 
+  geom_boxplot() + #Make the plot a box plot
+  labs(
+    title = "Distribution of oleic acid percent composition in different areas of Italy",
+    x = "Area",
+    y = "Oleic Acid (percent)"
+  ) + #Set plot title and axis labels
+  theme_minimal() +
+  theme(axis.title.x=element_text(size=10, color="black", face="bold"),
+        axis.title.y=element_text(size=10, color="black", face="bold"),
+        axis.text.x=element_text(color="black", size=8),
+        axis.text.y=element_text(color="black", size=8),
+        plot.title=element_text(size=12, color="black", face="bold")) #Format text
+```
+
+Among the different areas in Italy represented in the dataset, olive oil from South Apulia had the least amount of oleic acid with a median percent composition of `{r} median(filter(olive, area == "South-Apulia")$oleic)`%. Olive oil from Sicily had the largest spread of oleic acid percentages, with an IQR of `{r} IQR(filter(olive, area == "Sicily")$oleic)`.
+
+Below shows a scatterplot showing percent composition of oleic acid against the percent composition of palmitic acid. 
+```{r}
+#Plot oleic acid percentage against palmitic acid percentage
+ggplot(olive, aes(x = oleic, y = palmitic)) +
+  geom_point() + #Make plot a scatterplot
+  geom_smooth(method = lm) + #Add a regression line
+  labs(
+    title = "Palmitic Acid Percentage vs. Oleic Acid Percentage",
+    x = "Oleic Acid",
+    y = "Palmeic Acid"
+  ) + #Set plot title and axis labels
+  theme_minimal() + #Clean theme
+  theme(axis.title.x=element_text(size=10, color="black", face="bold"),
+        axis.title.y=element_text(size=10, color="black", face="bold"),
+        axis.text.x=element_text(color="black", size=8),
+        axis.text.y=element_text(color="black", size=8),
+        plot.title=element_text(size=15, color="black", face="bold")) #Format text
+```
+The scatterplot shows a strong negative association between the composition of the two fatty acids. However, this association is not unexpected as the data is percentage based. Inherently, if one percentage value increases, another percentage or percentages must decrease. To see if this trend is consistent for additional fatty acids, the following plot shows the composition of oleic acid against the composition of eicosenoic acid, the acid with the least abundance.
+```{r}
+#Plot oleic acid percentage against eicosenoic acid percentage
+ggplot(olive, aes(x = oleic, y = eicosenoic)) +
+  geom_point() + #Make plot a scatterplot
+  geom_smooth(method = lm, color = "red") + #Add a regression line
+  labs(
+    title = "Palmitic Acid Percentage vs. Oleic Acid Percentage",
+    x = "Oleic Acid",
+    y = "Eicosenoic Acid"
+  ) + #Set plot title and axis labels
+  theme_minimal() + #Clean theme
+  theme(axis.title.x=element_text(size=10, color="black", face="bold"),
+        axis.title.y=element_text(size=10, color="black", face="bold"),
+        axis.text.x=element_text(color="black", size=8),
+        axis.text.y=element_text(color="black", size=8),
+        plot.title=element_text(size=15, color="black", face="bold")) #Format text
+
+```
+This plot shows a negative trend again, though the trend is much weaker compared to the plot containing palmitic acid and it may be affected by an influential point present in the bottom right corner of the plot.
+
+## Linear Modeling
+The following linear models aim to see if oleic acid and eicosenoic acid composition can be predicted by the area the olive oil was from. 
+```{r}
+#Predict oleic acid composition with area
+lm1 <- lm(oleic ~ area, olive)
+summary(lm1) #Display summary statistics
+
+#Predict eicosenoic acid composition with area
+lm2 <- lm(eicosenoic ~ area, olive)
+summary(lm2) #Display summary statistics
+```
+For oleic acid, all areas were significant predictors of oleic acid composition except for Inland Sardinia (t = 1.767, p = 0.0778) and Sicily (t = 1.431, p = 0.1529). North Apulia had the largest effect size (5.1322, SE = 0.3985), and South Apulia had the smallest effect size (-3.9537, SE = 0.2497).
+
+For eicosenoic acid, all areas were significant predictors of eicosenoic acid. Coastal Sardinia just barely had the smallest effect size (-0.264426, SE = 0.011334), and Sicily had the largest effect size (0.101230, SE = 0.011032).
