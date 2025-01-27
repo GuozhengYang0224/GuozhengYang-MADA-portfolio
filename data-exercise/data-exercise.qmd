@@ -1,0 +1,143 @@
+---
+title: "Exercise Using Synthetic Data"
+---
+
+Below is an exercise for simulating data and exploring associations between variables. 
+
+# Introduction
+
+In this exercise, I will try to simulate a data (N=600) about malaria transmission. Mosquito feeding assays are widely used to assess malaria patients' infectiousness to mosquitoes. With a number of mosquitoes fed on a patient's blood, we can dissected the mosquitoes and check the number of positive ones to evaluate mosquito infection rates. Previous studies have found that human-to-mosquito infectiousness is positively associated with gametocyte densities in blood. School-aged children were also found to have higher infectiousness compared to older adults.
+
+The expected response variable is the number of positive mosquitoes generated from a Poisson distribution. As this is a count variable, I will use Poisson regression to validate my simulation. The number of dissected mosquitoes will set as a fixed integer for each observation, and it will be used as the offset in Poisson regression. Logarithmic gametocyte densities will be generated using a truncated normal distribution, as a great proportion of transmission happened at low densities. Age group is a binary variable and will be generated through a Binomial distribution.
+
+# Load required packages
+
+```{r}
+# Load required package
+library(truncnorm) # Generate truncated normal distribution
+library(ggplot2)
+library(scales) # Modify axis text
+```
+
+# Simulate data
+
+I will generate logarithmic gametocyte densities and age groups first. The logarithmic gametocyte densities are from a truncated normal distribution. According to previous literature, the detection limit for gametocyte densities could be as low as $10^{-2}/uL$ using molecular methods. The maximum gametocyte density could be as high as $10^{4}/uL$. Hence, I set the mean at -1, standard error equal to 1.2, and the left truncation limit at 0.01. 
+
+To balance the sample size in each age group, I will use a Binomial distribution with p=0.5. School-aged children are marked as 1, while older adults are marked as 0. The number of dissected mosquitoes will be set at 100 for each observation. 
+
+To make my simulation reproducible, I will set a seed *8060*. The simulated predictors are put in a data frame called *sim*.
+
+```{r}
+# Set a seed
+set.seed(8060)
+# Simulate predictors: gametocyte density, age group, and dissection.
+sim <- data.frame(game=rtruncnorm(n=600, a=-2, b=Inf, mean=-1, sd=1.2),
+                  school=rbinom(n=600, size=1, prob=.5),
+                  dissect=100)
+```
+
+Now I want to model the mean of positive mosquitoes by the predictors, following the regression model: 
+
+$$
+\log(\lambda) = \beta_0 + \beta_1*Gametocyte + \beta_2*Children + \log(dissection)
+$$
+
+where $\lambda$ denotes the expected number of positive mosquitoes and $dissection$ denotes the number of dissected mosquitoes. $\beta_0$ is an intercept while $\beta_1$ and $\beta_2$ represent the coefficients for logarithmic gametocyte densities and school-aged children. 
+
+Here, I set $\beta_0=-0.8$, $\beta_1=0.1$, $\beta_2=0.2$, and then simulate the response variable.
+
+```{r}
+# Pre-assumed parameters
+b0 <- -0.8
+b1 <- 0.1
+b2 <- 0.2
+
+# Simulate response: number of positive mosquitoes
+sim$positive <- rpois(n=600, lambda=exp(b0+b1*sim$game+b2*sim$school+log(sim$dissect)))
+```
+
+# Descriptive analysis
+
+First of all, I want to get an overview of the simulated data, especially the distribution of each variable. 
+
+```{r}
+# Check the distribution of each variable
+summary(sim)
+```
+
+As shown, all variables are within a reasonable range. Most importantly, the maximum number of positive mosquitoes is less than the number of mosquitoes dissected. Now I want to look at the association between mosquito infection rate and the two predictors. 
+
+First of all, I want to make a scatterplot for mosquito infection rate and gametocyte density. 
+
+```{r}
+# Define mosquito infection rate
+sim$infxn_rate <- sim$positive / sim$dissect
+
+# Scatterplot: infxn_rate ~ game
+scatterplot <- ggplot(sim, aes(x=game, y=infxn_rate))+
+  geom_point(size=2, color="firebrick4")+
+  scale_x_continuous(breaks=seq(-2, 4, 1), labels=label_math(10^.x))+
+  scale_y_continuous(breaks=seq(0, 1, 0.1), labels=seq(0, 100, 10))+
+  labs(x="Gametocyte density/uL", y="Mosquito infection rate(%)")+
+  theme_bw()+
+  theme(axis.title.x=element_text(size=15, color="black", face="bold"),
+        axis.title.y=element_text(size=15, color="black", face="bold"),
+        axis.text.x=element_text(color="black", size=12),
+        axis.text.y=element_text(color="black", size=12))
+scatterplot
+```
+
+As expected, mosquito infection rate is positively associated with gametocyte density. Next, I want to check the distribution of mosquito infection rates in different age groups through grouped boxplots.
+
+```{r}
+# Boxplot: infxn_rate ~ school
+boxplot <- ggplot(sim, aes(x=as.factor(school), y=infxn_rate))+
+  geom_boxplot(width=.5, color="firebrick4")+
+  scale_x_discrete(breaks=c(0, 1), 
+                   labels=c("Older adults", "School-aged children"))+
+  scale_y_continuous(breaks=seq(0, 1, 0.1), labels=seq(0, 100, 10))+
+  labs(x="Age group", y="Mosquito infection rate(%)")+
+  theme_bw()+
+  theme(axis.title.x=element_text(size=15, color="black", face="bold"),
+        axis.title.y=element_text(size=15, color="black", face="bold"),
+        axis.text.x=element_text(color="black", size=12),
+        axis.text.y=element_text(color="black", size=12))
+boxplot
+```
+
+As shown in the boxplot, school-aged children have higher mosquito infection rates compared to older adults. Hence, the association between the response and two predictors are validated.
+
+# Model fitting
+
+As I generated the simulated data by Poisson distribution, now I will fit a Poisson regression to check if the association holds. The response variable is the number of positive mosquitoes. The two predictors are gametocyte density and age group. The number of dissected mosquitoes is used as an offset.
+
+```{r}
+# Fit Poisson regression
+fit <- glm(positive ~ game + school, offset=log(dissect), family='poisson', data=sim)
+summary(fit)
+
+# 95% confidence intervals for parameters
+confint(fit)
+```
+
+As shown in the output, the parameter estimates are close to true values I set initially. The 95% confidence intervals also covered the true values. Now I want to see if a larger sample size will make the estimates closer to the true values. I will raise the sample size to 2000 and repeat the simulation and regression steps.
+
+```{r}
+# Set a seed
+set.seed(8060)
+# Simulate the data again but sample size reset to 2000.
+sim2 <- data.frame(game=rtruncnorm(n=2000, a=-2, b=Inf, mean=-1, sd=1.2),
+                   school=rbinom(n=2000, size=1, prob=.5),
+                   dissect=100)
+sim2$positive <- rpois(n=2000, lambda=exp(b0+b1*sim2$game+b2*sim2$school+log(sim2$dissect)))
+
+# Fit Poisson regression
+fit2 <- glm(positive ~ game + school, offset=log(dissect), family='poisson', data=sim2)
+summary(fit2)
+
+# 95% confidence intervals for parameters
+confint(fit2)
+```
+
+When the sample size is raised to 2000, the parameter estimates are closer to the true values. Also, the 95% confidence intervals are narrower. 
+
