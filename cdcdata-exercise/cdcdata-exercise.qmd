@@ -1,0 +1,337 @@
+---
+title: "Data Analysis Exercise"
+---
+
+Below is an exercise for analyzing a dataset from the CDC website. 
+
+
+# Introduction
+
+The dataset I choose is called *"Provisional COVID-19 Death Counts by Week Ending Date and State"* (https://data.cdc.gov/NCHS/Provisional-COVID-19-Death-Counts-by-Week-Ending-D/r8kw-7aab/about_data). This dataset has been effective since September 2023, and updated weekly on Thursdays. The latest update date was January 30, 2025. The data provider is the National Center for Health Statistics (NCHS). Suggested citation format is: 
+
+*National Center for Health Statistics. Provisional COVID-19 Death Counts by Week Ending Date and State. Date accessed [Last accessed date]. Available from https://data.cdc.gov/d/r8kw-7aab.*
+
+This dataset contains weekly reported deaths involving COVID-19, pneumonia, and influenza. The raw data has 17 variables. The names and descriptions of the 17 variables are listed below: 
+
+*Data as of:* Date of analysis.
+
+*Start Date:* First date of data period.
+
+*End Date:* Last date of data period.
+
+*Group:* Time period of reporting.
+
+*Year:* Year of reporting.
+
+*Month:* Month of reporting.
+
+*MMWR Week:* Week of Morbidity and Mortality Weekly Report (MMWR).
+
+*Week Ending Date:* Week-ending date for the week of reporting.
+
+*State:* Jurisdiction of occurrence.
+
+*COVID-19 Deaths:* Number of deaths involving COVID-19.
+
+*Total Deaths:* Number of deaths from all causes of death.
+
+*Percent of Expected Deaths:* Percent of expected deaths.
+
+*Pneumonia Deaths:* Number of pneumonia deaths.
+
+*Pneumonia and COVID-19 Deaths:* Number of deaths with pneumonia and COVID-19.
+
+*Influenza Deaths:* Number of influenza deaths.
+
+*Pneumonia, Influenza, or COVID-19 Deaths:* Number of pneumonia, influenza, or COVID-19 deaths.
+
+*Footnote:* Suppressed counts.
+
+
+# Load required packages
+
+```{r}
+# Load required package
+library(fitdistrplus) # To fit distributions
+library(tidyverse)
+library(ggplot2)
+```
+
+# Data cleaning
+
+First of all, let's load the data file and get an overview of the data structure. 
+
+```{r}
+# Load the data file
+data <- read.csv("CDCdata.csv")
+str(data) # Check data structure
+```
+
+Here, I'm only interested in the monthly records. So I will firstly filter out the monthly reports. The first 3 columns, *Week.Ending.Date*, and *MMWR.Week* denote dates but are kept in a character format. I will drop these five columns since we already have *Year* and *Month* to denote time. 
+
+```{r}
+# Drop Data.as.of, Start.Date, End.Date, and Week.Ending.Date
+# Filter out monthly records
+data <- data %>% 
+  select(-c(Data.as.of, Start.Date, End.Date, Week.Ending.Date, MMWR.Week)) %>%
+  filter(Group=="By Month")
+str(data) # Check data structure
+```
+
+Now, the data is by monthly report, and the *Group* column is not useful anymore. The other two redundant columns of no interest are *Percent.of.Expected.Deaths* and *Footnote*. I will drop these three columns in the next step. 
+
+It's abnormal that the first several values in the column *State* are "United States". I thought this column should only contain states instead of national data. Now let's check what's in this column. 
+
+```{r}
+# Check what's in the column State
+unique(data$State)
+```
+
+The three abnormal values I noticed are *"United States"*, *"New York City"*, and *"Puerto Rico"*. So I will drop records associated with these three places. 
+
+```{r}
+# Drop Group and Footnote
+# Drop records for US, NYC, and Puerto Rico
+data <- data %>% select(-c(Group, Percent.of.Expected.Deaths, Footnote)) %>%
+  filter(!State %in% c("United States", "New York City", "Puerto Rico"))
+str(data) # Check data structure
+```
+
+Of note, the format of the rest of the columns are not right. For *Year*, *Month*, and *State*, I'm fine with them kept as characters. The rest of the columns denote number of cases, which should be integers. One possible reason for the wrong format is the existence of comma. I will correct the format of these columns in the next step.
+
+Note that the column names are too complex, which are not convenient to call. I will change the column names at the same time. 
+
+```{r}
+# Correct column formats
+# Change column names
+data <- data %>% 
+  mutate(Year=as.character(Year), Month=as.character(Month), State=as.character(State),
+         death_covid=as.integer(gsub(",", "", COVID.19.Deaths)),
+         death_total=as.integer(gsub(",", "", Total.Deaths)),
+         death_pna=as.integer(gsub(",", "", Pneumonia.Deaths)),
+         death_pna_covid=as.integer(gsub(",", "", Pneumonia.and.COVID.19.Deaths)),
+         death_flu=as.integer(gsub(",", "", Influenza.Deaths)),
+         death_pna_flu_covid=as.integer(gsub(",", "", Pneumonia..Influenza..or.COVID.19.Deaths))) %>%
+  select(Year, Month, State, death_total, death_pna, death_flu, death_covid, death_pna_covid, death_pna_flu_covid)
+str(data) # Check data structure
+```
+
+Now, the dataset is clean and ready for analysis. As noticed, there are some missing values. I will keep these NAs since the following analysis is just about every single variable and no associations between variables will be analyzed. 
+
+# Exploratory analysis
+
+First of all, I want to get some information about the distribution of the integer variables. 
+
+```{r}
+summary(data) # Check data distribution
+```
+
+The range and quantiles are too rough to tell the exact distribution that each variable follows. Now I want to make a histogram for each variable to see their distributions. 
+
+## death_total
+
+Let's start from *death_total*. As its scale is too large, I will take the log-transformation first. 
+
+```{r}
+# Histogram of log death_total
+hist_death_total <- ggplot(data, aes(x=log(death_total, 10)))+
+  geom_histogram(binwidth=.1, fill="firebrick1", color="black", alpha=.8)+
+  labs(x="Log - Total deaths", y="Count")+
+  theme_bw()+
+  theme(axis.title.x=element_text(size=15, color="black", face="bold"),
+        axis.title.y=element_text(size=15, color="black", face="bold"),
+        axis.text.x=element_text(color="black", size=12),
+        axis.text.y=element_text(color="black", size=12))
+hist_death_total
+```
+
+According to the histogram, log-transformed *death_total* is left skewed, with one obvious peak. It could be a weibull distribution or a gamma distribution. Now I want to fit this two distribution and select the best one based on log-likelihood value. 
+
+```{r}
+# Fit weibull distribution for log death_total
+fit_wb <- fitdist(log(data$death_total, 10), "weibull")
+summary(fit_wb)
+```
+
+```{r}
+# Fit gamma distribution for log death_total
+fit_gm <- fitdist(log(data$death_total, 10), "gamma")
+summary(fit_gm)
+```
+
+According to two fitting results, the weibull distribution can better fit the log-transformed *death_total* (log-likelihood=-1890.841 vs -1935.506). The shape parameter is 9.03 and the scale parameter is 3.70.
+
+## death_pna
+
+Now, let's repeat the above steps for *death_pna*. Again, this variable will be log-transformed. 
+
+```{r}
+# Histogram of log death_pna
+hist_death_pna <- ggplot(data, aes(x=log(death_pna, 10)))+
+  geom_histogram(binwidth=.1, fill="skyblue1", color="black", alpha=.8)+
+  labs(x="Log - Pneumonia deaths", y="Count")+
+  theme_bw()+
+  theme(axis.title.x=element_text(size=15, color="black", face="bold"),
+        axis.title.y=element_text(size=15, color="black", face="bold"),
+        axis.text.x=element_text(color="black", size=12),
+        axis.text.y=element_text(color="black", size=12))
+hist_death_pna
+```
+
+Though there is likely a bimodal pattern, this variable is generally symmetric and likely to follow a normal distribution. Now I will fit a normal distribution to this variable and estimate the parameters.
+
+```{r}
+# Fit normal distribution for log death_pna
+fit_norm <- fitdist(log(data$death_pna, 10), "norm")
+summary(fit_norm)
+```
+
+Hence, the log-transformed *death_pna* is likely to follow a normal distribution with mean=2.36 and sd=0.51.
+
+## death_flu
+
+Next, let's get the histogram for *death_flu*. As a great proportion of values in this variable are 0, I will take the distribution of this variable hierarchically: 1. determine the probability of 0 vs >0 values; 2. determine the distribution of >0 values. Let's generate an indicator variable to check how many values are 0. 
+
+```{r}
+# Generate an indicator variable for death_flu
+# Estimate the probability for 0 vs >0
+data2 <- data %>% 
+  mutate(death_flu01=ifelse(death_flu==0, 0, 1)) %>%
+  filter(!is.na(death_flu01))
+
+bar_death_flu01 <- ggplot(data2, aes(x=factor(death_flu01)))+
+  geom_bar(aes(y=..count../sum(..count..)), fill="darkorange", color="black", width=.5)+
+  geom_text(aes(y=..count../sum(..count..), label=scales::percent(..count../sum(..count..))), 
+            stat="count", size=5, vjust=1.5, fontface="bold")+
+  scale_x_discrete(breaks=c(0, 1), labels=c("0", ">0"))+
+  scale_y_continuous(labels=scales::percent_format())+
+  labs(x="Log - Influenza deaths: 0 vs >0", y="Proportion")+
+  theme_bw()+
+  theme(axis.title.x=element_text(size=15, color="black", face="bold"),
+        axis.title.y=element_text(size=15, color="black", face="bold"),
+        axis.text.x=element_text(color="black", size=12),
+        axis.text.y=element_text(color="black", size=12))
+bar_death_flu01
+```
+
+As shown, the probability for 0 influenza deaths is 0.52, which is also the estimate for a binomial distribution. For >0 influenza deaths, I will make a histogram to show its distribution. 
+
+```{r}
+# Filter out death_flu > 0
+# Make a histogram for the >0 values
+data3 <- data2 %>% filter(death_flu01==1)
+
+hist_death_flu1 <- ggplot(data3, aes(x=log(death_flu, 10)))+
+  geom_histogram(binwidth=.1, fill="seagreen2", color="black", alpha=.8)+
+  labs(x="Log - Influenza deaths", y="Count")+
+  theme_bw()+
+  theme(axis.title.x=element_text(size=15, color="black", face="bold"),
+        axis.title.y=element_text(size=15, color="black", face="bold"),
+        axis.text.x=element_text(color="black", size=12),
+        axis.text.y=element_text(color="black", size=12))
+hist_death_flu1
+```
+
+According to the histogram above, the >0 influenza deaths generally follows a weibull or a gamma distribution. Still, I will fit both and determine the best fit by log-likelihood. 
+
+```{r}
+# Fit weibull distribution for >0 log death_flu
+fit_wb2 <- fitdist(log(data3$death_flu, 10), "weibull")
+summary(fit_wb2)
+```
+
+```{r}
+# Fit gamma distribution for >0 log death_flu
+fit_gm2 <- fitdist(log(data3$death_flu, 10), "gamma")
+summary(fit_gm2)
+```
+
+As shown, the gamma distribution is better when influenza deaths is >0 (log-likelihood=-220 vs-274). The estimated shape parameter is 19.19 and the rate parameter is 13.19.
+
+## death_covid
+
+Next, let's do the same thing to *death_covid*. As not too many values are 0, I will just add 1 to each value in this variable. Based on its scale and the log-transformation, adding 1 will not make a big change to it. Let's start by cleaning the NAs and making a histogram.
+
+```{r}
+# Clean the missing values in death_covid
+data4 <- data %>% filter(!is.na(death_covid))
+
+# Histogram of log death_covid+1
+hist_death_covid <- ggplot(data4, aes(x=log(death_covid+1, 10)))+
+  geom_histogram(binwidth=.2, fill="palevioletred", color="black", alpha=.8)+
+  labs(x="Log - COVID deaths", y="Count")+
+  theme_bw()+
+  theme(axis.title.x=element_text(size=15, color="black", face="bold"),
+        axis.title.y=element_text(size=15, color="black", face="bold"),
+        axis.text.x=element_text(color="black", size=12),
+        axis.text.y=element_text(color="black", size=12))
+hist_death_covid
+```
+
+According to the histogram, the log-transformed *death_covid* is generally normally distributed. I will fit a normal distribution to it and estimate the parameters.
+
+```{r}
+# Fit normal distribution for log death_covid+1
+fit_norm2 <- fitdist(log(data4$death_covid+1, 10), "norm")
+summary(fit_norm2)
+```
+
+Hence, the log-transformed *death_covid* is likely to follow a normal distribution with mean=2.08 and sd=0.71.
+
+## death_pna_covid
+
+Again, the same thing for *death_pna_covid*. I will clean the NAs first and then add 1 to this variable. 
+
+```{r}
+# Clean the missing values in death_pna_covid
+data5 <- data %>% filter(!is.na(death_pna_covid))
+
+# Histogram of log death_pna_covid+1
+hist_death_pna_covid <- ggplot(data5, aes(x=log(death_pna_covid+1, 10)))+
+  geom_histogram(binwidth=.2, fill="steelblue4", color="black", alpha=.8)+
+  labs(x="Log - Pneumonia & COVID deaths", y="Count")+
+  theme_bw()+
+  theme(axis.title.x=element_text(size=15, color="black", face="bold"),
+        axis.title.y=element_text(size=15, color="black", face="bold"),
+        axis.text.x=element_text(color="black", size=12),
+        axis.text.y=element_text(color="black", size=12))
+hist_death_pna_covid
+```
+
+Since it's generally a bell shape, I will estimate the mean and sd for the normal distribution. 
+
+```{r}
+# Fit normal distribution for log death_pna_covid+1
+fit_norm3 <- fitdist(log(data5$death_pna_covid+1, 10), "norm")
+summary(fit_norm3)
+```
+
+Hence, the log-transformed *death_pna_covid* is likely to follow a normal distribution with mean=1.82 and sd=0.70.
+
+## death_pna_flu_covid
+
+Last, for *death_pna_flu_covid*, no NAs or 0s exist. I will directly make a histogram for it. 
+
+```{r}
+# Histogram of log death_pna_flu_covid
+hist_death_pna_flu_covid <- ggplot(data, aes(x=log(death_pna_flu_covid, 10)))+
+  geom_histogram(binwidth=.1, fill="darkseagreen3", color="black", alpha=.8)+
+  labs(x="Log - Pneumonia & Influenza & COVID deaths", y="Count")+
+  theme_bw()+
+  theme(axis.title.x=element_text(size=15, color="black", face="bold"),
+        axis.title.y=element_text(size=15, color="black", face="bold"),
+        axis.text.x=element_text(color="black", size=12),
+        axis.text.y=element_text(color="black", size=12))
+hist_death_pna_flu_covid
+```
+
+As shown in the histogram, it generally looks like a normal distribution. Now I'm estimating the parameters for this normal distribution.
+
+```{r}
+# Fit normal distribution for log death_pna_flu_covid
+fit_norm4 <- fitdist(log(data$death_pna_flu_covid, 10), "norm")
+summary(fit_norm4)
+```
+
+Hence, the log-transformed *death_pna_flu_covid* is likely to follow a normal distribution with mean=2.50 and sd=0.53.
+
