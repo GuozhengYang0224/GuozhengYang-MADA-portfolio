@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Analysis Exercise – Guozheng Yang’s Data Analysis Portfolio</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Guozheng Yang’s Data Analysis Portfolio</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../aboutme.html"> 
+<span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projects" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Projects</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-projects">    
+        <li>
+    <a class="dropdown-item" href="../starter-analysis-exercise/products/report/starter-analysis-report.html">
+ <span class="dropdown-text">Starter Analysis Exercise</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../coding-exercise/coding-exercise.html">
+ <span class="dropdown-text">R Coding Exercise</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../data-exercise/data-exercise.html">
+ <span class="dropdown-text">Simulation Exercise</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../cdcdata-exercise/cdcdata-exercise.html">
+ <span class="dropdown-text">Data Analysis Exercise</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/GuozhengYang0224/GuozhengYang-MADA-portfolio"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Analysis Exercise</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Below is an exercise for analyzing a dataset from the CDC website.</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>The dataset I choose is called <em>“Provisional COVID-19 Death Counts by Week Ending Date and State”</em> (https://data.cdc.gov/NCHS/Provisional-COVID-19-Death-Counts-by-Week-Ending-D/r8kw-7aab/about_data). This dataset has been effective since September 2023, and updated weekly on Thursdays. The latest update date was January 30, 2025. The data provider is the National Center for Health Statistics (NCHS). Suggested citation format is:</p>
+<p><em>National Center for Health Statistics. Provisional COVID-19 Death Counts by Week Ending Date and State. Date accessed [Last accessed date]. Available from https://data.cdc.gov/d/r8kw-7aab.</em></p>
+<p>This dataset contains weekly reported deaths involving COVID-19, pneumonia, and influenza. The raw data has 17 variables. The names and descriptions of the 17 variables are listed below:</p>
+<p><em>Data as of:</em> Date of analysis.</p>
+<p><em>Start Date:</em> First date of data period.</p>
+<p><em>End Date:</em> Last date of data period.</p>
+<p><em>Group:</em> Time period of reporting.</p>
+<p><em>Year:</em> Year of reporting.</p>
+<p><em>Month:</em> Month of reporting.</p>
+<p><em>MMWR Week:</em> Week of Morbidity and Mortality Weekly Report (MMWR).</p>
+<p><em>Week Ending Date:</em> Week-ending date for the week of reporting.</p>
+<p><em>State:</em> Jurisdiction of occurrence.</p>
+<p><em>COVID-19 Deaths:</em> Number of deaths involving COVID-19.</p>
+<p><em>Total Deaths:</em> Number of deaths from all causes of death.</p>
+<p><em>Percent of Expected Deaths:</em> Percent of expected deaths.</p>
+<p><em>Pneumonia Deaths:</em> Number of pneumonia deaths.</p>
+<p><em>Pneumonia and COVID-19 Deaths:</em> Number of deaths with pneumonia and COVID-19.</p>
+<p><em>Influenza Deaths:</em> Number of influenza deaths.</p>
+<p><em>Pneumonia, Influenza, or COVID-19 Deaths:</em> Number of pneumonia, influenza, or COVID-19 deaths.</p>
+<p><em>Footnote:</em> Suppressed counts.</p>
+</section>
+<section id="load-required-packages" class="level1">
+<h1>Load required packages</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required package</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fitdistrplus) <span class="co"># To fit distributions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: MASS</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: survival</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2
+──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ ggplot2 3.5.1     ✔ purrr   1.0.2
+✔ tibble  3.2.1     ✔ dplyr   1.1.3
+✔ tidyr   1.3.1     ✔ stringr 1.5.1
+✔ readr   2.1.2     ✔ forcats 1.0.0</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tibble' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'purrr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'stringr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'forcats' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data-cleaning" class="level1">
+<h1>Data cleaning</h1>
+<p>First of all, let’s load the data file and get an overview of the data structure.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data file</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"CDCdata.csv"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data) <span class="co"># Check data structure</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   17982 obs. of  17 variables:
+ $ Data.as.of                              : chr  "1/30/2025" "1/30/2025" "1/30/2025" "1/30/2025" ...
+ $ Start.Date                              : chr  "12/29/2019" "1/5/2020" "1/12/2020" "1/19/2020" ...
+ $ End.Date                                : chr  "1/4/2020" "1/11/2020" "1/18/2020" "1/25/2020" ...
+ $ Group                                   : chr  "By Week" "By Week" "By Week" "By Week" ...
+ $ Year                                    : chr  "2019/2020" "2020" "2020" "2020" ...
+ $ Month                                   : int  NA NA NA NA NA NA NA NA NA NA ...
+ $ MMWR.Week                               : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Week.Ending.Date                        : chr  "1/4/2020" "1/11/2020" "1/18/2020" "1/25/2020" ...
+ $ State                                   : chr  "United States" "United States" "United States" "United States" ...
+ $ COVID.19.Deaths                         : chr  "0" "1" "2" "3" ...
+ $ Total.Deaths                            : chr  "60,170" "60,734" "59,362" "59,162" ...
+ $ Percent.of.Expected.Deaths              : int  98 97 98 99 99 100 100 101 103 103 ...
+ $ Pneumonia.Deaths                        : chr  "4,111" "4,153" "4,066" "3,915" ...
+ $ Pneumonia.and.COVID.19.Deaths           : chr  "0" "1" "2" "0" ...
+ $ Influenza.Deaths                        : chr  "434" "475" "468" "500" ...
+ $ Pneumonia..Influenza..or.COVID.19.Deaths: chr  "4,545" "4,628" "4,534" "4,418" ...
+ $ Footnote                                : chr  "" "" "" "" ...</code></pre>
+</div>
+</div>
+<p>Here, I’m only interested in the monthly records. So I will firstly filter out the monthly reports. The first 3 columns, <em>Week.Ending.Date</em>, and <em>MMWR.Week</em> denote dates but are kept in a character format. I will drop these five columns since we already have <em>Year</em> and <em>Month</em> to denote time.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop Data.as.of, Start.Date, End.Date, and Week.Ending.Date</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out monthly records</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Data.as.of, Start.Date, End.Date, Week.Ending.Date, MMWR.Week)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Group<span class="sc">==</span><span class="st">"By Month"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data) <span class="co"># Check data structure</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   3294 obs. of  12 variables:
+ $ Group                                   : chr  "By Month" "By Month" "By Month" "By Month" ...
+ $ Year                                    : chr  "2020" "2020" "2020" "2020" ...
+ $ Month                                   : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ State                                   : chr  "United States" "United States" "United States" "United States" ...
+ $ COVID.19.Deaths                         : chr  "6" "25" "7,175" "65,553" ...
+ $ Total.Deaths                            : chr  "264,681" "244,966" "269,806" "322,424" ...
+ $ Percent.of.Expected.Deaths              : int  98 104 107 138 121 113 123 123 116 117 ...
+ $ Pneumonia.Deaths                        : chr  "17,909" "15,740" "22,481" "46,429" ...
+ $ Pneumonia.and.COVID.19.Deaths           : chr  "3" "10" "3,345" "28,399" ...
+ $ Influenza.Deaths                        : chr  "2,125" "2,373" "2,437" "1,237" ...
+ $ Pneumonia..Influenza..or.COVID.19.Deaths: chr  "20,037" "18,127" "28,620" "84,008" ...
+ $ Footnote                                : chr  "" "" "" "" ...</code></pre>
+</div>
+</div>
+<p>Now, the data is by monthly report, and the <em>Group</em> column is not useful anymore. The other two redundant columns of no interest are <em>Percent.of.Expected.Deaths</em> and <em>Footnote</em>. I will drop these three columns in the next step.</p>
+<p>It’s abnormal that the first several values in the column <em>State</em> are “United States”. I thought this column should only contain states instead of national data. Now let’s check what’s in this column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check what's in the column State</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(data<span class="sc">$</span>State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "United States"        "Alabama"              "Alaska"              
+ [4] "Arizona"              "Arkansas"             "California"          
+ [7] "Colorado"             "Connecticut"          "Delaware"            
+[10] "District of Columbia" "Florida"              "Georgia"             
+[13] "Hawaii"               "Idaho"                "Illinois"            
+[16] "Indiana"              "Iowa"                 "Kansas"              
+[19] "Kentucky"             "Louisiana"            "Maine"               
+[22] "Maryland"             "Massachusetts"        "Michigan"            
+[25] "Minnesota"            "Mississippi"          "Missouri"            
+[28] "Montana"              "Nebraska"             "Nevada"              
+[31] "New Hampshire"        "New Jersey"           "New Mexico"          
+[34] "New York"             "New York City"        "North Carolina"      
+[37] "North Dakota"         "Ohio"                 "Oklahoma"            
+[40] "Oregon"               "Pennsylvania"         "Rhode Island"        
+[43] "South Carolina"       "South Dakota"         "Tennessee"           
+[46] "Texas"                "Utah"                 "Vermont"             
+[49] "Virginia"             "Washington"           "West Virginia"       
+[52] "Wisconsin"            "Wyoming"              "Puerto Rico"         </code></pre>
+</div>
+</div>
+<p>The three abnormal values I noticed are <em>“United States”</em>, <em>“New York City”</em>, and <em>“Puerto Rico”</em>. So I will drop records associated with these three places.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop Group and Footnote</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop records for US, NYC, and Puerto Rico</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Group, Percent.of.Expected.Deaths, Footnote)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>State <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"United States"</span>, <span class="st">"New York City"</span>, <span class="st">"Puerto Rico"</span>))</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data) <span class="co"># Check data structure</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   3111 obs. of  9 variables:
+ $ Year                                    : chr  "2020" "2020" "2020" "2020" ...
+ $ Month                                   : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ State                                   : chr  "Alabama" "Alabama" "Alabama" "Alabama" ...
+ $ COVID.19.Deaths                         : chr  "" "" "48" "339" ...
+ $ Total.Deaths                            : chr  "4,729" "4,627" "4,756" "4,877" ...
+ $ Pneumonia.Deaths                        : chr  "282" "276" "287" "352" ...
+ $ Pneumonia.and.COVID.19.Deaths           : chr  "0" "0" "10" "97" ...
+ $ Influenza.Deaths                        : chr  "35" "39" "33" "10" ...
+ $ Pneumonia..Influenza..or.COVID.19.Deaths: chr  "318" "316" "357" "603" ...</code></pre>
+</div>
+</div>
+<p>Of note, the format of the rest of the columns are not right. For <em>Year</em>, <em>Month</em>, and <em>State</em>, I’m fine with them kept as characters. The rest of the columns denote number of cases, which should be integers. One possible reason for the wrong format is the existence of comma. I will correct the format of these columns in the next step.</p>
+<p>Note that the column names are too complex, which are not convenient to call. I will change the column names at the same time.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correct column formats</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Change column names</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Year=</span><span class="fu">as.character</span>(Year), <span class="at">Month=</span><span class="fu">as.character</span>(Month), <span class="at">State=</span><span class="fu">as.character</span>(State),</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">death_covid=</span><span class="fu">as.integer</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">""</span>, COVID.<span class="fl">19.</span>Deaths)),</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">death_total=</span><span class="fu">as.integer</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">""</span>, Total.Deaths)),</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">death_pna=</span><span class="fu">as.integer</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">""</span>, Pneumonia.Deaths)),</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">death_pna_covid=</span><span class="fu">as.integer</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">""</span>, Pneumonia.and.COVID.<span class="fl">19.</span>Deaths)),</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">death_flu=</span><span class="fu">as.integer</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">""</span>, Influenza.Deaths)),</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">death_pna_flu_covid=</span><span class="fu">as.integer</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">""</span>, Pneumonia..Influenza..or.COVID.<span class="fl">19.</span>Deaths))) <span class="sc">%&gt;%</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year, Month, State, death_total, death_pna, death_flu, death_covid, death_pna_covid, death_pna_flu_covid)</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data) <span class="co"># Check data structure</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   3111 obs. of  9 variables:
+ $ Year               : chr  "2020" "2020" "2020" "2020" ...
+ $ Month              : chr  "1" "2" "3" "4" ...
+ $ State              : chr  "Alabama" "Alabama" "Alabama" "Alabama" ...
+ $ death_total        : int  4729 4627 4756 4877 5108 4901 5717 5765 5110 5199 ...
+ $ death_pna          : int  282 276 287 352 399 350 522 572 426 437 ...
+ $ death_flu          : int  35 39 33 10 NA NA NA NA 0 NA ...
+ $ death_covid        : int  NA NA 48 339 430 399 879 964 568 560 ...
+ $ death_pna_covid    : int  0 0 10 97 132 130 279 334 193 189 ...
+ $ death_pna_flu_covid: int  318 316 357 603 699 620 1124 1203 801 810 ...</code></pre>
+</div>
+</div>
+<p>Now, the dataset is clean and ready for analysis. As noticed, there are some missing values. I will keep these NAs since the following analysis is just about every single variable and no associations between variables will be analyzed.</p>
+</section>
+<section id="exploratory-analysis" class="level1">
+<h1>Exploratory analysis</h1>
+<p>First of all, I want to get some information about the distribution of the integer variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data) <span class="co"># Check data distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Year              Month              State            death_total   
+ Length:3111        Length:3111        Length:3111        Min.   :  128  
+ Class :character   Class :character   Class :character   1st Qu.: 1449  
+ Mode  :character   Mode  :character   Mode  :character   Median : 3897  
+                                                          Mean   : 5188  
+                                                          3rd Qu.: 6474  
+                                                          Max.   :48157  
+                                                                         
+   death_pna         death_flu       death_covid      death_pna_covid  
+ Min.   :   10.0   Min.   :  0.00   Min.   :    0.0   Min.   :    0.0  
+ 1st Qu.:  100.5   1st Qu.:  0.00   1st Qu.:   43.0   1st Qu.:   24.0  
+ Median :  255.0   Median :  0.00   Median :  124.0   Median :   60.0  
+ Mean   :  443.9   Mean   : 19.35   Mean   :  400.2   Mean   :  224.3  
+ 3rd Qu.:  494.0   3rd Qu.: 24.00   3rd Qu.:  347.0   3rd Qu.:  180.5  
+ Max.   :13803.0   Max.   :385.00   Max.   :20066.0   Max.   :12191.0  
+                   NA's   :1569     NA's   :161       NA's   :521      
+ death_pna_flu_covid
+ Min.   :   10.0    
+ 1st Qu.:  137.0    
+ Median :  339.0    
+ Mean   :  646.4    
+ 3rd Qu.:  695.0    
+ Max.   :21689.0    
+                    </code></pre>
+</div>
+</div>
+<p>The range and quantiles are too rough to tell the exact distribution that each variable follows. Now I want to make a histogram for each variable to see their distributions.</p>
+<section id="death_total" class="level2">
+<h2 class="anchored" data-anchor-id="death_total">death_total</h2>
+<p>Let’s start from <em>death_total</em>. As its scale is too large, I will take the log-transformation first.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of log death_total</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>hist_death_total <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">log</span>(death_total, <span class="dv">10</span>)))<span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span>.<span class="dv">1</span>, <span class="at">fill=</span><span class="st">"firebrick1"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">alpha=</span>.<span class="dv">8</span>)<span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Log - Total deaths"</span>, <span class="at">y=</span><span class="st">"Count"</span>)<span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">12</span>))</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>hist_death_total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>According to the histogram, log-transformed <em>death_total</em> is left skewed, with one obvious peak. It could be a weibull distribution or a gamma distribution. Now I want to fit this two distribution and select the best one based on log-likelihood value.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit weibull distribution for log death_total</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>fit_wb <span class="ot">&lt;-</span> <span class="fu">fitdist</span>(<span class="fu">log</span>(data<span class="sc">$</span>death_total, <span class="dv">10</span>), <span class="st">"weibull"</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_wb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fitting of the distribution ' weibull ' by maximum likelihood 
+Parameters : 
+      estimate  Std. Error
+shape 9.025147 0.124622061
+scale 3.703996 0.007768309
+Loglikelihood:  -1890.841   AIC:  3785.681   BIC:  3797.766 
+Correlation matrix:
+          shape     scale
+shape 1.0000000 0.3207625
+scale 0.3207625 1.0000000</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit gamma distribution for log death_total</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>fit_gm <span class="ot">&lt;-</span> <span class="fu">fitdist</span>(<span class="fu">log</span>(data<span class="sc">$</span>death_total, <span class="dv">10</span>), <span class="st">"gamma"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_gm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fitting of the distribution ' gamma ' by maximum likelihood 
+Parameters : 
+      estimate Std. Error
+shape 59.95946  1.5160752
+rate  17.08149  0.4337126
+Loglikelihood:  -1935.506   AIC:  3875.011   BIC:  3887.097 
+Correlation matrix:
+          shape      rate
+shape 1.0000000 0.9958336
+rate  0.9958336 1.0000000</code></pre>
+</div>
+</div>
+<p>According to two fitting results, the weibull distribution can better fit the log-transformed <em>death_total</em> (log-likelihood=-1890.841 vs -1935.506). The shape parameter is 9.03 and the scale parameter is 3.70.</p>
+</section>
+<section id="death_pna" class="level2">
+<h2 class="anchored" data-anchor-id="death_pna">death_pna</h2>
+<p>Now, let’s repeat the above steps for <em>death_pna</em>. Again, this variable will be log-transformed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of log death_pna</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>hist_death_pna <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">log</span>(death_pna, <span class="dv">10</span>)))<span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span>.<span class="dv">1</span>, <span class="at">fill=</span><span class="st">"skyblue1"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">alpha=</span>.<span class="dv">8</span>)<span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Log - Pneumonia deaths"</span>, <span class="at">y=</span><span class="st">"Count"</span>)<span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">12</span>))</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>hist_death_pna</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Though there is likely a bimodal pattern, this variable is generally symmetric and likely to follow a normal distribution. Now I will fit a normal distribution to this variable and estimate the parameters.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit normal distribution for log death_pna</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>fit_norm <span class="ot">&lt;-</span> <span class="fu">fitdist</span>(<span class="fu">log</span>(data<span class="sc">$</span>death_pna, <span class="dv">10</span>), <span class="st">"norm"</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fitting of the distribution ' norm ' by maximum likelihood 
+Parameters : 
+      estimate  Std. Error
+mean 2.3610877 0.009098526
+sd   0.5074825 0.006433517
+Loglikelihood:  -2304.148   AIC:  4612.296   BIC:  4624.381 
+Correlation matrix:
+     mean sd
+mean    1  0
+sd      0  1</code></pre>
+</div>
+</div>
+<p>Hence, the log-transformed <em>death_pna</em> is likely to follow a normal distribution with mean=2.36 and sd=0.51.</p>
+</section>
+<section id="death_flu" class="level2">
+<h2 class="anchored" data-anchor-id="death_flu">death_flu</h2>
+<p>Next, let’s get the histogram for <em>death_flu</em>. As a great proportion of values in this variable are 0, I will take the distribution of this variable hierarchically: 1. determine the probability of 0 vs &gt;0 values; 2. determine the distribution of &gt;0 values. Let’s generate an indicator variable to check how many values are 0.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate an indicator variable for death_flu</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate the probability for 0 vs &gt;0</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">death_flu01=</span><span class="fu">ifelse</span>(death_flu<span class="sc">==</span><span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(death_flu01))</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>bar_death_flu01 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data2, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(death_flu01)))<span class="sc">+</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y=</span>..count..<span class="sc">/</span><span class="fu">sum</span>(..count..)), <span class="at">fill=</span><span class="st">"darkorange"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">width=</span>.<span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y=</span>..count..<span class="sc">/</span><span class="fu">sum</span>(..count..), <span class="at">label=</span>scales<span class="sc">::</span><span class="fu">percent</span>(..count..<span class="sc">/</span><span class="fu">sum</span>(..count..))), </span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">stat=</span><span class="st">"count"</span>, <span class="at">size=</span><span class="dv">5</span>, <span class="at">vjust=</span><span class="fl">1.5</span>, <span class="at">fontface=</span><span class="st">"bold"</span>)<span class="sc">+</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"&gt;0"</span>))<span class="sc">+</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels=</span>scales<span class="sc">::</span><span class="fu">percent_format</span>())<span class="sc">+</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Log - Influenza deaths: 0 vs &gt;0"</span>, <span class="at">y=</span><span class="st">"Proportion"</span>)<span class="sc">+</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">12</span>))</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>bar_death_flu01</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The dot-dot notation (`..count..`) was deprecated in ggplot2 3.4.0.
+ℹ Please use `after_stat(count)` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As shown, the probability for 0 influenza deaths is 0.52, which is also the estimate for a binomial distribution. For &gt;0 influenza deaths, I will make a histogram to show its distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out death_flu &gt; 0</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a histogram for the &gt;0 values</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> data2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(death_flu01<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>hist_death_flu1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data3, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">log</span>(death_flu, <span class="dv">10</span>)))<span class="sc">+</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span>.<span class="dv">1</span>, <span class="at">fill=</span><span class="st">"seagreen2"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">alpha=</span>.<span class="dv">8</span>)<span class="sc">+</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Log - Influenza deaths"</span>, <span class="at">y=</span><span class="st">"Count"</span>)<span class="sc">+</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">12</span>))</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>hist_death_flu1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>According to the histogram above, the &gt;0 influenza deaths generally follows a weibull or a gamma distribution. Still, I will fit both and determine the best fit by log-likelihood.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit weibull distribution for &gt;0 log death_flu</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>fit_wb2 <span class="ot">&lt;-</span> <span class="fu">fitdist</span>(<span class="fu">log</span>(data3<span class="sc">$</span>death_flu, <span class="dv">10</span>), <span class="st">"weibull"</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_wb2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fitting of the distribution ' weibull ' by maximum likelihood 
+Parameters : 
+      estimate Std. Error
+shape 4.445396  0.1202325
+scale 1.591791  0.0139997
+Loglikelihood:  -274.4729   AIC:  552.9458   BIC:  562.151 
+Correlation matrix:
+          shape     scale
+shape 1.0000000 0.3352461
+scale 0.3352461 1.0000000</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit gamma distribution for &gt;0 log death_flu</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>fit_gm2 <span class="ot">&lt;-</span> <span class="fu">fitdist</span>(<span class="fu">log</span>(data3<span class="sc">$</span>death_flu, <span class="dv">10</span>), <span class="st">"gamma"</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_gm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fitting of the distribution ' gamma ' by maximum likelihood 
+Parameters : 
+      estimate Std. Error
+shape 19.19297  0.9912574
+rate  13.18830  0.6901021
+Loglikelihood:  -220.5901   AIC:  445.1802   BIC:  454.3854 
+Correlation matrix:
+         shape     rate
+shape 1.000000 0.987006
+rate  0.987006 1.000000</code></pre>
+</div>
+</div>
+<p>As shown, the gamma distribution is better when influenza deaths is &gt;0 (log-likelihood=-220 vs-274). The estimated shape parameter is 19.19 and the rate parameter is 13.19.</p>
+</section>
+<section id="death_covid" class="level2">
+<h2 class="anchored" data-anchor-id="death_covid">death_covid</h2>
+<p>Next, let’s do the same thing to <em>death_covid</em>. As not too many values are 0, I will just add 1 to each value in this variable. Based on its scale and the log-transformation, adding 1 will not make a big change to it. Let’s start by cleaning the NAs and making a histogram.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean the missing values in death_covid</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>data4 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(death_covid))</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of log death_covid+1</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>hist_death_covid <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data4, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">log</span>(death_covid<span class="sc">+</span><span class="dv">1</span>, <span class="dv">10</span>)))<span class="sc">+</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span>.<span class="dv">2</span>, <span class="at">fill=</span><span class="st">"palevioletred"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">alpha=</span>.<span class="dv">8</span>)<span class="sc">+</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Log - COVID deaths"</span>, <span class="at">y=</span><span class="st">"Count"</span>)<span class="sc">+</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">12</span>))</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>hist_death_covid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>According to the histogram, the log-transformed <em>death_covid</em> is generally normally distributed. I will fit a normal distribution to it and estimate the parameters.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit normal distribution for log death_covid+1</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>fit_norm2 <span class="ot">&lt;-</span> <span class="fu">fitdist</span>(<span class="fu">log</span>(data4<span class="sc">$</span>death_covid<span class="sc">+</span><span class="dv">1</span>, <span class="dv">10</span>), <span class="st">"norm"</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_norm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fitting of the distribution ' norm ' by maximum likelihood 
+Parameters : 
+      estimate Std. Error
+mean 2.0842417 0.01312792
+sd   0.7130286 0.00928276
+Loglikelihood:  -3188.079   AIC:  6380.158   BIC:  6392.137 
+Correlation matrix:
+     mean sd
+mean    1  0
+sd      0  1</code></pre>
+</div>
+</div>
+<p>Hence, the log-transformed <em>death_covid</em> is likely to follow a normal distribution with mean=2.08 and sd=0.71.</p>
+</section>
+<section id="death_pna_covid" class="level2">
+<h2 class="anchored" data-anchor-id="death_pna_covid">death_pna_covid</h2>
+<p>Again, the same thing for <em>death_pna_covid</em>. I will clean the NAs first and then add 1 to this variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean the missing values in death_pna_covid</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>data5 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(death_pna_covid))</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of log death_pna_covid+1</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>hist_death_pna_covid <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data5, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">log</span>(death_pna_covid<span class="sc">+</span><span class="dv">1</span>, <span class="dv">10</span>)))<span class="sc">+</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span>.<span class="dv">2</span>, <span class="at">fill=</span><span class="st">"steelblue4"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">alpha=</span>.<span class="dv">8</span>)<span class="sc">+</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Log - Pneumonia &amp; COVID deaths"</span>, <span class="at">y=</span><span class="st">"Count"</span>)<span class="sc">+</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">12</span>))</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>hist_death_pna_covid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Since it’s generally a bell shape, I will estimate the mean and sd for the normal distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit normal distribution for log death_pna_covid+1</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>fit_norm3 <span class="ot">&lt;-</span> <span class="fu">fitdist</span>(<span class="fu">log</span>(data5<span class="sc">$</span>death_pna_covid<span class="sc">+</span><span class="dv">1</span>, <span class="dv">10</span>), <span class="st">"norm"</span>)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_norm3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fitting of the distribution ' norm ' by maximum likelihood 
+Parameters : 
+      estimate  Std. Error
+mean 1.8217539 0.013730000
+sd   0.6987477 0.009708486
+Loglikelihood:  -2746.625   AIC:  5497.25   BIC:  5508.969 
+Correlation matrix:
+     mean sd
+mean    1  0
+sd      0  1</code></pre>
+</div>
+</div>
+<p>Hence, the log-transformed <em>death_pna_covid</em> is likely to follow a normal distribution with mean=1.82 and sd=0.70.</p>
+</section>
+<section id="death_pna_flu_covid" class="level2">
+<h2 class="anchored" data-anchor-id="death_pna_flu_covid">death_pna_flu_covid</h2>
+<p>Last, for <em>death_pna_flu_covid</em>, no NAs or 0s exist. I will directly make a histogram for it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of log death_pna_flu_covid</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>hist_death_pna_flu_covid <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">log</span>(death_pna_flu_covid, <span class="dv">10</span>)))<span class="sc">+</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span>.<span class="dv">1</span>, <span class="at">fill=</span><span class="st">"darkseagreen3"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">alpha=</span>.<span class="dv">8</span>)<span class="sc">+</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Log - Pneumonia &amp; Influenza &amp; COVID deaths"</span>, <span class="at">y=</span><span class="st">"Count"</span>)<span class="sc">+</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">12</span>))</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>hist_death_pna_flu_covid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As shown in the histogram, it generally looks like a normal distribution. Now I’m estimating the parameters for this normal distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit normal distribution for log death_pna_flu_covid</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>fit_norm4 <span class="ot">&lt;-</span> <span class="fu">fitdist</span>(<span class="fu">log</span>(data<span class="sc">$</span>death_pna_flu_covid, <span class="dv">10</span>), <span class="st">"norm"</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_norm4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fitting of the distribution ' norm ' by maximum likelihood 
+Parameters : 
+      estimate  Std. Error
+mean 2.4999735 0.009433313
+sd   0.5261557 0.006670251
+Loglikelihood:  -2416.564   AIC:  4837.128   BIC:  4849.213 
+Correlation matrix:
+     mean sd
+mean    1  0
+sd      0  1</code></pre>
+</div>
+</div>
+<p>Hence, the log-transformed <em>death_pna_flu_covid</em> is likely to follow a normal distribution with mean=2.50 and sd=0.53.</p>
+</section>
+<section id="hopes-contribution-and-additions---synthetic-data-and-new-figures-that-mirrors-guozhengs-original-work" class="level2">
+<h2 class="anchored" data-anchor-id="hopes-contribution-and-additions---synthetic-data-and-new-figures-that-mirrors-guozhengs-original-work">Hope’s Contribution and Additions - Synthetic Data and New Figures that Mirrors Guozheng’s Original Work</h2>
+<p>The dataset below is synthetic data that parodies the “Provisional COVID-19 Death Counts by Week Ending Date and State” data set as shown above.</p>
+<p>This synthetic data contains 60 observations of 9 variables including the year during which the deaths were recorded, the month (during which the deaths were recorded), the state or jurisdiction where the deaths occurred, the total number of deaths from all causes, including COVID-19, pneumonia, and influenza (death_total), the number of deaths specifically due to pneumonia (death_pna), the number of deaths specifically due to influenza (death_flu), the number of deaths specifically due to COVID-19 (death_covid), the number of deaths where both pneumonia and COVID-19 were involved (death_pna_covid), and the number of deaths where pneumonia, influenza, and COVID-19 were involved (death_pna_flu_covid).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required packages</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fitdistrplus) <span class="co"># To fit distributions</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Create synthetic data</span></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>synthetic_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Year =</span> <span class="fu">rep</span>(<span class="dv">2020</span><span class="sc">:</span><span class="dv">2024</span>, <span class="at">each =</span> <span class="dv">12</span>),</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">Month =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">times =</span> <span class="dv">5</span>),</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">State =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"California"</span>, <span class="st">"Texas"</span>, <span class="st">"Florida"</span>, <span class="st">"New York"</span>, <span class="st">"Illinois"</span>), <span class="at">times =</span> <span class="dv">12</span>),</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">COVID.19.Deaths =</span> <span class="fu">round</span>(<span class="fu">rpois</span>(<span class="dv">60</span>, <span class="at">lambda =</span> <span class="dv">500</span>)),</span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">Total.Deaths =</span> <span class="fu">round</span>(<span class="fu">rpois</span>(<span class="dv">60</span>, <span class="at">lambda =</span> <span class="dv">2000</span>)),</span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">Pneumonia.Deaths =</span> <span class="fu">round</span>(<span class="fu">rpois</span>(<span class="dv">60</span>, <span class="at">lambda =</span> <span class="dv">300</span>)),</span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">Pneumonia.and.COVID.19.Deaths =</span> <span class="fu">round</span>(<span class="fu">rpois</span>(<span class="dv">60</span>, <span class="at">lambda =</span> <span class="dv">150</span>)),</span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">Influenza.Deaths =</span> <span class="fu">round</span>(<span class="fu">rpois</span>(<span class="dv">60</span>, <span class="at">lambda =</span> <span class="dv">50</span>)),</span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">Pneumonia..Influenza..or.COVID.19.Deaths =</span> <span class="fu">round</span>(<span class="fu">rpois</span>(<span class="dv">60</span>, <span class="at">lambda =</span> <span class="dv">600</span>))</span>
+<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>First, the data was cleaned and formatted with the help of AI tools.</p>
+<p>A summary of the cleaned synthetic data is located in the print out below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Clean and format the data - helped with AI tools!</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>synthetic_data <span class="ot">&lt;-</span> synthetic_data <span class="sc">%&gt;%</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> <span class="fu">as.character</span>(Year),</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">Month =</span> <span class="fu">as.character</span>(Month),</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">State =</span> <span class="fu">as.character</span>(State),</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">death_covid =</span> COVID.<span class="fl">19.</span>Deaths,</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">death_total =</span> Total.Deaths,</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">death_pna =</span> Pneumonia.Deaths,</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">death_pna_covid =</span> Pneumonia.and.COVID.<span class="fl">19.</span>Deaths,</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">death_flu =</span> Influenza.Deaths,</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">death_pna_flu_covid =</span> Pneumonia..Influenza..or.COVID.<span class="fl">19.</span>Deaths) <span class="sc">%&gt;%</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year, Month, State, death_total, death_pna, death_flu, death_covid, death_pna_covid, death_pna_flu_covid)</span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary statistics</span></span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(synthetic_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Year              Month              State            death_total  
+ Length:60          Length:60          Length:60          Min.   :1905  
+ Class :character   Class :character   Class :character   1st Qu.:1960  
+ Mode  :character   Mode  :character   Mode  :character   Median :1990  
+                                                          Mean   :1993  
+                                                          3rd Qu.:2028  
+                                                          Max.   :2071  
+   death_pna       death_flu      death_covid    death_pna_covid
+ Min.   :251.0   Min.   :38.00   Min.   :433.0   Min.   :126.0  
+ 1st Qu.:289.8   1st Qu.:46.00   1st Qu.:485.8   1st Qu.:138.0  
+ Median :299.0   Median :49.00   Median :504.0   Median :147.5  
+ Mean   :299.3   Mean   :50.15   Mean   :502.8   Mean   :148.0  
+ 3rd Qu.:310.0   3rd Qu.:54.25   3rd Qu.:516.0   3rd Qu.:156.0  
+ Max.   :340.0   Max.   :68.00   Max.   :551.0   Max.   :180.0  
+ death_pna_flu_covid
+ Min.   :534.0      
+ 1st Qu.:576.8      
+ Median :594.0      
+ Mean   :594.0      
+ 3rd Qu.:610.2      
+ Max.   :659.0      </code></pre>
+</div>
+</div>
+<p>Now, the dataset is clean and ready for analysis. Unlike the original data in which the range, measures of center and quartiles were too rough to tell the exact distribution that each variable followed, this synthetic data was much more normally distributed. See above in the mean and median comparisons. However, to mirror the experience necessitated by the original data set, I will recreate the above histograms and the distributions fittings. Additionally, in the case of the synthetic data, the log transformation performed in the initial code was exchanged for raw data instead as there were fewer observations (~3000 vs.&nbsp;60).</p>
+<p>#Exploratory analysis - Histograms and distribution fitting</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the generate_histogram function</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>generate_histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(data_col, title, color_fill) {</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove 0s and NAs before applying the transformation</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  cleaned_data <span class="ot">&lt;-</span> data_col[<span class="sc">!</span><span class="fu">is.na</span>(data_col) <span class="sc">&amp;</span> data_col <span class="sc">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert the cleaned column into a tibble before plotting</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>  data_tibble <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">value =</span> cleaned_data)</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Generate histogram for raw data (no log transformation)</span></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(data_tibble, <span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">fill =</span> color_fill, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">paste</span>(title), <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">12</span>))</span>
+<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Death Total</span></span>
+<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a>hist_death_total <span class="ot">&lt;-</span> <span class="fu">generate_histogram</span>(synthetic_data<span class="sc">$</span>death_total, <span class="st">"Total Deaths"</span>, <span class="st">"firebrick1"</span>)</span>
+<span id="cb55-22"><a href="#cb55-22" aria-hidden="true" tabindex="-1"></a>hist_death_total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Death Pneumonia</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>hist_death_pna <span class="ot">&lt;-</span> <span class="fu">generate_histogram</span>(synthetic_data<span class="sc">$</span>death_pna, <span class="st">"Pneumonia Deaths"</span>, <span class="st">"skyblue1"</span>)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>hist_death_pna</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-25-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Death Influenza </span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>hist_death_flu <span class="ot">&lt;-</span> <span class="fu">generate_histogram</span>(synthetic_data<span class="sc">$</span>death_flu, <span class="st">"Influenza Deaths"</span>, <span class="st">"seagreen2"</span>)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>hist_death_flu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-25-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Death COVID </span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>hist_death_covid <span class="ot">&lt;-</span> <span class="fu">generate_histogram</span>(synthetic_data<span class="sc">$</span>death_covid, <span class="st">"COVID Deaths"</span>, <span class="st">"palevioletred"</span>)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>hist_death_covid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-25-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Death Pneumonia &amp; COVID </span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>hist_death_pna_covid <span class="ot">&lt;-</span> <span class="fu">generate_histogram</span>(synthetic_data<span class="sc">$</span>death_pna_covid, <span class="st">"Pneumonia &amp; COVID Deaths"</span>, <span class="st">"steelblue4"</span>)</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>hist_death_pna_covid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-25-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Death Pneumonia, Flu &amp; COVID </span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>hist_death_pna_flu_covid <span class="ot">&lt;-</span> <span class="fu">generate_histogram</span>(synthetic_data<span class="sc">$</span>death_pna_flu_covid, <span class="st">"Pneumonia, Flu &amp; COVID Deaths"</span>, <span class="st">"darkseagreen3"</span>)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>hist_death_pna_flu_covid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-25-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>I was curious in this data to remove values that were relative outliers. Rather than common practice of removing outliers that are 3 standard deviations away from the mean, data lying outside 2 standard deviations was removed to elicit a more dramatic effect on the data (and to practice writing this type of code admittedly.) The first this cleaned (after outlier removal) dataset is displayed below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to clean specific numerical columns by removing values beyond 2 SDs from the mean</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>clean_specific_data_by_sd <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  cleaned_data <span class="ot">&lt;-</span> data</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># List of numerical columns to clean</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>  numerical_columns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"death_total"</span>, <span class="st">"death_pna"</span>, <span class="st">"death_covid"</span>)</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Loop through each numerical column in the list</span></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (col_name <span class="cf">in</span> numerical_columns) {</span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check if the column exists in the data and is numeric</span></span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (col_name <span class="sc">%in%</span> <span class="fu">names</span>(data) <span class="sc">&amp;&amp;</span> <span class="fu">is.numeric</span>(data[[col_name]])) {</span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Calculate the mean and standard deviation of the column</span></span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a>      mean_val <span class="ot">&lt;-</span> <span class="fu">mean</span>(data[[col_name]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a>      sd_val <span class="ot">&lt;-</span> <span class="fu">sd</span>(data[[col_name]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb61-16"><a href="#cb61-16" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb61-17"><a href="#cb61-17" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Filter rows where the values are within 2 SDs from the mean</span></span>
+<span id="cb61-18"><a href="#cb61-18" aria-hidden="true" tabindex="-1"></a>      cleaned_data <span class="ot">&lt;-</span> cleaned_data[<span class="fu">abs</span>(cleaned_data[[col_name]] <span class="sc">-</span> mean_val) <span class="sc">&lt;=</span> <span class="dv">2</span> <span class="sc">*</span> sd_val, ]</span>
+<span id="cb61-19"><a href="#cb61-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb61-20"><a href="#cb61-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb61-21"><a href="#cb61-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb61-22"><a href="#cb61-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(cleaned_data)</span>
+<span id="cb61-23"><a href="#cb61-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb61-24"><a href="#cb61-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-25"><a href="#cb61-25" aria-hidden="true" tabindex="-1"></a>cleaned_synthetic_data <span class="ot">&lt;-</span> <span class="fu">clean_specific_data_by_sd</span>(synthetic_data)</span>
+<span id="cb61-26"><a href="#cb61-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-27"><a href="#cb61-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Few rows of the cleaned dataset</span></span>
+<span id="cb61-28"><a href="#cb61-28" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cleaned_synthetic_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+  Year  Month State  death_total death_pna death_flu death_covid death_pna_covid
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;           &lt;dbl&gt;
+1 2020  1     Calif…        2034       312        68         530             162
+2 2020  2     Texas         2040       281        49         487             148
+3 2020  4     New Y…        1953       320        49         475             131
+4 2020  5     Illin…        2034       295        55         497             156
+5 2020  6     Calif…        2020       291        50         485             147
+6 2020  7     Texas         1960       299        55         545             155
+# ℹ 1 more variable: death_pna_flu_covid &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>The removal of the outliers from the synthetic data set further reveals the normal distributions present in nearly all of the indicators’ distributions. This normalization is very evident comparing the first (above) and second (below) iterations of the histogram representing COVID-19 deaths counts.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Re-Generate histograms for the cleaned data</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Death Total</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>hist_death_total_cleaned <span class="ot">&lt;-</span> <span class="fu">generate_histogram</span>(cleaned_synthetic_data<span class="sc">$</span>death_total, <span class="st">"Total Deaths - Data Excluded Outliers"</span>, <span class="st">"firebrick1"</span>)</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>hist_death_total_cleaned</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Death Pneumonia</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>hist_death_pna_cleaned <span class="ot">&lt;-</span> <span class="fu">generate_histogram</span>(cleaned_synthetic_data<span class="sc">$</span>death_pna, <span class="st">"Pneumonia Deaths - Data Excluded Outliers "</span>, <span class="st">"skyblue1"</span>)</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>hist_death_pna_cleaned </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-27-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Death Influenza</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>hist_death_flu_cleaned <span class="ot">&lt;-</span> <span class="fu">generate_histogram</span>(cleaned_synthetic_data<span class="sc">$</span>death_flu, <span class="st">"Influenza Deaths - Data Excluded Outliers"</span>, <span class="st">"seagreen2"</span>)</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>hist_death_flu_cleaned</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-27-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Death COVID</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>hist_death_covid_cleaned <span class="ot">&lt;-</span> <span class="fu">generate_histogram</span>(cleaned_synthetic_data<span class="sc">$</span>death_covid, <span class="st">"COVID Deaths- Data Excluded Outliers"</span>, <span class="st">"palevioletred"</span>)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>hist_death_covid_cleaned</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-27-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Death Pneumonia &amp; COVID</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>hist_death_pna_covid_cleaned <span class="ot">&lt;-</span> <span class="fu">generate_histogram</span>(cleaned_synthetic_data<span class="sc">$</span>death_pna_covid, <span class="st">"Pneumonia &amp; COVID Deaths - Data Excluded Outliers"</span>, <span class="st">"steelblue4"</span>)</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>hist_death_pna_covid_cleaned </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-27-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Death Pneumonia, Flu &amp; COVID</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>hist_death_pna_flu_covid_cleaned <span class="ot">&lt;-</span> <span class="fu">generate_histogram</span>(cleaned_synthetic_data<span class="sc">$</span>death_pna_flu_covid, <span class="st">"Pneumonia, Flu &amp; COVID Deaths - Data Excluded Outliers"</span>, <span class="st">"darkseagreen3"</span>)</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>hist_death_pna_flu_covid_cleaned</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cdcdata-exercise_files/figure-html/unnamed-chunk-27-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
