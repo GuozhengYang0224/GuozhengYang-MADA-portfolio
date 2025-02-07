@@ -2,16 +2,15 @@
 title: "Data Analysis Exercise"
 ---
 
-Below is an exercise for analyzing a dataset from the CDC website. 
-
+Below is an exercise for analyzing a dataset from the CDC website.
 
 # Introduction
 
-The dataset I choose is called *"Provisional COVID-19 Death Counts by Week Ending Date and State"* (https://data.cdc.gov/NCHS/Provisional-COVID-19-Death-Counts-by-Week-Ending-D/r8kw-7aab/about_data). This dataset has been effective since September 2023, and updated weekly on Thursdays. The latest update date was January 30, 2025. The data provider is the National Center for Health Statistics (NCHS). Suggested citation format is: 
+The dataset I choose is called *"Provisional COVID-19 Death Counts by Week Ending Date and State"* (https://data.cdc.gov/NCHS/Provisional-COVID-19-Death-Counts-by-Week-Ending-D/r8kw-7aab/about_data). This dataset has been effective since September 2023, and updated weekly on Thursdays. The latest update date was January 30, 2025. The data provider is the National Center for Health Statistics (NCHS). Suggested citation format is:
 
-*National Center for Health Statistics. Provisional COVID-19 Death Counts by Week Ending Date and State. Date accessed [Last accessed date]. Available from https://data.cdc.gov/d/r8kw-7aab.*
+*National Center for Health Statistics. Provisional COVID-19 Death Counts by Week Ending Date and State. Date accessed \[Last accessed date\]. Available from https://data.cdc.gov/d/r8kw-7aab.*
 
-This dataset contains weekly reported deaths involving COVID-19, pneumonia, and influenza. The raw data has 17 variables. The names and descriptions of the 17 variables are listed below: 
+This dataset contains weekly reported deaths involving COVID-19, pneumonia, and influenza. The raw data has 17 variables. The names and descriptions of the 17 variables are listed below:
 
 *Data as of:* Date of analysis.
 
@@ -47,7 +46,6 @@ This dataset contains weekly reported deaths involving COVID-19, pneumonia, and 
 
 *Footnote:* Suppressed counts.
 
-
 # Load required packages
 
 ```{r}
@@ -59,7 +57,7 @@ library(ggplot2)
 
 # Data cleaning
 
-First of all, let's load the data file and get an overview of the data structure. 
+First of all, let's load the data file and get an overview of the data structure.
 
 ```{r}
 # Load the data file
@@ -67,7 +65,7 @@ data <- read.csv("CDCdata.csv")
 str(data) # Check data structure
 ```
 
-Here, I'm only interested in the monthly records. So I will firstly filter out the monthly reports. The first 3 columns, *Week.Ending.Date*, and *MMWR.Week* denote dates but are kept in a character format. I will drop these five columns since we already have *Year* and *Month* to denote time. 
+Here, I'm only interested in the monthly records. So I will firstly filter out the monthly reports. The first 3 columns, *Week.Ending.Date*, and *MMWR.Week* denote dates but are kept in a character format. I will drop these five columns since we already have *Year* and *Month* to denote time.
 
 ```{r}
 # Drop Data.as.of, Start.Date, End.Date, and Week.Ending.Date
@@ -78,16 +76,16 @@ data <- data %>%
 str(data) # Check data structure
 ```
 
-Now, the data is by monthly report, and the *Group* column is not useful anymore. The other two redundant columns of no interest are *Percent.of.Expected.Deaths* and *Footnote*. I will drop these three columns in the next step. 
+Now, the data is by monthly report, and the *Group* column is not useful anymore. The other two redundant columns of no interest are *Percent.of.Expected.Deaths* and *Footnote*. I will drop these three columns in the next step.
 
-It's abnormal that the first several values in the column *State* are "United States". I thought this column should only contain states instead of national data. Now let's check what's in this column. 
+It's abnormal that the first several values in the column *State* are "United States". I thought this column should only contain states instead of national data. Now let's check what's in this column.
 
 ```{r}
 # Check what's in the column State
 unique(data$State)
 ```
 
-The three abnormal values I noticed are *"United States"*, *"New York City"*, and *"Puerto Rico"*. So I will drop records associated with these three places. 
+The three abnormal values I noticed are *"United States"*, *"New York City"*, and *"Puerto Rico"*. So I will drop records associated with these three places.
 
 ```{r}
 # Drop Group and Footnote
@@ -99,7 +97,7 @@ str(data) # Check data structure
 
 Of note, the format of the rest of the columns are not right. For *Year*, *Month*, and *State*, I'm fine with them kept as characters. The rest of the columns denote number of cases, which should be integers. One possible reason for the wrong format is the existence of comma. I will correct the format of these columns in the next step.
 
-Note that the column names are too complex, which are not convenient to call. I will change the column names at the same time. 
+Note that the column names are too complex, which are not convenient to call. I will change the column names at the same time.
 
 ```{r}
 # Correct column formats
@@ -116,21 +114,21 @@ data <- data %>%
 str(data) # Check data structure
 ```
 
-Now, the dataset is clean and ready for analysis. As noticed, there are some missing values. I will keep these NAs since the following analysis is just about every single variable and no associations between variables will be analyzed. 
+Now, the dataset is clean and ready for analysis. As noticed, there are some missing values. I will keep these NAs since the following analysis is just about every single variable and no associations between variables will be analyzed.
 
 # Exploratory analysis
 
-First of all, I want to get some information about the distribution of the integer variables. 
+First of all, I want to get some information about the distribution of the integer variables.
 
 ```{r}
 summary(data) # Check data distribution
 ```
 
-The range and quantiles are too rough to tell the exact distribution that each variable follows. Now I want to make a histogram for each variable to see their distributions. 
+The range and quantiles are too rough to tell the exact distribution that each variable follows. Now I want to make a histogram for each variable to see their distributions.
 
 ## death_total
 
-Let's start from *death_total*. As its scale is too large, I will take the log-transformation first. 
+Let's start from *death_total*. As its scale is too large, I will take the log-transformation first.
 
 ```{r}
 # Histogram of log death_total
@@ -145,7 +143,7 @@ hist_death_total <- ggplot(data, aes(x=log(death_total, 10)))+
 hist_death_total
 ```
 
-According to the histogram, log-transformed *death_total* is left skewed, with one obvious peak. It could be a weibull distribution or a gamma distribution. Now I want to fit this two distribution and select the best one based on log-likelihood value. 
+According to the histogram, log-transformed *death_total* is left skewed, with one obvious peak. It could be a weibull distribution or a gamma distribution. Now I want to fit this two distribution and select the best one based on log-likelihood value.
 
 ```{r}
 # Fit weibull distribution for log death_total
@@ -163,7 +161,7 @@ According to two fitting results, the weibull distribution can better fit the lo
 
 ## death_pna
 
-Now, let's repeat the above steps for *death_pna*. Again, this variable will be log-transformed. 
+Now, let's repeat the above steps for *death_pna*. Again, this variable will be log-transformed.
 
 ```{r}
 # Histogram of log death_pna
@@ -190,7 +188,7 @@ Hence, the log-transformed *death_pna* is likely to follow a normal distribution
 
 ## death_flu
 
-Next, let's get the histogram for *death_flu*. As a great proportion of values in this variable are 0, I will take the distribution of this variable hierarchically: 1. determine the probability of 0 vs >0 values; 2. determine the distribution of >0 values. Let's generate an indicator variable to check how many values are 0. 
+Next, let's get the histogram for *death_flu*. As a great proportion of values in this variable are 0, I will take the distribution of this variable hierarchically: 1. determine the probability of 0 vs \>0 values; 2. determine the distribution of \>0 values. Let's generate an indicator variable to check how many values are 0.
 
 ```{r}
 # Generate an indicator variable for death_flu
@@ -214,7 +212,7 @@ bar_death_flu01 <- ggplot(data2, aes(x=factor(death_flu01)))+
 bar_death_flu01
 ```
 
-As shown, the probability for 0 influenza deaths is 0.52, which is also the estimate for a binomial distribution. For >0 influenza deaths, I will make a histogram to show its distribution. 
+As shown, the probability for 0 influenza deaths is 0.52, which is also the estimate for a binomial distribution. For \>0 influenza deaths, I will make a histogram to show its distribution.
 
 ```{r}
 # Filter out death_flu > 0
@@ -232,7 +230,7 @@ hist_death_flu1 <- ggplot(data3, aes(x=log(death_flu, 10)))+
 hist_death_flu1
 ```
 
-According to the histogram above, the >0 influenza deaths generally follows a weibull or a gamma distribution. Still, I will fit both and determine the best fit by log-likelihood. 
+According to the histogram above, the \>0 influenza deaths generally follows a weibull or a gamma distribution. Still, I will fit both and determine the best fit by log-likelihood.
 
 ```{r}
 # Fit weibull distribution for >0 log death_flu
@@ -246,7 +244,7 @@ fit_gm2 <- fitdist(log(data3$death_flu, 10), "gamma")
 summary(fit_gm2)
 ```
 
-As shown, the gamma distribution is better when influenza deaths is >0 (log-likelihood=-220 vs-274). The estimated shape parameter is 19.19 and the rate parameter is 13.19.
+As shown, the gamma distribution is better when influenza deaths is \>0 (log-likelihood=-220 vs-274). The estimated shape parameter is 19.19 and the rate parameter is 13.19.
 
 ## death_covid
 
@@ -280,7 +278,7 @@ Hence, the log-transformed *death_covid* is likely to follow a normal distributi
 
 ## death_pna_covid
 
-Again, the same thing for *death_pna_covid*. I will clean the NAs first and then add 1 to this variable. 
+Again, the same thing for *death_pna_covid*. I will clean the NAs first and then add 1 to this variable.
 
 ```{r}
 # Clean the missing values in death_pna_covid
@@ -298,7 +296,7 @@ hist_death_pna_covid <- ggplot(data5, aes(x=log(death_pna_covid+1, 10)))+
 hist_death_pna_covid
 ```
 
-Since it's generally a bell shape, I will estimate the mean and sd for the normal distribution. 
+Since it's generally a bell shape, I will estimate the mean and sd for the normal distribution.
 
 ```{r}
 # Fit normal distribution for log death_pna_covid+1
@@ -310,7 +308,7 @@ Hence, the log-transformed *death_pna_covid* is likely to follow a normal distri
 
 ## death_pna_flu_covid
 
-Last, for *death_pna_flu_covid*, no NAs or 0s exist. I will directly make a histogram for it. 
+Last, for *death_pna_flu_covid*, no NAs or 0s exist. I will directly make a histogram for it.
 
 ```{r}
 # Histogram of log death_pna_flu_covid
@@ -335,3 +333,167 @@ summary(fit_norm4)
 
 Hence, the log-transformed *death_pna_flu_covid* is likely to follow a normal distribution with mean=2.50 and sd=0.53.
 
+## Hope's Contribution and Additions - Synthetic Data and New Figures that Mirrors Guozheng's Original Work
+
+The dataset below is synthetic data that parodies the "Provisional COVID-19 Death Counts by Week Ending Date and State" data set as shown above.
+
+This synthetic data contains 60 observations of 9 variables including the year during which the deaths were recorded, the month (during which the deaths were recorded), the state or jurisdiction where the deaths occurred, the total number of deaths from all causes, including COVID-19, pneumonia, and influenza (death_total), the number of deaths specifically due to pneumonia (death_pna), the number of deaths specifically due to influenza (death_flu), the number of deaths specifically due to COVID-19 (death_covid), the number of deaths where both pneumonia and COVID-19 were involved (death_pna_covid), and the number of deaths where pneumonia, influenza, and COVID-19 were involved (death_pna_flu_covid).
+
+```{r}
+# Load required packages
+library(fitdistrplus) # To fit distributions
+library(tidyverse)
+library(ggplot2)
+
+# Set seed for reproducibility
+set.seed(42)
+
+#Create synthetic data
+synthetic_data <- tibble(
+  Year = rep(2020:2024, each = 12),
+  Month = rep(1:12, times = 5),
+  State = rep(c("California", "Texas", "Florida", "New York", "Illinois"), times = 12),
+  COVID.19.Deaths = round(rpois(60, lambda = 500)),
+  Total.Deaths = round(rpois(60, lambda = 2000)),
+  Pneumonia.Deaths = round(rpois(60, lambda = 300)),
+  Pneumonia.and.COVID.19.Deaths = round(rpois(60, lambda = 150)),
+  Influenza.Deaths = round(rpois(60, lambda = 50)),
+  Pneumonia..Influenza..or.COVID.19.Deaths = round(rpois(60, lambda = 600))
+)
+```
+
+First, the data was cleaned and formatted with the help of AI tools.
+
+A summary of the cleaned synthetic data is located in the print out below.
+
+```{r}
+#Clean and format the data - helped with AI tools!
+synthetic_data <- synthetic_data %>%
+  mutate(Year = as.character(Year),
+         Month = as.character(Month),
+         State = as.character(State),
+         death_covid = COVID.19.Deaths,
+         death_total = Total.Deaths,
+         death_pna = Pneumonia.Deaths,
+         death_pna_covid = Pneumonia.and.COVID.19.Deaths,
+         death_flu = Influenza.Deaths,
+         death_pna_flu_covid = Pneumonia..Influenza..or.COVID.19.Deaths) %>%
+  select(Year, Month, State, death_total, death_pna, death_flu, death_covid, death_pna_covid, death_pna_flu_covid)
+
+#Summary statistics
+summary(synthetic_data)
+```
+
+Now, the dataset is clean and ready for analysis. Unlike the original data in which the range, measures of center and quartiles were too rough to tell the exact distribution that each variable followed, this synthetic data was much more normally distributed. See above in the mean and median comparisons. However, to mirror the experience necessitated by the original data set, I will recreate the above histograms and the distributions fittings. Additionally, in the case of the synthetic data, the log transformation performed in the initial code was exchanged for raw data instead as there were fewer observations (\~3000 vs. 60).
+
+#Exploratory analysis - Histograms and distribution fitting
+
+```{r}
+# Define the generate_histogram function
+generate_histogram <- function(data_col, title, color_fill) {
+  # Remove 0s and NAs before applying the transformation
+  cleaned_data <- data_col[!is.na(data_col) & data_col > 0]
+  
+  # Convert the cleaned column into a tibble before plotting
+  data_tibble <- tibble(value = cleaned_data)
+  
+  # Generate histogram for raw data (no log transformation)
+  ggplot(data_tibble, aes(x = value)) +
+    geom_histogram(binwidth = 10, fill = color_fill, color = "black", alpha = .8) +
+    labs(x = paste(title), y = "Count") +
+    theme_bw() +
+    theme(axis.title.x = element_text(size = 15, color = "black", face = "bold"),
+          axis.title.y = element_text(size = 15, color = "black", face = "bold"),
+          axis.text.x = element_text(color = "black", size = 12),
+          axis.text.y = element_text(color = "black", size = 12))
+}
+
+# Death Total
+hist_death_total <- generate_histogram(synthetic_data$death_total, "Total Deaths", "firebrick1")
+hist_death_total
+
+# Death Pneumonia
+hist_death_pna <- generate_histogram(synthetic_data$death_pna, "Pneumonia Deaths", "skyblue1")
+hist_death_pna
+
+# Death Influenza 
+hist_death_flu <- generate_histogram(synthetic_data$death_flu, "Influenza Deaths", "seagreen2")
+hist_death_flu
+
+# Death COVID 
+hist_death_covid <- generate_histogram(synthetic_data$death_covid, "COVID Deaths", "palevioletred")
+hist_death_covid
+
+# Death Pneumonia & COVID 
+hist_death_pna_covid <- generate_histogram(synthetic_data$death_pna_covid, "Pneumonia & COVID Deaths", "steelblue4")
+hist_death_pna_covid
+
+# Death Pneumonia, Flu & COVID 
+hist_death_pna_flu_covid <- generate_histogram(synthetic_data$death_pna_flu_covid, "Pneumonia, Flu & COVID Deaths", "darkseagreen3")
+hist_death_pna_flu_covid
+```
+
+I was curious in this data to remove values that were relative outliers. Rather than common practice of removing outliers that are 3 standard deviations away from the mean, data lying outside 2 standard deviations was removed to elicit a more dramatic effect on the data (and to practice writing this type of code admittedly.) The first this cleaned (after outlier removal) dataset is displayed below.
+
+```{r}
+# Function to clean specific numerical columns by removing values beyond 2 SDs from the mean
+clean_specific_data_by_sd <- function(data) {
+  cleaned_data <- data
+  
+  # List of numerical columns to clean
+  numerical_columns <- c("death_total", "death_pna", "death_covid")
+  
+  # Loop through each numerical column in the list
+  for (col_name in numerical_columns) {
+    # Check if the column exists in the data and is numeric
+    if (col_name %in% names(data) && is.numeric(data[[col_name]])) {
+      
+      # Calculate the mean and standard deviation of the column
+      mean_val <- mean(data[[col_name]], na.rm = TRUE)
+      sd_val <- sd(data[[col_name]], na.rm = TRUE)
+      
+      # Filter rows where the values are within 2 SDs from the mean
+      cleaned_data <- cleaned_data[abs(cleaned_data[[col_name]] - mean_val) <= 2 * sd_val, ]
+    }
+  }
+  
+  return(cleaned_data)
+}
+
+cleaned_synthetic_data <- clean_specific_data_by_sd(synthetic_data)
+
+# Few rows of the cleaned dataset
+head(cleaned_synthetic_data)
+
+
+```
+
+The removal of the outliers from the synthetic data set further reveals the normal distributions present in nearly all of the indicators' distributions. This normalization is very evident comparing the first (above) and second (below) iterations of the histogram representing COVID-19 deaths counts.
+
+```{r}
+#Re-Generate histograms for the cleaned data
+
+# Death Total
+hist_death_total_cleaned <- generate_histogram(cleaned_synthetic_data$death_total, "Total Deaths - Data Excluded Outliers", "firebrick1")
+hist_death_total_cleaned
+
+# Death Pneumonia
+hist_death_pna_cleaned <- generate_histogram(cleaned_synthetic_data$death_pna, "Pneumonia Deaths - Data Excluded Outliers ", "skyblue1")
+hist_death_pna_cleaned 
+
+# Death Influenza
+hist_death_flu_cleaned <- generate_histogram(cleaned_synthetic_data$death_flu, "Influenza Deaths - Data Excluded Outliers", "seagreen2")
+hist_death_flu_cleaned
+
+# Death COVID
+hist_death_covid_cleaned <- generate_histogram(cleaned_synthetic_data$death_covid, "COVID Deaths- Data Excluded Outliers", "palevioletred")
+hist_death_covid_cleaned
+
+# Death Pneumonia & COVID
+hist_death_pna_covid_cleaned <- generate_histogram(cleaned_synthetic_data$death_pna_covid, "Pneumonia & COVID Deaths - Data Excluded Outliers", "steelblue4")
+hist_death_pna_covid_cleaned 
+
+# Death Pneumonia, Flu & COVID
+hist_death_pna_flu_covid_cleaned <- generate_histogram(cleaned_synthetic_data$death_pna_flu_covid, "Pneumonia, Flu & COVID Deaths - Data Excluded Outliers", "darkseagreen3")
+hist_death_pna_flu_covid_cleaned
+```
