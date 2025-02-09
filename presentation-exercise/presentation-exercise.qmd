@@ -1,0 +1,338 @@
+---
+title: "Visualization Exercise"
+---
+
+Below is an exercise for visualizing data with help from ChatGPT (ChatGPT 4o model). 
+
+# Introduction
+
+I will use the NBA RAPTOR (Robust Algorithm (using) Player Tracking (and) On/Off Ratings) dataset from the '22-'23 season for this exercise. The dataset is published on *FiveThirtyEight* (https://projects.fivethirtyeight.com/nba-player-ratings/?ex_cid=irpromo) and was last updated on June 14th, 2023. By default, the data contains 250 NBA players who played at least 1,137 minutes during the season. In total, 14 columns are included with details shown below. More details can also be found on their Github website: https://github.com/fivethirtyeight/data/tree/master/nba-raptor.
+
+*PLAYER*: Player name.
+
+*TEAM*: Team name.
+
+*POSITION*: Positions played.
+
+*MINUTES*: Minutes played.
+
+*raptor_box_offense*: Points above average per 100 possessions added by player on offense, based only on box score estimate.
+
+*raptor_box_defense*: Points above average per 100 possessions added by player on defense, based only on box score estimate.
+
+*raptor_box_total*: Points above average per 100 possessions added by player, based only on box score estimate.
+
+*raptor_onoff_offense*: Points above average per 100 possessions added by player on offense, based only on plus-minus data.
+
+*raptor_onoff_defense*: Points above average per 100 possessions added by player on defense, based only on plus-minus data.
+
+*raptor_onoff_total*: Points above average per 100 possessions added by player, based only on plus-minus data.
+
+*raptor_offense*: Points above average per 100 possessions added by player on offense, using both box and on-off components.
+
+*raptor_defense*: Points above average per 100 possessions added by player on defense, using both box and on-off components.
+
+*raptor_total*: Points above average per 100 possessions added by player on both offense and defense, using both box and on-off components.
+
+*war_total*: Wins Above Replacement between regular season and playoffs.
+
+I directly copied the data from the website and paste it into Excel. I then saved the file in a csv format for analysis. First of all, let's import the data and take a look at the data structure.
+
+```{r}
+# Load required package
+library(gtExtras)
+library(ggplot2)
+library(ggtext)
+library(gtsummary)
+library(gt)
+library(ggplot2)
+library(tidyverse)
+```
+```{r}
+# Import the data file and check its structure
+data <- read.csv("nbadata.csv")
+head(data)
+str(data)
+```
+
+As shown, the 250 players' information are imported with the right format. 
+
+# Replicate a figure using ChatGPT
+
+Now I will try to replicate the figure on the website with help from ChatGPT. Here I'm attaching my communication with ChatGPT and the code she gives me. 
+
+**Me:** *Good morning! I’m trying to extract data from this website: https://projects.fivethirtyeight.com/nba-player-ratings/?ex_cid=irpromo and analyze it. Can you help me by showing me R code? When I place my requirements, just directly answer my questions. Please don’t answer side information that is not related to my questions. Thanks! I will tell you my requirements for the analysis.*
+
+**ChatGPT:** *Good morning! Yes, I can help. Please provide your requirements for the analysis, and I'll respond with R code directly.*
+
+**Me:** *Great! Now I want to replicate the figure shown on their website. I have attached the screenshots of their figure and the data I have. Please give me code using ggplot2 and make sure that the output figure is exactly the same to theirs. By “exactly the same” I mean not only the scatter plot should be the same, I also want the same theme, axis titles, axis texts, grid lines, background colors, and texts with boxes in the figure. The two variables you should use are “raptor_offense” and “raptor_defense”. You don’t need to make the figure interactive. I have imported the data into R and am waiting for your code. Thanks!*
+
+**ChatGPT:** *Here is the R code to replicate the figure using ggplot2. This code ensures that the scatter plot, background colors, quadrant labels, axis formatting, and overall aesthetics match the original figure.*
+
+```{r}
+# Assuming your dataset is named 'data'
+# Define the quadrants based on raptor_offense and raptor_defense
+data$quadrant <- with(data, ifelse(raptor_offense >= 0 & raptor_defense >= 0, "Positive Offense & Defense",
+                            ifelse(raptor_offense < 0 & raptor_defense >= 0, "Negative Offense & Positive Defense",
+                            ifelse(raptor_offense < 0 & raptor_defense < 0, "Negative Offense & Defense",
+                                   "Positive Offense & Negative Defense"))))
+
+# Create the plot
+ggplot(data, aes(x = raptor_offense, y = raptor_defense)) +
+  # Background colors for quadrants
+  annotate("rect", xmin = -Inf, xmax = 0, ymin = -Inf, ymax = 0, fill = "pink", alpha = 0.3) +
+  annotate("rect", xmin = 0, xmax = Inf, ymin = 0, ymax = Inf, fill = "lightblue", alpha = 0.3) +
+  annotate("rect", xmin = -Inf, xmax = 0, ymin = 0, ymax = Inf, fill = "white", alpha = 0.3) +
+  annotate("rect", xmin = 0, xmax = Inf, ymin = -Inf, ymax = 0, fill = "white", alpha = 0.3) +
+  
+  # Scatter plot
+  geom_point(color = "black", fill = "white", shape = 21, size = 3, stroke = 1) +
+  
+  # Axis labels
+  labs(x = "Offensive RAPTOR rating", y = "Defensive RAPTOR rating") +
+  
+  # Axis formatting
+  scale_x_continuous(limits = c(-10, 10), breaks = seq(-10, 10, 5)) +
+  scale_y_continuous(limits = c(-10, 10), breaks = seq(-10, 10, 5)) +
+  
+  # Add quadrant labels with colored backgrounds
+  annotate("text", x = -7, y = -7, label = "- offense\n- defense", color = "black",
+           fill = "pink", fontface = "bold", size = 5, hjust = 0.5, vjust = 0.5) +
+  annotate("text", x = 7, y = 7, label = "+ offense\n+ defense", color = "black",
+           fill = "lightblue", fontface = "bold", size = 5, hjust = 0.5, vjust = 0.5) +
+  annotate("text", x = -7, y = 7, label = "- offense\n+ defense", color = "black",
+           fill = "lightblue", fontface = "bold", size = 5, hjust = 0.5, vjust = 0.5) +
+  annotate("text", x = 7, y = -7, label = "+ offense\n- defense", color = "black",
+           fill = "pink", fontface = "bold", size = 5, hjust = 0.5, vjust = 0.5) +
+  
+  # Theme to match FiveThirtyEight style
+  theme_minimal(base_size = 14) +
+  theme(panel.grid.major = element_line(color = "gray90"),
+        panel.grid.minor = element_blank(),
+        panel.background = element_rect(fill = "white", color = NA),
+        plot.background = element_rect(fill = "white", color = NA),
+        axis.title = element_text(face = "bold"),
+        axis.text = element_text(face = "bold"))
+```
+
+*This will generate a figure that closely matches the one on the FiveThirtyEight website, including the quadrant shading, labeled regions, scatter points, and overall aesthetic. Let me know if you need any adjustments!*
+
+**Me:** *Thank you for your help! But what you give me is slightly different from their figure. I will adjust the code manually.*
+
+**ChatGPT:** *You're welcome! That sounds like a great plan. You can fine-tune the details to match their figure exactly. Let me know if you need any further refinements or help adjusting specific elements. Happy coding!*
+
+Based on what ChatGPT gave me, I then modified the code trying to make a more similar figure as posted on the website. My version is shown below. 
+
+```{r}
+# My version of code
+ggplot(data, aes(x = raptor_offense, y = raptor_defense)) +
+  annotate("rect", xmin=-10, xmax=0, ymin=-10, ymax=0, fill="pink2", alpha=.6) +
+  annotate("rect", xmin=0, xmax=10, ymin=0, ymax=10, fill="cadetblue2", alpha=.6) +
+  
+  geom_point(color="black", fill="white", shape=21, size=3.5, stroke=.85) +
+  
+  labs(x = "Offensive RAPTOR rating", y = "Defensive RAPTOR rating") +
+  
+  scale_x_continuous(limits=c(-10, 10), breaks=seq(-10, 10, 5), labels=c("-10", "-5", "0", "+5", "+10")) +
+  scale_y_continuous(limits=c(-10, 10), breaks=seq(-10, 10, 5), labels=c("-10", "-5", "0", "+5", "+10")) +
+  
+  annotate("label", x=-7.5, y=-8, label="- offense ", color="black",
+           fill = "pink2", label.size=0, size=3, vjust=.5) +
+  annotate("label", x=-7.5, y=-9, label="- defense", color="black",
+           fill = "pink2", label.size=0, size=3, vjust=.5) +
+  annotate("label", x=7.5, y=9, label="+ offense ", color="black",
+           fill = "cadetblue2", label.size=0, size=3, vjust=.5) +
+  annotate("label", x=7.5, y=8, label="+ defense", color="black",
+           fill = "cadetblue2", label.size=0, size=3, vjust=.5) +
+  annotate("label", x=-7.5, y=9, label="- offense  ", color = "black",
+           fill = "pink2", label.size=0, size=3,  vjust=.5) +
+  annotate("label", x=-7.5, y=8, label="+ defense", color = "black",
+           fill = "cadetblue2", label.size=0, size=3, vjust=.5) +
+  annotate("label", x=7.5, y=-8, label="+ offense", color = "black",
+           fill = "cadetblue2", label.size=0, size=3, vjust=.5) +
+  annotate("label", x=7.5, y=-9, label="- defense", color = "black",
+           fill = "pink2", label.size=0, size=3, vjust=.5) +
+  
+  coord_fixed(ratio=1.15)+
+  
+  theme_minimal(base_size = 14) +
+  theme(panel.grid.major = element_line(color = "gray90", linewidth=.6),
+        panel.grid.minor = element_blank(),
+        panel.background = element_rect(fill = "white", color = NA),
+        plot.background = element_rect(fill = "white", color = NA),
+        axis.title = element_text(color="black", size=10),
+        axis.text.x=element_text(color="gray50", size=7.5, margin=margin(t=-3)),
+        axis.text.y=element_text(color="gray50", size=7.5, margin=margin(t=-3)))
+```
+
+I think my modified version looks more similar to the original figure on the website. Below I'm attaching the original one from the website for comparison.
+
+![](nbaplot.png){fig-align="center"}
+
+# Create a table using ChatGPT
+
+With the widespread adoption of the "small ball" style in the NBA, the role of centers (position C) has evolved. The "small ball" strategy emphasizes speed, pace, and floor spacing, which exposes the traditional center's lack of agility. I want to compare the RAPTOR indices of players who primarily play as centers versus those who do not. 
+
+Still, I will start by asking ChatGPT to help me. My communication with ChatGPT and her code are attached below. 
+
+**Me:** *Next, I want to use this data to make a nice table output. I want to stratify observations by whether POSITION contains “C” (Center vs non-Center), and compare the median of variables from raptor_box_offense to war_total using Wilcoxon rank sum test. For the output table, the first column shows the name of these indices, labeled as “Box offense score”, “Box defense score”, “Box total score”, “On/Off offense score”, “On/Off defense score”, “On/Off total score”, “Comprehensive offense score”, “Comprehensive defense score”, “Comprehensive total score”, “Wins Above Replacement score” by order of the variables. The second column shows the median, 25th quantile, and 75th quantile of Center players (2 digits). The third column shows the histogram of the data in the second column by row (fill color: darkorange). The fourth column shows the median, 25th quantile, and 75th quantile of non-Center players (2 digits). The fifth column shows the histogram of the data in the fourth column by row (fill color: dodgerblue3). The last column shows the p-values (italic title) of test results (3 digits). The column titles for the two groups should be “Center” (color: darkorange) and “Non-Center” (color: dodgerblue3) and they should be bold. You can use packages such as gtsummary and gtExtras to do this.*
+
+**ChatGPT:** *Here is the R code to create the formatted table using gtsummary, gt, and gtExtras. This will generate a stratified table comparing Centers vs. Non-Centers, including medians, interquartile ranges, histograms, and Wilcoxon test p-values.*
+
+```{r}
+# ChatGPT gave me a code with error
+```
+
+*This code will: Compare Centers vs. Non-Centers based on median and IQR. Display histograms for each group.Show Wilcoxon rank sum test p-values. Format the table with bold and colored group titles. Let me know if you need any refinements!*
+
+**Me:** *I just received an error about the ‘=’ in "Center = md("**Center**"), Non-Center =". Can you fix it?*
+
+**ChatGPT:** *Here is the corrected R code. The issue was due to the Non-Center column name containing a hyphen (-). In gt(), column names with special characters should be enclosed in backticks (`). I've fixed that and ensured the table renders correctly.*
+
+```{r}
+# Define variables of interest
+vars <- c("raptor_box_offense", "raptor_box_defense", "raptor_box_total",
+          "raptor_onoff_offense", "raptor_onoff_defense", "raptor_onoff_total",
+          "raptor_offense", "raptor_defense", "raptor_total", "war_total")
+
+# Rename for display
+var_labels <- c("Box offense score", "Box defense score", "Box total score",
+                "On/Off offense score", "On/Off defense score", "On/Off total score",
+                "Comprehensive offense score", "Comprehensive defense score", "Comprehensive total score",
+                "Wins Above Replacement score")
+
+# Create Position Groups (Center vs. Non-Center)
+data <- data %>%
+  mutate(Position_Group = ifelse(grepl("C", POSITION), "Center", "Non-Center"))
+
+# Compute summary statistics
+summary_data <- data %>%
+  group_by(Position_Group) %>%
+  summarise(across(all_of(vars), list(
+    Median = ~ median(.x, na.rm = TRUE),
+    Q25 = ~ quantile(.x, 0.25, na.rm = TRUE),
+    Q75 = ~ quantile(.x, 0.75, na.rm = TRUE)
+  ))) %>%
+  pivot_longer(-Position_Group, names_to = c("Variable", "Stat"), names_sep = "_") %>%
+  pivot_wider(names_from = Position_Group, values_from = value) %>%
+  mutate(across(where(is.numeric), ~ round(.x, 2))) 
+
+# Compute Wilcoxon p-values
+p_values <- data %>%
+  summarise(across(all_of(vars), ~ wilcox.test(.x ~ Position_Group, data = data)$p.value)) %>%
+  pivot_longer(everything(), names_to = "Variable", values_to = "P_Value") %>%
+  mutate(P_Value = formatC(P_Value, format = "f", digits = 3)) 
+
+# Merge summaries and p-values
+table_data <- summary_data %>%
+  left_join(p_values, by = "Variable") %>%
+  mutate(Variable = factor(Variable, levels = vars, labels = var_labels))
+
+# Create gt table
+table_gt <- table_data %>%
+  gt(rowname_col = "Variable") %>%
+  tab_spanner(label = md("**Center**"), columns = `Center`) %>%
+  tab_spanner(label = md("**Non-Center**"), columns = `Non-Center`) %>%
+  cols_label(
+    Variable = "Statistic",
+    `Center` = md("**Center**"),
+    `Non-Center` = md("**Non-Center**"),
+    P_Value = md("*P-value*")
+  ) %>%
+  tab_options(table.font.size = "medium")
+
+# Display table
+table_gt
+```
+
+*Fixes: Used backticks (`) for column names with special characters (Non-Center). Used tab_spanner() to ensure correct formatting of group headers. This should now work as expected. Let me know if you need further refinements!*
+
+**Me:** *Thank you for your help. But what you gave me doesn't meet my requirements. If I use what you just sent me, it could be a stain on my career. Actually I know how to make polished tables. I will do it myself. But still thanks.*
+
+**ChatGPT:** *I appreciate your honesty, and I understand the importance of precision in your work. If you need any refinements or specific adjustments, feel free to let me know. Best of luck with your analysis, and I’m always here to help when needed.*
+
+The table that ChatGPT gave me is not right. Then I realized that this cannot be done using *gt* family packages. I don't think it is even doable. Guess this is too hard for R. So, no blame on ChatGPT. 
+
+Actually, to make plots using *gt* family packages, the data to be plotted must be stored in lists. However, if I create new columns of lists, *tbl_summary* won't be able to deal with it and generate a summary table. I will accomplish it in two steps. I will firstly generate a table with comparisons between the two groups. Then I will create another table that contains the density plots I want. 
+
+```{r}
+# Create Position Groups (Center vs. Non-Center)
+data <- data %>%
+  mutate(Group=ifelse(grepl("C", POSITION), "Center players", "Non-Center players"))
+
+# Make the first table
+nba_tab <- data %>% 
+  select(Group, raptor_box_offense:war_total) %>%
+  tbl_summary(by=Group, type=list(where(is.numeric) ~ "continuous"),
+              statistic=list(all_continuous() ~ "{median} ({p25}, {p75})"),
+              digits=all_continuous() ~ 2,
+              label=list(raptor_box_offense ~ "Box offense score",
+                         raptor_box_defense ~ "Box defense score",
+                         raptor_box_total ~ "Box total score",
+                         raptor_onoff_offense ~ "On/Off offense score",
+                         raptor_onoff_defense ~ "On/Off defense score",
+                         raptor_onoff_total ~ "On/Off total score",
+                         raptor_offense ~ "Comprehensive offense score",
+                         raptor_defense ~ "Comprehensive defense score",
+                         raptor_total ~ "Comprehensive total score",
+                         war_total ~ "Wins Above Replacement score")) %>%
+  add_p(test=all_continuous() ~ "wilcox.test", pvalue_fun=function(x) style_number(x, digits=3)) %>%
+  modify_header(label="**Index**", p.value="*p*-value") %>%
+  as_gt() %>%
+  tab_style_body(style=cell_fill(color="lightskyblue1"), values="Box total score") %>% 
+  tab_style_body(style=cell_fill(color="palevioletred1"), values="On/Off total score") %>%
+  tab_style_body(style=cell_fill(color="palegreen1"), values="Comprehensive total score") %>%
+  tab_style_body(style=cell_fill(color="gold1"), values="Wins Above Replacement score") %>%
+  tab_style(style=cell_text(weight="bold"), 
+            locations=cells_body(columns=p.value, rows=as.numeric(p.value)<0.05)) %>%
+  tab_options(table.font.names="Times New Roman")
+
+# Output the table
+nba_tab
+```
+
+```{r}
+# Make the second table
+nba_tab_c <- data %>% 
+  select(Group, raptor_box_offense:war_total) %>%
+  pivot_longer(-Group, names_to="vars", values_to="vals") %>%
+  mutate(vars=recode(vars, 
+                     raptor_box_offense="Box Offense Score",
+                     raptor_box_defense="Box Defense Score",
+                     raptor_box_total="Box Total Score",
+                     raptor_onoff_offense="On/Off Offense Score",
+                     raptor_onoff_defense="On/Off Defense Score",
+                     raptor_onoff_total="On/Off Total Score",
+                     raptor_offense="Comprehensive Offense Score",
+                     raptor_defense="Comprehensive Defense Score",
+                     raptor_total="Comprehensive Total Score",
+                     war_total="Wins Above Replacement Score")) %>%
+  group_by(Group, vars) %>%
+  summarize(median=round(median(vals), 2),
+            Q1=round(quantile(vals, .25), 2),
+            Q3=round(quantile(vals, .75), 2),
+            datalist=list(vals)) %>%
+  gt() %>%
+  gt_plt_dist(datalist, type="density", 
+              line_color="firebrick4", fill_color="lightpink1", 
+              same_limit=F) %>%
+  tab_style(style=cell_fill(color="lightskyblue"),
+            locations=cells_body(rows=Group=="Center players")) %>%
+  tab_style(style=cell_fill(color="lightgreen"), 
+            locations=cells_body(rows=Group=="Non-Center players")) %>%
+  cols_label(vars=md("**Index**"), 
+             median=md("**Median**"), 
+             Q1=md("**25th Percentile**"), 
+             Q3=md("**75th Percentile**"),
+             datalist=md("**Density Plot**")) %>%
+  tab_options(table.font.names="Times New Roman")
+
+# Ouput the table
+nba_tab_c
+```
+
+
+
+
+
+

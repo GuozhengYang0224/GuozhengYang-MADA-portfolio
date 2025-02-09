@@ -18,6 +18,8 @@ website:
             file: data-exercise/data-exercise.qmd  
           - text: "Data Analysis Exercise"
             file: cdcdata-exercise/cdcdata-exercise.qmd
+          - text: "Visualization Exercise"
+            file: presentation-exercise/presentation-exercise.qmd
     right:
       - icon: github 
         href: https://github.com/GuozhengYang0224/GuozhengYang-MADA-portfolio       
