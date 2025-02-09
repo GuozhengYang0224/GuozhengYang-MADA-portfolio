@@ -40,7 +40,7 @@ I directly copied the data from the website and paste it into Excel. I then save
 
 ```{r}
 # Load required package
-library(gtExtras)
+# library(gtExtras)
 library(ggplot2)
 library(ggtext)
 library(gtsummary)
@@ -293,10 +293,54 @@ nba_tab
 
 ```{r}
 # Make the second table
-nba_tab_c <- data %>% 
+# nba_tab_c <- data %>% 
+#   select(Group, raptor_box_offense:war_total) %>%
+#   pivot_longer(-Group, names_to="vars", values_to="vals") %>%
+#   mutate(vars=recode(vars, 
+#                      raptor_box_offense="Box Offense Score",
+#                      raptor_box_defense="Box Defense Score",
+#                      raptor_box_total="Box Total Score",
+#                      raptor_onoff_offense="On/Off Offense Score",
+#                      raptor_onoff_defense="On/Off Defense Score",
+#                      raptor_onoff_total="On/Off Total Score",
+#                      raptor_offense="Comprehensive Offense Score",
+#                      raptor_defense="Comprehensive Defense Score",
+#                      raptor_total="Comprehensive Total Score",
+#                      war_total="Wins Above Replacement Score")) %>%
+#   group_by(Group, vars) %>%
+#   summarize(median=round(median(vals), 2),
+#             Q1=round(quantile(vals, .25), 2),
+#             Q3=round(quantile(vals, .75), 2),
+#             datalist=list(vals)) %>%
+#   gt() %>%
+#   gt_plt_dist(datalist, type="density", 
+#               line_color="firebrick4", fill_color="lightpink1", 
+#               same_limit=F) %>%
+#   tab_style(style=cell_fill(color="lightskyblue"),
+#             locations=cells_body(rows=Group=="Center players")) %>%
+#   tab_style(style=cell_fill(color="lightgreen"), 
+#             locations=cells_body(rows=Group=="Non-Center players")) %>%
+#   cols_label(vars=md("**Index**"), 
+#              median=md("**Median**"), 
+#              Q1=md("**25th Percentile**"), 
+#              Q3=md("**75th Percentile**"),
+#              datalist=md("**Density Plot**")) %>%
+#   tab_options(table.font.names="Times New Roman")
+
+# Ouput the table
+# nba_tab_c
+```
+
+The code chunk above runs perfectly on my local lap-top. However, whenever I tried to render it into HTML, it keeps saying cannot find the package "gtExtras". I checked everything to make sure this package is accurately installed in my library folder. It just wouldn't work. 
+
+I searched the Internet and didn't find anybody doing the same thing as I'm doing. It has taken me over 40 hrs to solve it so I decided not to be stuck here. I will just make another version of table with plots in it. 
+
+```{r}
+# Make the second table in a different way
+nba_tab_c <- data %>%
   select(Group, raptor_box_offense:war_total) %>%
   pivot_longer(-Group, names_to="vars", values_to="vals") %>%
-  mutate(vars=recode(vars, 
+  mutate(vars=recode(vars,
                      raptor_box_offense="Box Offense Score",
                      raptor_box_defense="Box Defense Score",
                      raptor_box_total="Box Total Score",
@@ -307,32 +351,36 @@ nba_tab_c <- data %>%
                      raptor_defense="Comprehensive Defense Score",
                      raptor_total="Comprehensive Total Score",
                      war_total="Wins Above Replacement Score")) %>%
-  group_by(Group, vars) %>%
-  summarize(median=round(median(vals), 2),
-            Q1=round(quantile(vals, .25), 2),
-            Q3=round(quantile(vals, .75), 2),
-            datalist=list(vals)) %>%
-  gt() %>%
-  gt_plt_dist(datalist, type="density", 
-              line_color="firebrick4", fill_color="lightpink1", 
-              same_limit=F) %>%
-  tab_style(style=cell_fill(color="lightskyblue"),
+  nest_by(Group, vars) %>%
+  mutate(median=round(median(data$vals), 2),
+         Q1=round(quantile(data$vals, .25), 2),
+         Q3=round(quantile(data$vals, .75), 2),
+         dens=list(ggplot(data, aes(vals))+
+                     geom_density(color="purple4",
+                                  fill="palevioletred1")+
+                     theme_void()), .keep="unused") %>%
+  ungroup %>%
+  mutate(ggplot=NA) %>%
+  {dat <- .
+  dat %>%
+    select(-dens) %>%
+    gt() %>%
+    text_transform(locations=cells_body(c(ggplot)),
+                 fn=function(x){map(dat$dens, ggplot_image, height=50)})
+  } %>%
+  tab_style(style=cell_fill(color="lightskyblue1", alpha=.2),
             locations=cells_body(rows=Group=="Center players")) %>%
-  tab_style(style=cell_fill(color="lightgreen"), 
+  tab_style(style=cell_fill(color="palegreen1", alpha=.2),
             locations=cells_body(rows=Group=="Non-Center players")) %>%
-  cols_label(vars=md("**Index**"), 
-             median=md("**Median**"), 
-             Q1=md("**25th Percentile**"), 
+  cols_label(vars=md("**Index**"),
+             median=md("**Median**"),
+             Q1=md("**25th Percentile**"),
              Q3=md("**75th Percentile**"),
-             datalist=md("**Density Plot**")) %>%
+             ggplot=md("**Density Plot**")) %>%
   tab_options(table.font.names="Times New Roman")
 
 # Ouput the table
 nba_tab_c
 ```
-
-
-
-
 
 
