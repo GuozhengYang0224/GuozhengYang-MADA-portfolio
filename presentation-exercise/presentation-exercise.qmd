@@ -293,10 +293,10 @@ nba_tab
 
 ```{r}
 # Make the second table
-# nba_tab_c <- data %>% 
+# nba_tab_c <- data %>%
 #   select(Group, raptor_box_offense:war_total) %>%
 #   pivot_longer(-Group, names_to="vars", values_to="vals") %>%
-#   mutate(vars=recode(vars, 
+#   mutate(vars=recode(vars,
 #                      raptor_box_offense="Box Offense Score",
 #                      raptor_box_defense="Box Defense Score",
 #                      raptor_box_total="Box Total Score",
@@ -313,16 +313,16 @@ nba_tab
 #             Q3=round(quantile(vals, .75), 2),
 #             datalist=list(vals)) %>%
 #   gt() %>%
-#   gt_plt_dist(datalist, type="density", 
-#               line_color="firebrick4", fill_color="lightpink1", 
+#   gt_plt_dist(datalist, type="density",
+#               line_color="firebrick4", fill_color="lightpink1",
 #               same_limit=F) %>%
 #   tab_style(style=cell_fill(color="lightskyblue"),
 #             locations=cells_body(rows=Group=="Center players")) %>%
-#   tab_style(style=cell_fill(color="lightgreen"), 
+#   tab_style(style=cell_fill(color="lightgreen"),
 #             locations=cells_body(rows=Group=="Non-Center players")) %>%
-#   cols_label(vars=md("**Index**"), 
-#              median=md("**Median**"), 
-#              Q1=md("**25th Percentile**"), 
+#   cols_label(vars=md("**Index**"),
+#              median=md("**Median**"),
+#              Q1=md("**25th Percentile**"),
 #              Q3=md("**75th Percentile**"),
 #              datalist=md("**Density Plot**")) %>%
 #   tab_options(table.font.names="Times New Roman")
@@ -331,7 +331,9 @@ nba_tab
 # nba_tab_c
 ```
 
-The code chunk above runs perfectly on my local lap-top. However, whenever I tried to render it into HTML, it keeps saying cannot find the package "gtExtras". I checked everything to make sure this package is accurately installed in my library folder. It just wouldn't work. 
+The code chunk above runs perfectly on my local lap-top. However, whenever I tried to render it into HTML, it keeps saying cannot find the package "gtExtras". I checked everything to make sure this package is accurately installed in my library folder. It just wouldn't work. Here I'm attaching the output table as a figure below. 
+
+![](Tab_gtextras.png){fig-align="center"}
 
 I searched the Internet and didn't find anybody doing the same thing as I'm doing. It has taken me over 40 hrs to solve it so I decided not to be stuck here. I will just make another version of table with plots in it. 
 
