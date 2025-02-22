@@ -1,0 +1,479 @@
+---
+title: "Model Fitting Exercise"
+---
+
+Below is an exercise for analyzing a data set called *mavoglurant*.
+
+# Data processing and exploration
+
+First of all, let's import the data set from the package *nlmixr2data*, and also load other required packages. Actually, the data file in the *nlmixr2data* package is different from the one on Github. 
+
+```{r}
+# Load required package
+library(here)
+library(tidyverse)
+library(tidymodels)
+library(ggplot2)
+library(ggpubr)
+library(gtsummary)
+library(gt)
+library(corrplot)
+```
+
+Now let's take a first look at the *mavoglurant* dataset.
+
+```{r}
+# Look at the data
+data <- read.csv(here("fitting-exercise","Mavoglurant_A2121_nmpk.csv"))
+summary(data)
+```
+
+I wonder how many unique values are there in the variable *DOSE*. This is for the following plotting.
+
+```{r}
+# Unique values in DOSE
+unique(data$DOSE)
+```
+
+Following the instructions, I will make a plot with DV on the y-axis and TIME on the x-axis. The lines should be grouped by three different DOSE levels.
+
+```{r}
+# Plot: DV ~ TIME, grouped by DOSE
+data %>%
+  mutate(DOSE_fct=factor(DOSE, levels=c(25.0, 37.5, 50.0))) %>%
+  ggplot(aes(x=TIME, y=DV, color=DOSE_fct))+
+  geom_line(linewidth=1, alpha=.6)+
+  scale_color_manual(name="Dose", values=c("deepskyblue1", "darkorange", "palevioletred1"))+
+  labs(title="Change of DV by TIME, grouped by DOSE",
+       x="Time", y="DV")+
+  theme_bw()+
+  theme(axis.title=element_text(size=10, color="black", face="bold"),
+        axis.text=element_text(size=8, color="black"),
+        plot.title=element_text(size=12, color="black", face="bold"),
+        legend.position="top",
+        legend.title=element_text(size=10, color="black", face="bold"),
+        legend.text=element_text(size=8, color="black"))
+```
+
+Notice that some individuals received the drug more than once. Now I will only keep rows with *OCC=1*.
+
+```{r}
+# Only keep OCC=1 rows
+data2 <- data %>%
+  filter(OCC==1)
+
+# Look at data structure
+summary(data2)
+```
+
+Following the instructions, I will first create a new data frame without TIME=0 rows, and then calculate the sum of DV by ID.  
+
+```{r}
+# Create datay
+datay <- data2 %>%
+  filter(TIME!=0) %>%
+  group_by(ID) %>%
+  summarize(Y=sum(DV, na.rm=T))
+
+# Check the number of rows and columns
+dim(datay)
+```
+
+As shown, the dimension of the new data frame is right. Then I will create another data frame with only TIME=0 rows.
+
+```{r}
+# Create datay
+data_t0 <- data2 %>%
+  filter(TIME==0)
+
+# Check the number of rows and columns
+dim(data_t0)
+```
+
+The dimension of *data_t0* is right. Now I'm combining the two data frames by adding the new *Y* variable into the *data_t0* data frame. 
+
+```{r}
+# Create datay
+data_new <- data_t0 %>%
+  left_join(datay, by="ID")
+
+# Check the number of rows and columns
+dim(data_new)
+```
+
+The data dimension is right. Now I will do the final cleaning step: 1) convert RACE and SEX to factors; 2) only keep variables Y, DOSE, AGE, SEX, RACE, WT, and HT.
+
+```{r}
+# Take a look at the unique values in SEX and RACE
+unique(data_new$RACE)
+unique(data_new$SEX)
+```
+```{r}
+# Create datay
+data_new <- data_new %>%
+  mutate(RACE=factor(RACE, levels=c(1, 2, 7, 88)),
+         SEX=factor(SEX, levels=c(1,2)),
+         DOSE=factor(DOSE, levels=c(25, 37.5, 50))) %>%
+  select(Y, DOSE, AGE, SEX, RACE, WT, HT)
+
+# Take a final look at the cleaned data
+summary(data_new)
+```
+
+# EDA revisited
+
+First of all, I want to make a summary table to show the distribution of each variable. 
+
+```{r}
+# Summary table for all variables
+data_new %>%
+  tbl_summary(type=list(where(is.numeric) ~ "continuous"),
+              statistic=list(all_continuous() ~ "{median} ({p25}, {p75})"),
+              digits=all_continuous() ~ 0,
+              label=list(Y ~ "Response",
+                         DOSE ~ "Drug dose",
+                         AGE ~ "Age",
+                         SEX ~ "Sex",
+                         RACE ~ "Race",
+                         WT ~ "Weight",
+                         HT ~ "Height")) %>%
+  as_gt() %>%
+  tab_options(table.font.names="Times New Roman")
+```
+
+Now I want to show the difference in the variables between different SEX and RACE. For RACE, I only want to look at those with RACE=1 or RACE=2. The two tables are shown below. 
+
+```{r}
+# Summary table for all variables by SEX
+data_new %>%
+  tbl_summary(by=SEX, type=list(where(is.numeric) ~ "continuous"),
+              statistic=list(all_continuous() ~ "{median} ({p25}, {p75})"),
+              digits=list(all_continuous() ~ 0, HT ~ 2),
+              label=list(Y ~ "Response",
+                         DOSE ~ "Drug dose",
+                         AGE ~ "Age",
+                         RACE ~ "Race",
+                         WT ~ "Weight",
+                         HT ~ "Height")) %>%
+  add_p(test=list(all_continuous() ~ "wilcox.test",
+                  all_categorical() ~ "fisher.test"), 
+        pvalue_fun=function(x) style_number(x, digits=3)) %>%
+  modify_header(p.value="*p*-value") %>%
+  modify_spanning_header(all_stat_cols() ~ "**Sex**") %>%
+  as_gt() %>%
+  tab_style(style=cell_text(weight="bold"), 
+            locations=cells_body(columns=p.value, rows=as.numeric(p.value)<0.05)) %>%
+  tab_options(table.font.names="Times New Roman")
+```
+```{r}
+# Summary table for all variables by RACE
+data_new %>%
+  filter(RACE==1 | RACE==2) %>%
+  mutate(RACE=factor(RACE, levels=c(1,2))) %>%
+  tbl_summary(by=RACE, type=list(where(is.numeric) ~ "continuous"),
+              statistic=list(all_continuous() ~ "{median} ({p25}, {p75})"),
+              digits=list(all_continuous() ~ 0, HT ~ 2),
+              label=list(Y ~ "Response",
+                         DOSE ~ "Drug dose",
+                         AGE ~ "Age",
+                         SEX ~ "Sex",
+                         WT ~ "Weight",
+                         HT ~ "Height")) %>%
+  add_p(test=list(all_continuous() ~ "wilcox.test",
+                  all_categorical() ~ "fisher.test"), 
+        pvalue_fun=function(x) style_number(x, digits=3)) %>%
+  modify_header(p.value="*p*-value") %>%
+  modify_spanning_header(all_stat_cols() ~ "**Race**") %>%
+  as_gt() %>%
+  tab_style(style=cell_text(weight="bold"), 
+            locations=cells_body(columns=p.value, rows=as.numeric(p.value)<0.05)) %>%
+  tab_options(table.font.names="Times New Roman")
+
+```
+
+As shown, no significant difference exists between RACE=1 and RACE=2. However, those with Sex=2 have older age, lighter weight, and shorter height. Now I want to see the association between Y and other continuous predictors (AGE, WT, HT).
+
+```{r}
+# Scatterplot: Y ~ AGE
+sct_plot1 <- ggplot(data_new, aes(x=AGE, y=Y))+
+  geom_point(size=3, fill="seagreen1", color="black", stroke=1, shape=21)+
+  labs(title="Scatterplot: Y ~ AGE",
+       x="Age", y="Y")+
+  theme_bw()+
+  theme(axis.title=element_text(size=10, color="black", face="bold"),
+        axis.text=element_text(size=8, color="black"),
+        plot.title=element_text(size=12, color="black", face="bold"))
+
+# Scatterplot: Y ~ WT
+sct_plot2 <- ggplot(data_new, aes(x=WT, y=Y))+
+  geom_point(size=3, fill="dodgerblue1", color="black", stroke=1, shape=21)+
+  labs(title="Scatterplot: Y ~ WT",
+       x="Weight", y="Y")+
+  theme_bw()+
+  theme(axis.title=element_text(size=10, color="black", face="bold"),
+        axis.text=element_text(size=8, color="black"),
+        plot.title=element_text(size=12, color="black", face="bold"))
+
+# Scatterplot: Y ~ HT
+sct_plot3 <- ggplot(data_new, aes(x=HT, y=Y))+
+  geom_point(size=3, fill="darkorange1", color="black", stroke=1, shape=21)+
+  labs(title="Scatterplot: Y ~ HT",
+       x="Height", y="Y")+
+  theme_bw()+
+  theme(axis.title=element_text(size=10, color="black", face="bold"),
+        axis.text=element_text(size=8, color="black"),
+        plot.title=element_text(size=12, color="black", face="bold"))
+
+# Combine and output the three scatterplots
+ggarrange(sct_plot1, sct_plot2, sct_plot3, ncol=3, nrow=1, align="h", 
+          heights=c(1, 1, 1))
+```
+
+As shown, no evident association exist between Y and the three continuous predictors. No I want to look at the distribution of Y across different categories of SEX, RACE, and DOSE. 
+
+```{r}
+# Boxplot: Y ~ SEX
+box_plot1 <- ggplot(data_new, aes(x=SEX, y=Y))+
+  geom_boxplot(fill="palevioletred1", color="palevioletred1", width=.2, linewidth=1, alpha=.6)+
+  labs(title="Boxplot: Y ~ SEX",
+       x="Sex", y="Y")+
+  theme_bw()+
+  theme(axis.title=element_text(size=10, color="black", face="bold"),
+        axis.text=element_text(size=8, color="black"),
+        plot.title=element_text(size=12, color="black", face="bold"))
+
+# Boxplot: Y ~ RACE
+box_plot2 <- data_new %>%
+  filter(RACE==1 | RACE==2) %>%
+  ggplot(aes(x=RACE, y=Y))+
+  geom_boxplot(fill="skyblue1", color="skyblue1", width=.2, linewidth=1, alpha=.6)+
+  labs(title="Boxplot: Y ~ RACE",
+       x="Race", y="Y")+
+  theme_bw()+
+  theme(axis.title=element_text(size=10, color="black", face="bold"),
+        axis.text=element_text(size=8, color="black"),
+        plot.title=element_text(size=12, color="black", face="bold"))
+
+# Boxplot: Y ~ DOSE
+box_plot3 <- ggplot(data_new, aes(x=DOSE, y=Y))+
+  geom_boxplot(fill="gold1", color="gold1", width=.2, linewidth=1, alpha=.6)+
+  labs(title="Boxplot: Y ~ DOSE",
+       x="Dose", y="Y")+
+  theme_bw()+
+  theme(axis.title=element_text(size=10, color="black", face="bold"),
+        axis.text=element_text(size=8, color="black"),
+        plot.title=element_text(size=12, color="black", face="bold"))
+
+# Combine and output the three boxplots
+ggarrange(box_plot1, box_plot2, box_plot3, ncol=3, nrow=1, align="h", 
+          heights=c(1.5, 1.5, 1))
+```
+
+As shown, Y is positively associated with higher DOSE. Now I want to check whether DOSE is associated with AGE, WT, or HT. I will use grouped density plots to examine it.
+
+```{r}
+# Density plot: AGE ~ DOSE
+dens_plot1 <- ggplot(data_new, aes(x=AGE, fill=DOSE, color=DOSE))+
+  geom_density(alpha=.5, linewidth=1)+
+  scale_fill_manual(name="Dose", breaks=levels(data_new$DOSE), 
+                    values=c("aquamarine1", "orange", "hotpink1"))+
+  scale_color_manual(name="Dose", breaks=levels(data_new$DOSE), 
+                    values=c("aquamarine1", "orange", "hotpink1"))+
+  labs(title="Density plot: AGE ~ DOSE",
+       x="Age", y="Density")+
+  theme_bw()+
+  theme(axis.title=element_text(size=10, color="black", face="bold"),
+        axis.text=element_text(size=8, color="black"),
+        plot.title=element_text(size=12, color="black", face="bold"),
+        legend.position="top",
+        legend.title=element_text(size=10, color="black", face="bold"),
+        legend.text=element_text(size=8, color="black"))
+
+# Density plot: WT ~ DOSE
+dens_plot2 <- ggplot(data_new, aes(x=WT, fill=DOSE, color=DOSE))+
+  geom_density(alpha=.5, linewidth=1)+
+  scale_fill_manual(name="Dose", breaks=levels(data_new$DOSE), 
+                    values=c("aquamarine1", "orange", "hotpink1"))+
+  scale_color_manual(name="Dose", breaks=levels(data_new$DOSE), 
+                    values=c("aquamarine1", "orange", "hotpink1"))+
+  labs(title="Density plot: WT ~ DOSE",
+       x="Weight", y="Density")+
+  theme_bw()+
+  theme(axis.title=element_text(size=10, color="black", face="bold"),
+        axis.text=element_text(size=8, color="black"),
+        plot.title=element_text(size=12, color="black", face="bold"),
+        legend.position="top",
+        legend.title=element_text(size=10, color="black", face="bold"),
+        legend.text=element_text(size=8, color="black"))
+
+# Density plot: HT ~ DOSE
+dens_plot3 <- ggplot(data_new, aes(x=HT, fill=DOSE, color=DOSE))+
+  geom_density(alpha=.5, linewidth=1)+
+  scale_fill_manual(name="Dose", breaks=levels(data_new$DOSE), 
+                    values=c("aquamarine1", "orange", "hotpink1"))+
+  scale_color_manual(name="Dose", breaks=levels(data_new$DOSE), 
+                    values=c("aquamarine1", "orange", "hotpink1"))+
+  labs(title="Density plot: HT ~ DOSE",
+       x="Height", y="Density")+
+  theme_bw()+
+  theme(axis.title=element_text(size=10, color="black", face="bold"),
+        axis.text=element_text(size=8, color="black"),
+        plot.title=element_text(size=12, color="black", face="bold"),
+        legend.position="top",
+        legend.title=element_text(size=10, color="black", face="bold"),
+        legend.text=element_text(size=8, color="black"))
+
+# Combine and output the three density plots
+ggarrange(dens_plot1, dens_plot2, dens_plot3, ncol=1, nrow=3, align="v", 
+          heights=c(1, 1, 1), common.legend=T)
+```
+
+Then I will look at the distrbution of the two categorical variables SEX and RACE by DOSE. I will use dodged bar plot to show this.
+
+```{r}
+# Bar plot: SEX ~ DOSE
+bar_plot1 <- ggplot(data_new, aes(x=SEX, fill=DOSE))+
+  geom_bar(position="dodge", color="steelblue3", width=.5, linewidth=1)+
+  scale_fill_manual(name="Dose", breaks=levels(data_new$DOSE), 
+                    values=c("firebrick4", "darkolivegreen3", "mediumpurple3"))+
+  labs(title="Bar plot: SEX ~ DOSE",
+       x="Sex", y="Count")+
+  theme_bw()+
+  theme(axis.title=element_text(size=10, color="black", face="bold"),
+        axis.text=element_text(size=8, color="black"),
+        plot.title=element_text(size=12, color="black", face="bold"),
+        legend.position="top",
+        legend.title=element_text(size=10, color="black", face="bold"),
+        legend.text=element_text(size=8, color="black"))
+
+# Bar plot: RACE ~ DOSE
+bar_plot2 <- data_new %>%
+  filter(RACE==1 | RACE==2) %>%
+  ggplot(aes(x=RACE, fill=DOSE))+
+  geom_bar(position="dodge", color="steelblue3", width=.5, linewidth=1)+
+  scale_fill_manual(name="Dose", breaks=levels(data_new$DOSE), 
+                    values=c("firebrick4", "darkolivegreen3", "mediumpurple1"))+
+  labs(title="Bar plot: RACE ~ DOSE",
+       x="Race", y="Count")+
+  theme_bw()+
+  theme(axis.title=element_text(size=10, color="black", face="bold"),
+        axis.text=element_text(size=8, color="black"),
+        plot.title=element_text(size=12, color="black", face="bold"),
+        legend.position="top",
+        legend.title=element_text(size=10, color="black", face="bold"),
+        legend.text=element_text(size=8, color="black"))
+
+# Combine and output the two bar plots
+ggarrange(bar_plot1, bar_plot2, ncol=2, nrow=1, align="h", 
+          heights=c(1, 1), common.legend=T)
+```
+
+As shown above, DOSE=37.5 is the least assigned dose level across different sex or race. SEX=1 and RACE=1 received most dose compared to SEX=2 or RACE=2. For the continuous variables, I want to get their correlation matrix shown as a figure. 
+
+```{r}
+# Select continuous variables
+cordata <- data_new %>%
+  select(Y, AGE, WT, HT)
+
+# Calculate corr matrix
+cormat <- cor(cordata)
+
+# Make corr matrix plot
+corrplot(cormat, addCoef.col="black", method="color", diag=F, type="lower", tl.col="black",
+         title="Correlation coefficient matrix", mar=rep(1,4))
+```
+
+As shown, HT is positively associated with WT, but negatively associated with AGE. WT also has a negative correlation with Y. All the rest correlations are weak.
+
+# Model fitting
+
+First of all, I want to fit a simple linear regression model using Y as the response and DOSE as the predictor. I will use the *tidymodels* routine to do this fitting. 
+
+```{r}
+# Linear regression: Y ~ DOSE
+model1 <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Y ~ DOSE, data_new)
+
+# Output the fitting result
+tidy(model1)
+```
+
+According to the output, both DOSE=37.5 ($\beta=681$, se=214) and DOSE=50 ($\beta=1456$, se=130) are positively associated with higher Y. And increasing DOSE usage will result in higher Y. Using DOSE=50 will result in a higher increase in Y compared to using DOSE=37.5.
+
+Next, I will regress the response Y on all predictors. 
+
+```{r}
+# Linear regression: Y ~ all predictors
+model2 <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Y ~ ., data_new)
+
+# Output the fitting result
+tidy(model2)
+```
+
+According to the fitting result, besides higher dose usage, higher Y is also associated with lower weight ($\beta=-23.28$, se=6.44). A weak association was found for age, sex, race, and height. 
+
+Now I'm printing out the RMSE and R-squared from the two linear regression models.
+
+```{r}
+# Print RMSE and R-squared for both models
+results1 <- predict(model1, data_new) %>%
+  bind_cols(data_new) %>%
+  metrics(truth=Y, estimate=.pred) %>%
+  print()
+
+results2 <- predict(model2, data_new) %>%
+  bind_cols(data_new) %>%
+  metrics(truth=Y, estimate=.pred) %>%
+  print()
+```
+
+According to the output, the RMSE for the first model is 666 and the R-squared is 0.52. For the second model, the RMSE is 590 and the R-squared is 0.62. In other words, putting in all predictors can better fit the data compared to only using DOSE, as the second model has a lower RMSE but a higher R-squared.
+
+I will fit the next logistic regression model using SEX as my response and DOSE as the predictor. The SEX variable has two levels 1 and 2, while 1 is the reference group.
+
+```{r}
+# Logistic regression: SEX ~ DOSE
+model3 <- logistic_reg() %>%
+  set_engine("glm") %>%
+  set_mode("classification") %>%
+  fit(SEX ~ DOSE, data_new)
+
+# Output the fitting result
+tidy(model3)
+```
+
+As shown, being SEX=1 is more likely to receive all three level of dose usage compared to SEX=2. The intercept denote the log odds of SEX=2 (vs SEX=1) when given DOSE=25. The coefficients -0.02 (se=0.85) and -0.83 (se=0.63) denote the change of log-odds when given DOSE=37.5 and DOSE=50, respectively. Next, I will fit the logistic regression with all predictors. 
+
+```{r}
+# Logistic regression: SEX ~ all predictors
+model4 <- logistic_reg() %>%
+  set_engine("glm") %>%
+  set_mode("classification") %>%
+  fit(SEX ~ DOSE + AGE + RACE + WT + HT, data_new)
+
+# Output the fitting result
+tidy(model4)
+```
+
+Still, dose usage is a significant predictor for SEX. When including all predictors, higher probability of being SEX=2 is also associated with lower HT ($\beta=-33.26$, se=10.72). Now I'm printing out the accuracy and ROC-AUC from the two logistic regression models.
+
+```{r}
+# Print RMSE and R-squared for both models
+results3 <- predict(model3, data_new, type="class") %>%
+  bind_cols(predict(model3, data_new, type="prob")) %>%
+  bind_cols(data_new) %>%
+  metrics(truth=SEX, estimate=.pred_class, .pred_1) %>%
+  print()
+
+results4 <- predict(model4, data_new, type="class") %>%
+  bind_cols(predict(model4, data_new, type="prob")) %>%
+  bind_cols(data_new) %>%
+  metrics(truth=SEX, estimate=.pred_class, .pred_1) %>%
+  print()
+```
+
+As shown, for the logistic regression model only using DOSE as the predictor, the classification accuracy is 0.87 and the ROC-AUC is 0.59. For the second logistic regression model using all predictors, the accuracy is 0.95 and the ROC-AUC is 0.98. By comparison, using all predictors has a better classification performance than using just DOSE. Though this research question does not make scientific science, but the assessment for the two models are straight forward for choosing the better one.
+
