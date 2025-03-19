@@ -477,3 +477,262 @@ results4 <- predict(model4, data_new, type="class") %>%
 
 As shown, for the logistic regression model only using DOSE as the predictor, the classification accuracy is 0.87 and the ROC-AUC is 0.59. For the second logistic regression model using all predictors, the accuracy is 0.95 and the ROC-AUC is 0.98. By comparison, using all predictors has a better classification performance than using just DOSE. Though this research question does not make scientific science, but the assessment for the two models are straight forward for choosing the better one.
 
+Below is an exercise for Week 10.
+
+# Data prep
+
+First, let's continue using the formatted dataset and only keep variables *Y*, *DOSE*, *AGE*, *SEX*, *WT*, and *HT*.
+
+```{r}
+# Select variables
+data_new10 <- data_new %>%
+  select(Y, DOSE, AGE, SEX, WT, HT)
+summary(data_new10)
+```
+
+Now I'm setting a seed *rngseed* and split the dataset into a 75% train set and a 25% test set. 
+
+```{r}
+# Set seed
+rngseed <- 1234
+set.seed(rngseed)
+
+# Split dataset into a 75% train set and a 25% test set
+data_split <- initial_split(data_new10, prop=.75)
+train_data <- training(data_split)
+test_data  <- testing(data_split)
+```
+
+# Model fitting
+
+I will fit two linear regression models on the training set. The first one only uses *DOSE* as the predictor. 
+
+```{r}
+# Linear regression: Y ~ DOSE
+model1_train <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Y ~ DOSE, train_data)
+
+# Output the fitting result
+tidy(model1_train)
+```
+
+The second model will use all predictors. But the fit is still on the traning set.
+
+```{r}
+# Linear regression: Y ~ DOSE + AGE + SEX + WT + HT
+model2_train <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Y ~ ., train_data)
+
+# Output the fitting result
+tidy(model2_train)
+```
+
+# Model performance assessment 1
+
+I will print RMSE for the two models fitted above.
+
+```{r}
+# Print RMSE for the two models above.
+results1_train <- predict(model1_train, train_data) %>%
+  bind_cols(train_data) %>%
+  metrics(truth=Y, estimate=.pred) %>%
+  print()
+
+results2_train <- predict(model2_train, train_data) %>%
+  bind_cols(train_data) %>%
+  metrics(truth=Y, estimate=.pred) %>%
+  print()
+```
+
+I will fit a null model with only an intercept to compare RMSE.
+
+```{r}
+# Fit the null model
+model0_train <- null_model() %>%
+  set_engine("parsnip") %>%
+  set_mode("regression") %>%
+  fit(Y ~ ., train_data)
+
+# Output the fitting result
+tidy(model0_train)
+
+# Print RMSE for the null model
+results0_train <- predict(model0_train, train_data) %>%
+  bind_cols(train_data) %>%
+  metrics(truth=Y, estimate=.pred) %>%
+  print()
+```
+
+According to the output, the model with only an intercept has the highest RMSE=948. The model with only DOSE as the predictor has the second highest RMSE=703. The model with all predictors included has the lowest RMSE=627. Just based on RMSE, the most complex model has the best performance on the training set, as its RMSE is the lowest.
+
+# Model performance assessment 2
+
+I will apply a 10-fold cross-validation (CV) to examine the performance of the two models. The CV will be conducted on the training set, which will be split into 10 groups with 9 of them used for model fitting. First of all, let's split the data.
+
+```{r}
+# Set seed
+set.seed(rngseed)
+
+# 10-fold sampling
+folds <- vfold_cv(train_data, v=10)
+folds
+```
+
+Now, let's fit the first model (with only *DOSE* as a predictor) to 9 of the splits for 10 times, and calculate the RMSE for the last split. 
+
+```{r}
+# Model setting
+model1_spec <- linear_reg() %>% set_engine("lm")
+# Set the workflow: model 1
+cv_model1 <- workflow() %>%
+  add_model(model1_spec) %>%
+  add_formula(Y ~ DOSE)
+
+# Set seed
+set.seed(rngseed)
+
+# Fit the data
+cv_model1_fit <- cv_model1 %>% fit_resamples(folds)
+
+# Mean of RMSE
+collect_metrics(cv_model1_fit) %>%
+  filter(.metric=="rmse") %>%
+  pull(mean)
+
+# Standard error of RMSE
+collect_metrics(cv_model1_fit) %>%
+  filter(.metric=="rmse") %>%
+  pull(std_err)
+```
+
+Similarly, I will run model2 following the same routine and calcualte the mean RMSE. 
+
+```{r}
+# Model setting
+model2_spec <- linear_reg() %>% set_engine("lm")
+# Set the workflow: model 2
+cv_model2 <- workflow() %>%
+  add_model(model2_spec) %>%
+  add_formula(Y ~ .)
+
+# Set seed
+set.seed(rngseed)
+
+# Fit the data
+cv_model2_fit <- cv_model2 %>% fit_resamples(folds)
+
+# Mean of RMSE
+collect_metrics(cv_model2_fit) %>%
+  filter(.metric=="rmse") %>%
+  pull(mean)
+
+# Standard error of RMSE
+collect_metrics(cv_model2_fit) %>%
+  filter(.metric=="rmse") %>%
+  pull(std_err)
+```
+
+According to the output above, model 1 has a smaller mean RMSE compared to fitting on the whole training set (697<703). However, model 2 has a larger mean RMSE when fitted using the 10-fold CV (653>627). When comparing both models in the 10-fold CV, model 2 has a more stable performance than model 1 as its standard error of mean RMSE is smaller (64<68).
+
+Now, let's set a different seed and repeat what we did to check if the conclusion still holds.
+
+```{r}
+# Set seed
+set.seed(111)
+
+# 10-fold sampling
+folds_ns <- vfold_cv(train_data, v=10)
+
+# Model1:
+# Set seed
+set.seed(111)
+cv_model1_fit_ns <- cv_model1 %>% fit_resamples(folds_ns)
+# Mean of RMSE
+collect_metrics(cv_model1_fit_ns) %>%
+  filter(.metric=="rmse") %>%
+  pull(mean)
+# Standard error of RMSE
+collect_metrics(cv_model1_fit_ns) %>%
+  filter(.metric=="rmse") %>%
+  pull(std_err)
+
+# Model2:
+# Set seed
+set.seed(111)
+cv_model2_fit_ns <- cv_model2 %>% fit_resamples(folds_ns)
+# Mean of RMSE
+collect_metrics(cv_model2_fit_ns) %>%
+  filter(.metric=="rmse") %>%
+  pull(mean)
+# Standard error of RMSE
+collect_metrics(cv_model2_fit_ns) %>%
+  filter(.metric=="rmse") %>%
+  pull(std_err)
+```
+
+As shown, the conclusion still holds after setting a new seed. But considering the small sample size, this is likely a "lucky" result that more validations are needed.
+
+
+# This section added by Hope Grismer
+#
+#
+#
+#
+# Model predictions
+#
+#
+#
+#
+# Model predictions and uncertainty
+#
+#
+#
+#
+# End of Hope Grismer's contribution
+
+
+# Final evaluation using test data
+
+Now I want to fit model 2 onto the test set. I will make a plot for predicted values versus observed values for the fit on both the training set and the test set.
+
+```{r}
+# Model 2: prediction on the train set
+pred_model2_train <- predict(model2_train, train_data) %>%
+  bind_cols(train_data["Y"])
+colnames(pred_model2_train) <- c("pred", "Y")
+
+# Model 2: prediction on the test set
+pred_model2_test <- predict(model2_train, test_data) %>%
+  bind_cols(test_data["Y"])
+colnames(pred_model2_test) <- c("pred", "Y")
+
+# Combine the two data sets and make a plot
+model2_plot <- rbind(pred_model2_train, pred_model2_test) %>%
+  mutate(set=c(rep("train set", nrow(train_data)), rep("test set", nrow(test_data)))) %>%
+  ggplot(aes(x=Y, y=pred, fill=set))+
+  geom_point(size=3, stroke=1, alpha=0.8, shape=21)+
+  scale_fill_manual(name="", values=c("dodgerblue1","palevioletred1"))+
+  labs(x="Observed value", y="Predicted value")+
+  theme_bw()+
+  theme(axis.title.x=element_text(size=25,color="black",margin=margin(t=15),face="bold"),
+        axis.title.y=element_text(size=25,color="black",margin=margin(r=15),face="bold"),
+        axis.text.x=element_text(color="black",size=20,vjust=0),
+        axis.text.y=element_text(color="black",size=20,hjust=1), 
+        legend.position="top",
+        legend.title=element_text(size=20), 
+        legend.text=element_text(size=18,vjust=0))
+model2_plot
+```
+
+As shown, data points from the train set and the test set are well mixed. 
+
+# Overall model assessment
+
+Based on all evaluation conducted above, the null model is not really helpful as no predictors are included. Theoretically, the null model only predicts the mean value of the response, while some variation could be explained by the available predictors. This is proved by its high RMSE and the visualization.
+
+Model 1 appears better than the null model, as its RMSE is smaller. However, according to the visualization, the discrete predictor *DOSE* is not necessarily the best. But this model does have an evident improvement compared to the null model. The 10-fold CV results also demonstrate that this model has a stable performance on the test set. 
+
+Model 2 includes all the predictors and have the lowest RMSE compared to the other two models. However, its performance in the 10-fold CV indicates that it potentially has an over-fitting problem. I think its performance on the test set is acceptable, but a feature selection procedure may make it more concise and improve its performance on unseen data to some extent. 
+

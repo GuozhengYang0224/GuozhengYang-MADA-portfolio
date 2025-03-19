@@ -295,7 +295,7 @@ window.Quarto = {
 ✖ dplyr::lag()      masks stats::lag()
 ✖ yardstick::spec() masks readr::spec()
 ✖ recipes::step()   masks stats::step()
-• Learn how to get started at https://www.tidymodels.org/start/</code></pre>
+• Use suppressPackageStartupMessages() to eliminate package startup messages</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -307,7 +307,8 @@ window.Quarto = {
 <pre><code>Warning: package 'gtsummary' was built under R version 4.2.3</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>
+<pre><code>#BlackLivesMatter
+
 Attaching package: 'gtsummary'
 
 The following object is masked from 'package:recipes':
@@ -535,23 +536,23 @@ The following object is masked from 'package:recipes':
 <span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_gt</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.names=</span><span class="st">"Times New Roman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="ovluiqqgdd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ovluiqqgdd table {
+<div id="iaadqtlilo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iaadqtlilo table {
   font-family: 'Times New Roman';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ovluiqqgdd thead, #ovluiqqgdd tbody, #ovluiqqgdd tfoot, #ovluiqqgdd tr, #ovluiqqgdd td, #ovluiqqgdd th {
+#iaadqtlilo thead, #iaadqtlilo tbody, #iaadqtlilo tfoot, #iaadqtlilo tr, #iaadqtlilo td, #iaadqtlilo th {
   border-style: none;
 }
 
-#ovluiqqgdd p {
+#iaadqtlilo p {
   margin: 0;
   padding: 0;
 }
 
-#ovluiqqgdd .gt_table {
+#iaadqtlilo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -577,12 +578,12 @@ The following object is masked from 'package:recipes':
   border-left-color: #D3D3D3;
 }
 
-#ovluiqqgdd .gt_caption {
+#iaadqtlilo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ovluiqqgdd .gt_title {
+#iaadqtlilo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -594,7 +595,7 @@ The following object is masked from 'package:recipes':
   border-bottom-width: 0;
 }
 
-#ovluiqqgdd .gt_subtitle {
+#iaadqtlilo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -606,7 +607,7 @@ The following object is masked from 'package:recipes':
   border-top-width: 0;
 }
 
-#ovluiqqgdd .gt_heading {
+#iaadqtlilo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -618,13 +619,13 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#ovluiqqgdd .gt_bottom_border {
+#iaadqtlilo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ovluiqqgdd .gt_col_headings {
+#iaadqtlilo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -639,7 +640,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#ovluiqqgdd .gt_col_heading {
+#iaadqtlilo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -659,7 +660,7 @@ The following object is masked from 'package:recipes':
   overflow-x: hidden;
 }
 
-#ovluiqqgdd .gt_column_spanner_outer {
+#iaadqtlilo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -671,15 +672,15 @@ The following object is masked from 'package:recipes':
   padding-right: 4px;
 }
 
-#ovluiqqgdd .gt_column_spanner_outer:first-child {
+#iaadqtlilo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ovluiqqgdd .gt_column_spanner_outer:last-child {
+#iaadqtlilo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ovluiqqgdd .gt_column_spanner {
+#iaadqtlilo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -691,11 +692,11 @@ The following object is masked from 'package:recipes':
   width: 100%;
 }
 
-#ovluiqqgdd .gt_spanner_row {
+#iaadqtlilo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ovluiqqgdd .gt_group_heading {
+#iaadqtlilo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -721,7 +722,7 @@ The following object is masked from 'package:recipes':
   text-align: left;
 }
 
-#ovluiqqgdd .gt_empty_group_heading {
+#iaadqtlilo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -736,15 +737,15 @@ The following object is masked from 'package:recipes':
   vertical-align: middle;
 }
 
-#ovluiqqgdd .gt_from_md > :first-child {
+#iaadqtlilo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ovluiqqgdd .gt_from_md > :last-child {
+#iaadqtlilo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ovluiqqgdd .gt_row {
+#iaadqtlilo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -763,7 +764,7 @@ The following object is masked from 'package:recipes':
   overflow-x: hidden;
 }
 
-#ovluiqqgdd .gt_stub {
+#iaadqtlilo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -776,7 +777,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#ovluiqqgdd .gt_stub_row_group {
+#iaadqtlilo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -790,15 +791,15 @@ The following object is masked from 'package:recipes':
   vertical-align: top;
 }
 
-#ovluiqqgdd .gt_row_group_first td {
+#iaadqtlilo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ovluiqqgdd .gt_row_group_first th {
+#iaadqtlilo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ovluiqqgdd .gt_summary_row {
+#iaadqtlilo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -808,16 +809,16 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#ovluiqqgdd .gt_first_summary_row {
+#iaadqtlilo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ovluiqqgdd .gt_first_summary_row.thick {
+#iaadqtlilo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ovluiqqgdd .gt_last_summary_row {
+#iaadqtlilo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -827,7 +828,7 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#ovluiqqgdd .gt_grand_summary_row {
+#iaadqtlilo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -837,7 +838,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#ovluiqqgdd .gt_first_grand_summary_row {
+#iaadqtlilo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -847,7 +848,7 @@ The following object is masked from 'package:recipes':
   border-top-color: #D3D3D3;
 }
 
-#ovluiqqgdd .gt_last_grand_summary_row_top {
+#iaadqtlilo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -857,11 +858,11 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#ovluiqqgdd .gt_striped {
+#iaadqtlilo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ovluiqqgdd .gt_table_body {
+#iaadqtlilo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -870,7 +871,7 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#ovluiqqgdd .gt_footnotes {
+#iaadqtlilo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -884,7 +885,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#ovluiqqgdd .gt_footnote {
+#iaadqtlilo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -893,7 +894,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#ovluiqqgdd .gt_sourcenotes {
+#iaadqtlilo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -907,7 +908,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#ovluiqqgdd .gt_sourcenote {
+#iaadqtlilo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -915,63 +916,63 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#ovluiqqgdd .gt_left {
+#iaadqtlilo .gt_left {
   text-align: left;
 }
 
-#ovluiqqgdd .gt_center {
+#iaadqtlilo .gt_center {
   text-align: center;
 }
 
-#ovluiqqgdd .gt_right {
+#iaadqtlilo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ovluiqqgdd .gt_font_normal {
+#iaadqtlilo .gt_font_normal {
   font-weight: normal;
 }
 
-#ovluiqqgdd .gt_font_bold {
+#iaadqtlilo .gt_font_bold {
   font-weight: bold;
 }
 
-#ovluiqqgdd .gt_font_italic {
+#iaadqtlilo .gt_font_italic {
   font-style: italic;
 }
 
-#ovluiqqgdd .gt_super {
+#iaadqtlilo .gt_super {
   font-size: 65%;
 }
 
-#ovluiqqgdd .gt_footnote_marks {
+#iaadqtlilo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ovluiqqgdd .gt_asterisk {
+#iaadqtlilo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ovluiqqgdd .gt_indent_1 {
+#iaadqtlilo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ovluiqqgdd .gt_indent_2 {
+#iaadqtlilo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ovluiqqgdd .gt_indent_3 {
+#iaadqtlilo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ovluiqqgdd .gt_indent_4 {
+#iaadqtlilo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ovluiqqgdd .gt_indent_5 {
+#iaadqtlilo .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1089,23 +1090,23 @@ The following object is masked from 'package:recipes':
 <span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations=</span><span class="fu">cells_body</span>(<span class="at">columns=</span>p.value, <span class="at">rows=</span><span class="fu">as.numeric</span>(p.value)<span class="sc">&lt;</span><span class="fl">0.05</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.names=</span><span class="st">"Times New Roman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="jgoeuywcoi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#jgoeuywcoi table {
+<div id="bvwuigveur" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bvwuigveur table {
   font-family: 'Times New Roman';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jgoeuywcoi thead, #jgoeuywcoi tbody, #jgoeuywcoi tfoot, #jgoeuywcoi tr, #jgoeuywcoi td, #jgoeuywcoi th {
+#bvwuigveur thead, #bvwuigveur tbody, #bvwuigveur tfoot, #bvwuigveur tr, #bvwuigveur td, #bvwuigveur th {
   border-style: none;
 }
 
-#jgoeuywcoi p {
+#bvwuigveur p {
   margin: 0;
   padding: 0;
 }
 
-#jgoeuywcoi .gt_table {
+#bvwuigveur .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1131,12 +1132,12 @@ The following object is masked from 'package:recipes':
   border-left-color: #D3D3D3;
 }
 
-#jgoeuywcoi .gt_caption {
+#bvwuigveur .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jgoeuywcoi .gt_title {
+#bvwuigveur .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1148,7 +1149,7 @@ The following object is masked from 'package:recipes':
   border-bottom-width: 0;
 }
 
-#jgoeuywcoi .gt_subtitle {
+#bvwuigveur .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1160,7 +1161,7 @@ The following object is masked from 'package:recipes':
   border-top-width: 0;
 }
 
-#jgoeuywcoi .gt_heading {
+#bvwuigveur .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1172,13 +1173,13 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#jgoeuywcoi .gt_bottom_border {
+#bvwuigveur .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jgoeuywcoi .gt_col_headings {
+#bvwuigveur .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1193,7 +1194,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#jgoeuywcoi .gt_col_heading {
+#bvwuigveur .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1213,7 +1214,7 @@ The following object is masked from 'package:recipes':
   overflow-x: hidden;
 }
 
-#jgoeuywcoi .gt_column_spanner_outer {
+#bvwuigveur .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1225,15 +1226,15 @@ The following object is masked from 'package:recipes':
   padding-right: 4px;
 }
 
-#jgoeuywcoi .gt_column_spanner_outer:first-child {
+#bvwuigveur .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jgoeuywcoi .gt_column_spanner_outer:last-child {
+#bvwuigveur .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jgoeuywcoi .gt_column_spanner {
+#bvwuigveur .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1245,11 +1246,11 @@ The following object is masked from 'package:recipes':
   width: 100%;
 }
 
-#jgoeuywcoi .gt_spanner_row {
+#bvwuigveur .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jgoeuywcoi .gt_group_heading {
+#bvwuigveur .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1275,7 +1276,7 @@ The following object is masked from 'package:recipes':
   text-align: left;
 }
 
-#jgoeuywcoi .gt_empty_group_heading {
+#bvwuigveur .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1290,15 +1291,15 @@ The following object is masked from 'package:recipes':
   vertical-align: middle;
 }
 
-#jgoeuywcoi .gt_from_md > :first-child {
+#bvwuigveur .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jgoeuywcoi .gt_from_md > :last-child {
+#bvwuigveur .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jgoeuywcoi .gt_row {
+#bvwuigveur .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1317,7 +1318,7 @@ The following object is masked from 'package:recipes':
   overflow-x: hidden;
 }
 
-#jgoeuywcoi .gt_stub {
+#bvwuigveur .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1330,7 +1331,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#jgoeuywcoi .gt_stub_row_group {
+#bvwuigveur .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1344,15 +1345,15 @@ The following object is masked from 'package:recipes':
   vertical-align: top;
 }
 
-#jgoeuywcoi .gt_row_group_first td {
+#bvwuigveur .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jgoeuywcoi .gt_row_group_first th {
+#bvwuigveur .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jgoeuywcoi .gt_summary_row {
+#bvwuigveur .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1362,16 +1363,16 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#jgoeuywcoi .gt_first_summary_row {
+#bvwuigveur .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jgoeuywcoi .gt_first_summary_row.thick {
+#bvwuigveur .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jgoeuywcoi .gt_last_summary_row {
+#bvwuigveur .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1381,7 +1382,7 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#jgoeuywcoi .gt_grand_summary_row {
+#bvwuigveur .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1391,7 +1392,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#jgoeuywcoi .gt_first_grand_summary_row {
+#bvwuigveur .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1401,7 +1402,7 @@ The following object is masked from 'package:recipes':
   border-top-color: #D3D3D3;
 }
 
-#jgoeuywcoi .gt_last_grand_summary_row_top {
+#bvwuigveur .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1411,11 +1412,11 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#jgoeuywcoi .gt_striped {
+#bvwuigveur .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jgoeuywcoi .gt_table_body {
+#bvwuigveur .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1424,7 +1425,7 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#jgoeuywcoi .gt_footnotes {
+#bvwuigveur .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1438,7 +1439,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#jgoeuywcoi .gt_footnote {
+#bvwuigveur .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1447,7 +1448,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#jgoeuywcoi .gt_sourcenotes {
+#bvwuigveur .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1461,7 +1462,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#jgoeuywcoi .gt_sourcenote {
+#bvwuigveur .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1469,63 +1470,63 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#jgoeuywcoi .gt_left {
+#bvwuigveur .gt_left {
   text-align: left;
 }
 
-#jgoeuywcoi .gt_center {
+#bvwuigveur .gt_center {
   text-align: center;
 }
 
-#jgoeuywcoi .gt_right {
+#bvwuigveur .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jgoeuywcoi .gt_font_normal {
+#bvwuigveur .gt_font_normal {
   font-weight: normal;
 }
 
-#jgoeuywcoi .gt_font_bold {
+#bvwuigveur .gt_font_bold {
   font-weight: bold;
 }
 
-#jgoeuywcoi .gt_font_italic {
+#bvwuigveur .gt_font_italic {
   font-style: italic;
 }
 
-#jgoeuywcoi .gt_super {
+#bvwuigveur .gt_super {
   font-size: 65%;
 }
 
-#jgoeuywcoi .gt_footnote_marks {
+#bvwuigveur .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jgoeuywcoi .gt_asterisk {
+#bvwuigveur .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jgoeuywcoi .gt_indent_1 {
+#bvwuigveur .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jgoeuywcoi .gt_indent_2 {
+#bvwuigveur .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jgoeuywcoi .gt_indent_3 {
+#bvwuigveur .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jgoeuywcoi .gt_indent_4 {
+#bvwuigveur .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jgoeuywcoi .gt_indent_5 {
+#bvwuigveur .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1676,23 +1677,23 @@ The following object is masked from 'package:recipes':
 <span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations=</span><span class="fu">cells_body</span>(<span class="at">columns=</span>p.value, <span class="at">rows=</span><span class="fu">as.numeric</span>(p.value)<span class="sc">&lt;</span><span class="fl">0.05</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.names=</span><span class="st">"Times New Roman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="psqobihnhz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#psqobihnhz table {
+<div id="aiindqpang" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aiindqpang table {
   font-family: 'Times New Roman';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#psqobihnhz thead, #psqobihnhz tbody, #psqobihnhz tfoot, #psqobihnhz tr, #psqobihnhz td, #psqobihnhz th {
+#aiindqpang thead, #aiindqpang tbody, #aiindqpang tfoot, #aiindqpang tr, #aiindqpang td, #aiindqpang th {
   border-style: none;
 }
 
-#psqobihnhz p {
+#aiindqpang p {
   margin: 0;
   padding: 0;
 }
 
-#psqobihnhz .gt_table {
+#aiindqpang .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1718,12 +1719,12 @@ The following object is masked from 'package:recipes':
   border-left-color: #D3D3D3;
 }
 
-#psqobihnhz .gt_caption {
+#aiindqpang .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#psqobihnhz .gt_title {
+#aiindqpang .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1735,7 +1736,7 @@ The following object is masked from 'package:recipes':
   border-bottom-width: 0;
 }
 
-#psqobihnhz .gt_subtitle {
+#aiindqpang .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1747,7 +1748,7 @@ The following object is masked from 'package:recipes':
   border-top-width: 0;
 }
 
-#psqobihnhz .gt_heading {
+#aiindqpang .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1759,13 +1760,13 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#psqobihnhz .gt_bottom_border {
+#aiindqpang .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#psqobihnhz .gt_col_headings {
+#aiindqpang .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1780,7 +1781,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#psqobihnhz .gt_col_heading {
+#aiindqpang .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1800,7 +1801,7 @@ The following object is masked from 'package:recipes':
   overflow-x: hidden;
 }
 
-#psqobihnhz .gt_column_spanner_outer {
+#aiindqpang .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1812,15 +1813,15 @@ The following object is masked from 'package:recipes':
   padding-right: 4px;
 }
 
-#psqobihnhz .gt_column_spanner_outer:first-child {
+#aiindqpang .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#psqobihnhz .gt_column_spanner_outer:last-child {
+#aiindqpang .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#psqobihnhz .gt_column_spanner {
+#aiindqpang .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1832,11 +1833,11 @@ The following object is masked from 'package:recipes':
   width: 100%;
 }
 
-#psqobihnhz .gt_spanner_row {
+#aiindqpang .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#psqobihnhz .gt_group_heading {
+#aiindqpang .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1862,7 +1863,7 @@ The following object is masked from 'package:recipes':
   text-align: left;
 }
 
-#psqobihnhz .gt_empty_group_heading {
+#aiindqpang .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1877,15 +1878,15 @@ The following object is masked from 'package:recipes':
   vertical-align: middle;
 }
 
-#psqobihnhz .gt_from_md > :first-child {
+#aiindqpang .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#psqobihnhz .gt_from_md > :last-child {
+#aiindqpang .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#psqobihnhz .gt_row {
+#aiindqpang .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1904,7 +1905,7 @@ The following object is masked from 'package:recipes':
   overflow-x: hidden;
 }
 
-#psqobihnhz .gt_stub {
+#aiindqpang .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1917,7 +1918,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#psqobihnhz .gt_stub_row_group {
+#aiindqpang .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1931,15 +1932,15 @@ The following object is masked from 'package:recipes':
   vertical-align: top;
 }
 
-#psqobihnhz .gt_row_group_first td {
+#aiindqpang .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#psqobihnhz .gt_row_group_first th {
+#aiindqpang .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#psqobihnhz .gt_summary_row {
+#aiindqpang .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1949,16 +1950,16 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#psqobihnhz .gt_first_summary_row {
+#aiindqpang .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#psqobihnhz .gt_first_summary_row.thick {
+#aiindqpang .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#psqobihnhz .gt_last_summary_row {
+#aiindqpang .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1968,7 +1969,7 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#psqobihnhz .gt_grand_summary_row {
+#aiindqpang .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1978,7 +1979,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#psqobihnhz .gt_first_grand_summary_row {
+#aiindqpang .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1988,7 +1989,7 @@ The following object is masked from 'package:recipes':
   border-top-color: #D3D3D3;
 }
 
-#psqobihnhz .gt_last_grand_summary_row_top {
+#aiindqpang .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1998,11 +1999,11 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#psqobihnhz .gt_striped {
+#aiindqpang .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#psqobihnhz .gt_table_body {
+#aiindqpang .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2011,7 +2012,7 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#psqobihnhz .gt_footnotes {
+#aiindqpang .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2025,7 +2026,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#psqobihnhz .gt_footnote {
+#aiindqpang .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2034,7 +2035,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#psqobihnhz .gt_sourcenotes {
+#aiindqpang .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2048,7 +2049,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#psqobihnhz .gt_sourcenote {
+#aiindqpang .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2056,63 +2057,63 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#psqobihnhz .gt_left {
+#aiindqpang .gt_left {
   text-align: left;
 }
 
-#psqobihnhz .gt_center {
+#aiindqpang .gt_center {
   text-align: center;
 }
 
-#psqobihnhz .gt_right {
+#aiindqpang .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#psqobihnhz .gt_font_normal {
+#aiindqpang .gt_font_normal {
   font-weight: normal;
 }
 
-#psqobihnhz .gt_font_bold {
+#aiindqpang .gt_font_bold {
   font-weight: bold;
 }
 
-#psqobihnhz .gt_font_italic {
+#aiindqpang .gt_font_italic {
   font-style: italic;
 }
 
-#psqobihnhz .gt_super {
+#aiindqpang .gt_super {
   font-size: 65%;
 }
 
-#psqobihnhz .gt_footnote_marks {
+#aiindqpang .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#psqobihnhz .gt_asterisk {
+#aiindqpang .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#psqobihnhz .gt_indent_1 {
+#aiindqpang .gt_indent_1 {
   text-indent: 5px;
 }
 
-#psqobihnhz .gt_indent_2 {
+#aiindqpang .gt_indent_2 {
   text-indent: 10px;
 }
 
-#psqobihnhz .gt_indent_3 {
+#aiindqpang .gt_indent_3 {
   text-indent: 15px;
 }
 
-#psqobihnhz .gt_indent_4 {
+#aiindqpang .gt_indent_4 {
   text-indent: 20px;
 }
 
-#psqobihnhz .gt_indent_5 {
+#aiindqpang .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2597,6 +2598,385 @@ The following object is masked from 'package:recipes':
 </div>
 </div>
 <p>As shown, for the logistic regression model only using DOSE as the predictor, the classification accuracy is 0.87 and the ROC-AUC is 0.59. For the second logistic regression model using all predictors, the accuracy is 0.95 and the ROC-AUC is 0.98. By comparison, using all predictors has a better classification performance than using just DOSE. Though this research question does not make scientific science, but the assessment for the two models are straight forward for choosing the better one.</p>
+<p>Below is an exercise for Week 10.</p>
+</section>
+<section id="data-prep" class="level1">
+<h1>Data prep</h1>
+<p>First, let’s continue using the formatted dataset and only keep variables <em>Y</em>, <em>DOSE</em>, <em>AGE</em>, <em>SEX</em>, <em>WT</em>, and <em>HT</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select variables</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>data_new10 <span class="ot">&lt;-</span> data_new <span class="sc">%&gt;%</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Y, DOSE, AGE, SEX, WT, HT)</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data_new10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Y            DOSE         AGE        SEX           WT        
+ Min.   : 826.4   25  :59   Min.   :18.00   1:104   Min.   : 56.60  
+ 1st Qu.:1700.5   37.5:12   1st Qu.:26.00   2: 16   1st Qu.: 73.17  
+ Median :2349.1   50  :49   Median :31.00           Median : 82.10  
+ Mean   :2445.4             Mean   :33.00           Mean   : 82.55  
+ 3rd Qu.:3050.2             3rd Qu.:40.25           3rd Qu.: 90.10  
+ Max.   :5606.6             Max.   :50.00           Max.   :115.30  
+       HT       
+ Min.   :1.520  
+ 1st Qu.:1.700  
+ Median :1.770  
+ Mean   :1.759  
+ 3rd Qu.:1.813  
+ Max.   :1.930  </code></pre>
+</div>
+</div>
+<p>Now I’m setting a seed <em>rngseed</em> and split the dataset into a 75% train set and a 25% test set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>rngseed <span class="ot">&lt;-</span> <span class="dv">1234</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(rngseed)</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Split dataset into a 75% train set and a 25% test set</span></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>data_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(data_new10, <span class="at">prop=</span>.<span class="dv">75</span>)</span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> <span class="fu">training</span>(data_split)</span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>test_data  <span class="ot">&lt;-</span> <span class="fu">testing</span>(data_split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="model-fitting-1" class="level1">
+<h1>Model fitting</h1>
+<p>I will fit two linear regression models on the training set. The first one only uses <em>DOSE</em> as the predictor.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear regression: Y ~ DOSE</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>model1_train <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(Y <span class="sc">~</span> DOSE, train_data)</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the fitting result</span></span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model1_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  term        estimate std.error statistic  p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)    1873.      109.     17.2  1.07e-29
+2 DOSE37.5        651.      275.      2.36 2.03e- 2
+3 DOSE50         1336.      158.      8.45 5.97e-13</code></pre>
+</div>
+</div>
+<p>The second model will use all predictors. But the fit is still on the traning set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear regression: Y ~ DOSE + AGE + SEX + WT + HT</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>model2_train <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(Y <span class="sc">~</span> ., train_data)</span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the fitting result</span></span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model2_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 5
+  term         estimate std.error statistic  p.value
+  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)  5764.      2178.      2.65   9.72e- 3
+2 DOSE37.5      640.       255.      2.51   1.39e- 2
+3 DOSE50       1384.       147.      9.44   8.65e-15
+4 AGE            -0.119      9.66   -0.0123 9.90e- 1
+5 SEX2         -571.       287.     -1.99   5.00e- 2
+6 WT            -22.8        7.72   -2.95   4.13e- 3
+7 HT          -1117.      1368.     -0.817  4.17e- 1</code></pre>
+</div>
+</div>
+</section>
+<section id="model-performance-assessment-1" class="level1">
+<h1>Model performance assessment 1</h1>
+<p>I will print RMSE for the two models fitted above.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print RMSE for the two models above.</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>results1_train <span class="ot">&lt;-</span> <span class="fu">predict</span>(model1_train, train_data) <span class="sc">%&gt;%</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(train_data) <span class="sc">%&gt;%</span></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">metrics</span>(<span class="at">truth=</span>Y, <span class="at">estimate=</span>.pred) <span class="sc">%&gt;%</span></span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard     703.   
+2 rsq     standard       0.451
+3 mae     standard     546.   </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>results2_train <span class="ot">&lt;-</span> <span class="fu">predict</span>(model2_train, train_data) <span class="sc">%&gt;%</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(train_data) <span class="sc">%&gt;%</span></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">metrics</span>(<span class="at">truth=</span>Y, <span class="at">estimate=</span>.pred) <span class="sc">%&gt;%</span></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard     627.   
+2 rsq     standard       0.563
+3 mae     standard     486.   </code></pre>
+</div>
+</div>
+<p>I will fit a null model with only an intercept to compare RMSE.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the null model</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>model0_train <span class="ot">&lt;-</span> <span class="fu">null_model</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"parsnip"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(Y <span class="sc">~</span> ., train_data)</span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the fitting result</span></span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model0_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  value
+  &lt;dbl&gt;
+1 2509.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print RMSE for the null model</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>results0_train <span class="ot">&lt;-</span> <span class="fu">predict</span>(model0_train, train_data) <span class="sc">%&gt;%</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(train_data) <span class="sc">%&gt;%</span></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">metrics</span>(<span class="at">truth=</span>Y, <span class="at">estimate=</span>.pred) <span class="sc">%&gt;%</span></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `dplyr::summarise()`.
+ℹ In argument: `.estimate = metric_fn(truth = Y, estimate = .pred, na_rm =
+  na_rm)`.
+Caused by warning:
+! A correlation computation is required, but `estimate` is constant and has 0 standard deviation, resulting in a divide by 0 error. `NA` will be returned.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard        948.
+2 rsq     standard         NA 
+3 mae     standard        765.</code></pre>
+</div>
+</div>
+<p>According to the output, the model with only an intercept has the highest RMSE=948. The model with only DOSE as the predictor has the second highest RMSE=703. The model with all predictors included has the lowest RMSE=627. Just based on RMSE, the most complex model has the best performance on the training set, as its RMSE is the lowest.</p>
+</section>
+<section id="model-performance-assessment-2" class="level1">
+<h1>Model performance assessment 2</h1>
+<p>I will apply a 10-fold cross-validation (CV) to examine the performance of the two models. The CV will be conducted on the training set, which will be split into 10 groups with 9 of them used for model fitting. First of all, let’s split the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(rngseed)</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 10-fold sampling</span></span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(train_data, <span class="at">v=</span><span class="dv">10</span>)</span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>folds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#  10-fold cross-validation 
+# A tibble: 10 × 2
+   splits         id    
+   &lt;list&gt;         &lt;chr&gt; 
+ 1 &lt;split [81/9]&gt; Fold01
+ 2 &lt;split [81/9]&gt; Fold02
+ 3 &lt;split [81/9]&gt; Fold03
+ 4 &lt;split [81/9]&gt; Fold04
+ 5 &lt;split [81/9]&gt; Fold05
+ 6 &lt;split [81/9]&gt; Fold06
+ 7 &lt;split [81/9]&gt; Fold07
+ 8 &lt;split [81/9]&gt; Fold08
+ 9 &lt;split [81/9]&gt; Fold09
+10 &lt;split [81/9]&gt; Fold10</code></pre>
+</div>
+</div>
+<p>Now, let’s fit the first model (with only <em>DOSE</em> as a predictor) to 9 of the splits for 10 times, and calculate the RMSE for the last split.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model setting</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>model1_spec <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span> <span class="fu">set_engine</span>(<span class="st">"lm"</span>)</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the workflow: model 1</span></span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>cv_model1 <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(model1_spec) <span class="sc">%&gt;%</span></span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(Y <span class="sc">~</span> DOSE)</span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed</span></span>
+<span id="cb88-9"><a href="#cb88-9" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(rngseed)</span>
+<span id="cb88-10"><a href="#cb88-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-11"><a href="#cb88-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the data</span></span>
+<span id="cb88-12"><a href="#cb88-12" aria-hidden="true" tabindex="-1"></a>cv_model1_fit <span class="ot">&lt;-</span> cv_model1 <span class="sc">%&gt;%</span> <span class="fu">fit_resamples</span>(folds)</span>
+<span id="cb88-13"><a href="#cb88-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-14"><a href="#cb88-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean of RMSE</span></span>
+<span id="cb88-15"><a href="#cb88-15" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(cv_model1_fit) <span class="sc">%&gt;%</span></span>
+<span id="cb88-16"><a href="#cb88-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric<span class="sc">==</span><span class="st">"rmse"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb88-17"><a href="#cb88-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 696.7098</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard error of RMSE</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(cv_model1_fit) <span class="sc">%&gt;%</span></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric<span class="sc">==</span><span class="st">"rmse"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(std_err)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 68.09511</code></pre>
+</div>
+</div>
+<p>Similarly, I will run model2 following the same routine and calcualte the mean RMSE.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model setting</span></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>model2_spec <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span> <span class="fu">set_engine</span>(<span class="st">"lm"</span>)</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the workflow: model 2</span></span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>cv_model2 <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(model2_spec) <span class="sc">%&gt;%</span></span>
+<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(Y <span class="sc">~</span> .)</span>
+<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-8"><a href="#cb92-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed</span></span>
+<span id="cb92-9"><a href="#cb92-9" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(rngseed)</span>
+<span id="cb92-10"><a href="#cb92-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-11"><a href="#cb92-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the data</span></span>
+<span id="cb92-12"><a href="#cb92-12" aria-hidden="true" tabindex="-1"></a>cv_model2_fit <span class="ot">&lt;-</span> cv_model2 <span class="sc">%&gt;%</span> <span class="fu">fit_resamples</span>(folds)</span>
+<span id="cb92-13"><a href="#cb92-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-14"><a href="#cb92-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean of RMSE</span></span>
+<span id="cb92-15"><a href="#cb92-15" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(cv_model2_fit) <span class="sc">%&gt;%</span></span>
+<span id="cb92-16"><a href="#cb92-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric<span class="sc">==</span><span class="st">"rmse"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb92-17"><a href="#cb92-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 652.7739</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard error of RMSE</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(cv_model2_fit) <span class="sc">%&gt;%</span></span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric<span class="sc">==</span><span class="st">"rmse"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(std_err)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 63.59876</code></pre>
+</div>
+</div>
+<p>According to the output above, model 1 has a smaller mean RMSE compared to fitting on the whole training set (697&lt;703). However, model 2 has a larger mean RMSE when fitted using the 10-fold CV (653&gt;627). When comparing both models in the 10-fold CV, model 2 has a more stable performance than model 1 as its standard error of mean RMSE is smaller (64&lt;68).</p>
+<p>Now, let’s set a different seed and repeat what we did to check if the conclusion still holds.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">111</span>)</span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 10-fold sampling</span></span>
+<span id="cb96-5"><a href="#cb96-5" aria-hidden="true" tabindex="-1"></a>folds_ns <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(train_data, <span class="at">v=</span><span class="dv">10</span>)</span>
+<span id="cb96-6"><a href="#cb96-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-7"><a href="#cb96-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Model1:</span></span>
+<span id="cb96-8"><a href="#cb96-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed</span></span>
+<span id="cb96-9"><a href="#cb96-9" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">111</span>)</span>
+<span id="cb96-10"><a href="#cb96-10" aria-hidden="true" tabindex="-1"></a>cv_model1_fit_ns <span class="ot">&lt;-</span> cv_model1 <span class="sc">%&gt;%</span> <span class="fu">fit_resamples</span>(folds_ns)</span>
+<span id="cb96-11"><a href="#cb96-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean of RMSE</span></span>
+<span id="cb96-12"><a href="#cb96-12" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(cv_model1_fit_ns) <span class="sc">%&gt;%</span></span>
+<span id="cb96-13"><a href="#cb96-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric<span class="sc">==</span><span class="st">"rmse"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb96-14"><a href="#cb96-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 690.6832</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard error of RMSE</span></span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(cv_model1_fit_ns) <span class="sc">%&gt;%</span></span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric<span class="sc">==</span><span class="st">"rmse"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(std_err)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 64.01245</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model2:</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed</span></span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">111</span>)</span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>cv_model2_fit_ns <span class="ot">&lt;-</span> cv_model2 <span class="sc">%&gt;%</span> <span class="fu">fit_resamples</span>(folds_ns)</span>
+<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean of RMSE</span></span>
+<span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(cv_model2_fit_ns) <span class="sc">%&gt;%</span></span>
+<span id="cb100-7"><a href="#cb100-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric<span class="sc">==</span><span class="st">"rmse"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb100-8"><a href="#cb100-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 657.9127</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard error of RMSE</span></span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(cv_model2_fit_ns) <span class="sc">%&gt;%</span></span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric<span class="sc">==</span><span class="st">"rmse"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(std_err)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 46.0654</code></pre>
+</div>
+</div>
+<p>As shown, the conclusion still holds after setting a new seed. But considering the small sample size, this is likely a “lucky” result that more validations are needed.</p>
+</section>
+<section id="this-section-added-by-hope-grismer" class="level1">
+<h1>This section added by Hope Grismer</h1>
+</section>
+<section id="section" class="level1">
+<h1></h1>
+</section>
+<section id="section-1" class="level1">
+<h1></h1>
+</section>
+<section id="section-2" class="level1">
+<h1></h1>
+</section>
+<section id="section-3" class="level1">
+<h1></h1>
+</section>
+<section id="model-predictions" class="level1">
+<h1>Model predictions</h1>
+</section>
+<section id="section-4" class="level1">
+<h1></h1>
+</section>
+<section id="section-5" class="level1">
+<h1></h1>
+</section>
+<section id="section-6" class="level1">
+<h1></h1>
+</section>
+<section id="section-7" class="level1">
+<h1></h1>
+</section>
+<section id="model-predictions-and-uncertainty" class="level1">
+<h1>Model predictions and uncertainty</h1>
+</section>
+<section id="section-8" class="level1">
+<h1></h1>
+</section>
+<section id="section-9" class="level1">
+<h1></h1>
+</section>
+<section id="section-10" class="level1">
+<h1></h1>
+</section>
+<section id="section-11" class="level1">
+<h1></h1>
+</section>
+<section id="end-of-hope-grismers-contribution" class="level1">
+<h1>End of Hope Grismer’s contribution</h1>
+</section>
+<section id="final-evaluation-using-test-data" class="level1">
+<h1>Final evaluation using test data</h1>
+<p>Now I want to fit model 2 onto the test set. I will make a plot for predicted values versus observed values for the fit on both the training set and the test set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 2: prediction on the train set</span></span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>pred_model2_train <span class="ot">&lt;-</span> <span class="fu">predict</span>(model2_train, train_data) <span class="sc">%&gt;%</span></span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(train_data[<span class="st">"Y"</span>])</span>
+<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pred_model2_train) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"pred"</span>, <span class="st">"Y"</span>)</span>
+<span id="cb104-5"><a href="#cb104-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-6"><a href="#cb104-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 2: prediction on the test set</span></span>
+<span id="cb104-7"><a href="#cb104-7" aria-hidden="true" tabindex="-1"></a>pred_model2_test <span class="ot">&lt;-</span> <span class="fu">predict</span>(model2_train, test_data) <span class="sc">%&gt;%</span></span>
+<span id="cb104-8"><a href="#cb104-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(test_data[<span class="st">"Y"</span>])</span>
+<span id="cb104-9"><a href="#cb104-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pred_model2_test) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"pred"</span>, <span class="st">"Y"</span>)</span>
+<span id="cb104-10"><a href="#cb104-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-11"><a href="#cb104-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the two data sets and make a plot</span></span>
+<span id="cb104-12"><a href="#cb104-12" aria-hidden="true" tabindex="-1"></a>model2_plot <span class="ot">&lt;-</span> <span class="fu">rbind</span>(pred_model2_train, pred_model2_test) <span class="sc">%&gt;%</span></span>
+<span id="cb104-13"><a href="#cb104-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">set=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"train set"</span>, <span class="fu">nrow</span>(train_data)), <span class="fu">rep</span>(<span class="st">"test set"</span>, <span class="fu">nrow</span>(test_data)))) <span class="sc">%&gt;%</span></span>
+<span id="cb104-14"><a href="#cb104-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Y, <span class="at">y=</span>pred, <span class="at">fill=</span>set))<span class="sc">+</span></span>
+<span id="cb104-15"><a href="#cb104-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>, <span class="at">stroke=</span><span class="dv">1</span>, <span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">shape=</span><span class="dv">21</span>)<span class="sc">+</span></span>
+<span id="cb104-16"><a href="#cb104-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name=</span><span class="st">""</span>, <span class="at">values=</span><span class="fu">c</span>(<span class="st">"dodgerblue1"</span>,<span class="st">"palevioletred1"</span>))<span class="sc">+</span></span>
+<span id="cb104-17"><a href="#cb104-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Observed value"</span>, <span class="at">y=</span><span class="st">"Predicted value"</span>)<span class="sc">+</span></span>
+<span id="cb104-18"><a href="#cb104-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb104-19"><a href="#cb104-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">25</span>,<span class="at">color=</span><span class="st">"black"</span>,<span class="at">margin=</span><span class="fu">margin</span>(<span class="at">t=</span><span class="dv">15</span>),<span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb104-20"><a href="#cb104-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">25</span>,<span class="at">color=</span><span class="st">"black"</span>,<span class="at">margin=</span><span class="fu">margin</span>(<span class="at">r=</span><span class="dv">15</span>),<span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb104-21"><a href="#cb104-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>,<span class="at">size=</span><span class="dv">20</span>,<span class="at">vjust=</span><span class="dv">0</span>),</span>
+<span id="cb104-22"><a href="#cb104-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>,<span class="at">size=</span><span class="dv">20</span>,<span class="at">hjust=</span><span class="dv">1</span>), </span>
+<span id="cb104-23"><a href="#cb104-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position=</span><span class="st">"top"</span>,</span>
+<span id="cb104-24"><a href="#cb104-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), </span>
+<span id="cb104-25"><a href="#cb104-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">18</span>,<span class="at">vjust=</span><span class="dv">0</span>))</span>
+<span id="cb104-26"><a href="#cb104-26" aria-hidden="true" tabindex="-1"></a>model2_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fitting-exercise_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As shown, data points from the train set and the test set are well mixed.</p>
+</section>
+<section id="overall-model-assessment" class="level1">
+<h1>Overall model assessment</h1>
+<p>Based on all evaluation conducted above, the null model is not really helpful as no predictors are included. Theoretically, the null model only predicts the mean value of the response, while some variation could be explained by the available predictors. This is proved by its high RMSE and the visualization.</p>
+<p>Model 1 appears better than the null model, as its RMSE is smaller. However, according to the visualization, the discrete predictor <em>DOSE</em> is not necessarily the best. But this model does have an evident improvement compared to the null model. The 10-fold CV results also demonstrate that this model has a stable performance on the test set.</p>
+<p>Model 2 includes all the predictors and have the lowest RMSE compared to the other two models. However, its performance in the 10-fold CV indicates that it potentially has an over-fitting problem. I think its performance on the test set is acceptable, but a feature selection procedure may make it more concise and improve its performance on unseen data to some extent.</p>
 
 
 </section>
