@@ -229,15 +229,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'gtsummary' was built under R version 4.2.3</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#BlackLivesMatter</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'gt' was built under R version 4.2.3</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ tibble  3.2.1     ✔ dplyr   1.1.3
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2
+──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ tibble  3.2.1     ✔ dplyr   1.1.3
 ✔ tidyr   1.3.1     ✔ stringr 1.5.1
 ✔ readr   2.1.2     ✔ forcats 1.0.0
 ✔ purrr   1.0.2     </code></pre>
@@ -267,9 +273,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the data file and check its structure</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"nbadata.csv"</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the data file and check its structure</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"nbadata.csv"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         PLAYER      TEAM   POSITION MINUTES raptor_box_offense
 1  Nikola Jokic   Nuggets          C    3112                9.0
@@ -293,7 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5                5.7            2.5            4.7          7.2      12.9
 6                4.5            4.5           -0.3          4.2      12.6</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   250 obs. of  14 variables:
  $ PLAYER              : chr  "Nikola Jokic" "Joel Embiid" "Jimmy Butler" "Luka Doncic" ...
@@ -322,49 +328,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Me:</strong> <em>Great! Now I want to replicate the figure shown on their website. I have attached the screenshots of their figure and the data I have. Please give me code using ggplot2 and make sure that the output figure is exactly the same to theirs. By “exactly the same” I mean not only the scatter plot should be the same, I also want the same theme, axis titles, axis texts, grid lines, background colors, and texts with boxes in the figure. The two variables you should use are “raptor_offense” and “raptor_defense”. You don’t need to make the figure interactive. I have imported the data into R and am waiting for your code. Thanks!</em></p>
 <p><strong>ChatGPT:</strong> <em>Here is the R code to replicate the figure using ggplot2. This code ensures that the scatter plot, background colors, quadrant labels, axis formatting, and overall aesthetics match the original figure.</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your dataset is named 'data'</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the quadrants based on raptor_offense and raptor_defense</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>quadrant <span class="ot">&lt;-</span> <span class="fu">with</span>(data, <span class="fu">ifelse</span>(raptor_offense <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span> raptor_defense <span class="sc">&gt;=</span> <span class="dv">0</span>, <span class="st">"Positive Offense &amp; Defense"</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">ifelse</span>(raptor_offense <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> raptor_defense <span class="sc">&gt;=</span> <span class="dv">0</span>, <span class="st">"Negative Offense &amp; Positive Defense"</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">ifelse</span>(raptor_offense <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> raptor_defense <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">"Negative Offense &amp; Defense"</span>,</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Positive Offense &amp; Negative Defense"</span>))))</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> raptor_offense, <span class="at">y =</span> raptor_defense)) <span class="sc">+</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Background colors for quadrants</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">xmax =</span> <span class="dv">0</span>, <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">ymax =</span> <span class="dv">0</span>, <span class="at">fill =</span> <span class="st">"pink"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> <span class="cn">Inf</span>, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> <span class="cn">Inf</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">xmax =</span> <span class="dv">0</span>, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> <span class="cn">Inf</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> <span class="cn">Inf</span>, <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">ymax =</span> <span class="dv">0</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Scatter plot</span></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">stroke =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Axis labels</span></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Offensive RAPTOR rating"</span>, <span class="at">y =</span> <span class="st">"Defensive RAPTOR rating"</span>) <span class="sc">+</span></span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Axis formatting</span></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add quadrant labels with colored backgrounds</span></span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="sc">-</span><span class="dv">7</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">7</span>, <span class="at">label =</span> <span class="st">"- offense</span><span class="sc">\n</span><span class="st">- defense"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"pink"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">7</span>, <span class="at">y =</span> <span class="dv">7</span>, <span class="at">label =</span> <span class="st">"+ offense</span><span class="sc">\n</span><span class="st">+ defense"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="sc">-</span><span class="dv">7</span>, <span class="at">y =</span> <span class="dv">7</span>, <span class="at">label =</span> <span class="st">"- offense</span><span class="sc">\n</span><span class="st">+ defense"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">7</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">7</span>, <span class="at">label =</span> <span class="st">"+ offense</span><span class="sc">\n</span><span class="st">- defense"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"pink"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Theme to match FiveThirtyEight style</span></span>
-<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
-<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray90"</span>),</span>
-<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your dataset is named 'data'</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the quadrants based on raptor_offense and raptor_defense</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>quadrant <span class="ot">&lt;-</span> <span class="fu">with</span>(data, <span class="fu">ifelse</span>(raptor_offense <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span> raptor_defense <span class="sc">&gt;=</span> <span class="dv">0</span>, <span class="st">"Positive Offense &amp; Defense"</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">ifelse</span>(raptor_offense <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> raptor_defense <span class="sc">&gt;=</span> <span class="dv">0</span>, <span class="st">"Negative Offense &amp; Positive Defense"</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">ifelse</span>(raptor_offense <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> raptor_defense <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">"Negative Offense &amp; Defense"</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Positive Offense &amp; Negative Defense"</span>))))</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> raptor_offense, <span class="at">y =</span> raptor_defense)) <span class="sc">+</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Background colors for quadrants</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">xmax =</span> <span class="dv">0</span>, <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">ymax =</span> <span class="dv">0</span>, <span class="at">fill =</span> <span class="st">"pink"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> <span class="cn">Inf</span>, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> <span class="cn">Inf</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">xmax =</span> <span class="dv">0</span>, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> <span class="cn">Inf</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> <span class="cn">Inf</span>, <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">ymax =</span> <span class="dv">0</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Scatter plot</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">stroke =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Axis labels</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Offensive RAPTOR rating"</span>, <span class="at">y =</span> <span class="st">"Defensive RAPTOR rating"</span>) <span class="sc">+</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Axis formatting</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add quadrant labels with colored backgrounds</span></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="sc">-</span><span class="dv">7</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">7</span>, <span class="at">label =</span> <span class="st">"- offense</span><span class="sc">\n</span><span class="st">- defense"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"pink"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">7</span>, <span class="at">y =</span> <span class="dv">7</span>, <span class="at">label =</span> <span class="st">"+ offense</span><span class="sc">\n</span><span class="st">+ defense"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="sc">-</span><span class="dv">7</span>, <span class="at">y =</span> <span class="dv">7</span>, <span class="at">label =</span> <span class="st">"- offense</span><span class="sc">\n</span><span class="st">+ defense"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">7</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">7</span>, <span class="at">label =</span> <span class="st">"+ offense</span><span class="sc">\n</span><span class="st">- defense"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"pink"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Theme to match FiveThirtyEight style</span></span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray90"</span>),</span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in annotate("text", x = -7, y = -7, label = "- offense\n- defense", :
 Ignoring unknown parameters: `fill`</code></pre>
@@ -394,45 +400,45 @@ Ignoring unknown parameters: `fill`</code></pre>
 <p><strong>ChatGPT:</strong> <em>You’re welcome! That sounds like a great plan. You can fine-tune the details to match their figure exactly. Let me know if you need any further refinements or help adjusting specific elements. Happy coding!</em></p>
 <p>Based on what ChatGPT gave me, I then modified the code trying to make a more similar figure as posted on the website. My version is shown below.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My version of code</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> raptor_offense, <span class="at">y =</span> raptor_defense)) <span class="sc">+</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin=</span><span class="sc">-</span><span class="dv">10</span>, <span class="at">xmax=</span><span class="dv">0</span>, <span class="at">ymin=</span><span class="sc">-</span><span class="dv">10</span>, <span class="at">ymax=</span><span class="dv">0</span>, <span class="at">fill=</span><span class="st">"pink2"</span>, <span class="at">alpha=</span>.<span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin=</span><span class="dv">0</span>, <span class="at">xmax=</span><span class="dv">10</span>, <span class="at">ymin=</span><span class="dv">0</span>, <span class="at">ymax=</span><span class="dv">10</span>, <span class="at">fill=</span><span class="st">"cadetblue2"</span>, <span class="at">alpha=</span>.<span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"white"</span>, <span class="at">shape=</span><span class="dv">21</span>, <span class="at">size=</span><span class="fl">3.5</span>, <span class="at">stroke=</span>.<span class="dv">85</span>) <span class="sc">+</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Offensive RAPTOR rating"</span>, <span class="at">y =</span> <span class="st">"Defensive RAPTOR rating"</span>) <span class="sc">+</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">5</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"-10"</span>, <span class="st">"-5"</span>, <span class="st">"0"</span>, <span class="st">"+5"</span>, <span class="st">"+10"</span>)) <span class="sc">+</span></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">5</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"-10"</span>, <span class="st">"-5"</span>, <span class="st">"0"</span>, <span class="st">"+5"</span>, <span class="st">"+10"</span>)) <span class="sc">+</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">7.5</span>, <span class="at">y=</span><span class="sc">-</span><span class="dv">8</span>, <span class="at">label=</span><span class="st">"- offense "</span>, <span class="at">color=</span><span class="st">"black"</span>,</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"pink2"</span>, <span class="at">label.size=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">vjust=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">7.5</span>, <span class="at">y=</span><span class="sc">-</span><span class="dv">9</span>, <span class="at">label=</span><span class="st">"- defense"</span>, <span class="at">color=</span><span class="st">"black"</span>,</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"pink2"</span>, <span class="at">label.size=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">vjust=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x=</span><span class="fl">7.5</span>, <span class="at">y=</span><span class="dv">9</span>, <span class="at">label=</span><span class="st">"+ offense "</span>, <span class="at">color=</span><span class="st">"black"</span>,</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"cadetblue2"</span>, <span class="at">label.size=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">vjust=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x=</span><span class="fl">7.5</span>, <span class="at">y=</span><span class="dv">8</span>, <span class="at">label=</span><span class="st">"+ defense"</span>, <span class="at">color=</span><span class="st">"black"</span>,</span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"cadetblue2"</span>, <span class="at">label.size=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">vjust=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">7.5</span>, <span class="at">y=</span><span class="dv">9</span>, <span class="at">label=</span><span class="st">"- offense  "</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"pink2"</span>, <span class="at">label.size=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>,  <span class="at">vjust=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">7.5</span>, <span class="at">y=</span><span class="dv">8</span>, <span class="at">label=</span><span class="st">"+ defense"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"cadetblue2"</span>, <span class="at">label.size=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">vjust=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x=</span><span class="fl">7.5</span>, <span class="at">y=</span><span class="sc">-</span><span class="dv">8</span>, <span class="at">label=</span><span class="st">"+ offense"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"cadetblue2"</span>, <span class="at">label.size=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">vjust=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x=</span><span class="fl">7.5</span>, <span class="at">y=</span><span class="sc">-</span><span class="dv">9</span>, <span class="at">label=</span><span class="st">"- defense"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"pink2"</span>, <span class="at">label.size=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">vjust=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>(<span class="at">ratio=</span><span class="fl">1.15</span>)<span class="sc">+</span></span>
-<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
-<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray90"</span>, <span class="at">linewidth=</span>.<span class="dv">6</span>),</span>
-<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">10</span>),</span>
-<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"gray50"</span>, <span class="at">size=</span><span class="fl">7.5</span>, <span class="at">margin=</span><span class="fu">margin</span>(<span class="at">t=</span><span class="sc">-</span><span class="dv">3</span>)),</span>
-<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"gray50"</span>, <span class="at">size=</span><span class="fl">7.5</span>, <span class="at">margin=</span><span class="fu">margin</span>(<span class="at">t=</span><span class="sc">-</span><span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My version of code</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> raptor_offense, <span class="at">y =</span> raptor_defense)) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin=</span><span class="sc">-</span><span class="dv">10</span>, <span class="at">xmax=</span><span class="dv">0</span>, <span class="at">ymin=</span><span class="sc">-</span><span class="dv">10</span>, <span class="at">ymax=</span><span class="dv">0</span>, <span class="at">fill=</span><span class="st">"pink2"</span>, <span class="at">alpha=</span>.<span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin=</span><span class="dv">0</span>, <span class="at">xmax=</span><span class="dv">10</span>, <span class="at">ymin=</span><span class="dv">0</span>, <span class="at">ymax=</span><span class="dv">10</span>, <span class="at">fill=</span><span class="st">"cadetblue2"</span>, <span class="at">alpha=</span>.<span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"white"</span>, <span class="at">shape=</span><span class="dv">21</span>, <span class="at">size=</span><span class="fl">3.5</span>, <span class="at">stroke=</span>.<span class="dv">85</span>) <span class="sc">+</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Offensive RAPTOR rating"</span>, <span class="at">y =</span> <span class="st">"Defensive RAPTOR rating"</span>) <span class="sc">+</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">5</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"-10"</span>, <span class="st">"-5"</span>, <span class="st">"0"</span>, <span class="st">"+5"</span>, <span class="st">"+10"</span>)) <span class="sc">+</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">5</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"-10"</span>, <span class="st">"-5"</span>, <span class="st">"0"</span>, <span class="st">"+5"</span>, <span class="st">"+10"</span>)) <span class="sc">+</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">7.5</span>, <span class="at">y=</span><span class="sc">-</span><span class="dv">8</span>, <span class="at">label=</span><span class="st">"- offense "</span>, <span class="at">color=</span><span class="st">"black"</span>,</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"pink2"</span>, <span class="at">label.size=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">vjust=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">7.5</span>, <span class="at">y=</span><span class="sc">-</span><span class="dv">9</span>, <span class="at">label=</span><span class="st">"- defense"</span>, <span class="at">color=</span><span class="st">"black"</span>,</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"pink2"</span>, <span class="at">label.size=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">vjust=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x=</span><span class="fl">7.5</span>, <span class="at">y=</span><span class="dv">9</span>, <span class="at">label=</span><span class="st">"+ offense "</span>, <span class="at">color=</span><span class="st">"black"</span>,</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"cadetblue2"</span>, <span class="at">label.size=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">vjust=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x=</span><span class="fl">7.5</span>, <span class="at">y=</span><span class="dv">8</span>, <span class="at">label=</span><span class="st">"+ defense"</span>, <span class="at">color=</span><span class="st">"black"</span>,</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"cadetblue2"</span>, <span class="at">label.size=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">vjust=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">7.5</span>, <span class="at">y=</span><span class="dv">9</span>, <span class="at">label=</span><span class="st">"- offense  "</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"pink2"</span>, <span class="at">label.size=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>,  <span class="at">vjust=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">7.5</span>, <span class="at">y=</span><span class="dv">8</span>, <span class="at">label=</span><span class="st">"+ defense"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"cadetblue2"</span>, <span class="at">label.size=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">vjust=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x=</span><span class="fl">7.5</span>, <span class="at">y=</span><span class="sc">-</span><span class="dv">8</span>, <span class="at">label=</span><span class="st">"+ offense"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"cadetblue2"</span>, <span class="at">label.size=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">vjust=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x=</span><span class="fl">7.5</span>, <span class="at">y=</span><span class="sc">-</span><span class="dv">9</span>, <span class="at">label=</span><span class="st">"- defense"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"pink2"</span>, <span class="at">label.size=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">vjust=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>(<span class="at">ratio=</span><span class="fl">1.15</span>)<span class="sc">+</span></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray90"</span>, <span class="at">linewidth=</span>.<span class="dv">6</span>),</span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">10</span>),</span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"gray50"</span>, <span class="at">size=</span><span class="fl">7.5</span>, <span class="at">margin=</span><span class="fu">margin</span>(<span class="at">t=</span><span class="sc">-</span><span class="dv">3</span>)),</span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"gray50"</span>, <span class="at">size=</span><span class="fl">7.5</span>, <span class="at">margin=</span><span class="fu">margin</span>(<span class="at">t=</span><span class="sc">-</span><span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -455,38 +461,38 @@ Ignoring unknown parameters: `fill`</code></pre>
 <p><strong>Me:</strong> <em>Next, I want to use this data to make a nice table output. I want to stratify observations by whether POSITION contains “C” (Center vs non-Center), and compare the median of variables from raptor_box_offense to war_total using Wilcoxon rank sum test. For the output table, the first column shows the name of these indices, labeled as “Box offense score”, “Box defense score”, “Box total score”, “On/Off offense score”, “On/Off defense score”, “On/Off total score”, “Comprehensive offense score”, “Comprehensive defense score”, “Comprehensive total score”, “Wins Above Replacement score” by order of the variables. The second column shows the median, 25th quantile, and 75th quantile of Center players (2 digits). The third column shows the histogram of the data in the second column by row (fill color: darkorange). The fourth column shows the median, 25th quantile, and 75th quantile of non-Center players (2 digits). The fifth column shows the histogram of the data in the fourth column by row (fill color: dodgerblue3). The last column shows the p-values (italic title) of test results (3 digits). The column titles for the two groups should be “Center” (color: darkorange) and “Non-Center” (color: dodgerblue3) and they should be bold. You can use packages such as gtsummary and gtExtras to do this.</em></p>
 <p><strong>ChatGPT:</strong> <em>Here is the R code to create the formatted table using gtsummary, gt, and gtExtras. This will generate a stratified table comparing Centers vs.&nbsp;Non-Centers, including medians, interquartile ranges, histograms, and Wilcoxon test p-values.</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ChatGPT gave me a code with error</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ChatGPT gave me a code with error</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>This code will: Compare Centers vs.&nbsp;Non-Centers based on median and IQR. Display histograms for each group.Show Wilcoxon rank sum test p-values. Format the table with bold and colored group titles. Let me know if you need any refinements!</em></p>
 <p><strong>Me:</strong> <em>I just received an error about the ‘=’ in “Center = md(”<strong>Center</strong>”), Non-Center =“. Can you fix it?</em></p>
 <p><strong>ChatGPT:</strong> <em>Here is the corrected R code. The issue was due to the Non-Center column name containing a hyphen (-). In gt(), column names with special characters should be enclosed in backticks (`). I’ve fixed that and ensured the table renders correctly.</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define variables of interest</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"raptor_box_offense"</span>, <span class="st">"raptor_box_defense"</span>, <span class="st">"raptor_box_total"</span>,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">"raptor_onoff_offense"</span>, <span class="st">"raptor_onoff_defense"</span>, <span class="st">"raptor_onoff_total"</span>,</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">"raptor_offense"</span>, <span class="st">"raptor_defense"</span>, <span class="st">"raptor_total"</span>, <span class="st">"war_total"</span>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename for display</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>var_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Box offense score"</span>, <span class="st">"Box defense score"</span>, <span class="st">"Box total score"</span>,</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">"On/Off offense score"</span>, <span class="st">"On/Off defense score"</span>, <span class="st">"On/Off total score"</span>,</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Comprehensive offense score"</span>, <span class="st">"Comprehensive defense score"</span>, <span class="st">"Comprehensive total score"</span>,</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Wins Above Replacement score"</span>)</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Position Groups (Center vs. Non-Center)</span></span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Position_Group =</span> <span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">"C"</span>, POSITION), <span class="st">"Center"</span>, <span class="st">"Non-Center"</span>))</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute summary statistics</span></span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>summary_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Position_Group) <span class="sc">%&gt;%</span></span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(vars), <span class="fu">list</span>(</span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median =</span> <span class="sc">~</span> <span class="fu">median</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q25 =</span> <span class="sc">~</span> <span class="fu">quantile</span>(.x, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q75 =</span> <span class="sc">~</span> <span class="fu">quantile</span>(.x, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>  ))) <span class="sc">%&gt;%</span></span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>Position_Group, <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"Variable"</span>, <span class="st">"Stat"</span>), <span class="at">names_sep =</span> <span class="st">"_"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Position_Group, <span class="at">values_from =</span> value) <span class="sc">%&gt;%</span></span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> <span class="fu">round</span>(.x, <span class="dv">2</span>))) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define variables of interest</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"raptor_box_offense"</span>, <span class="st">"raptor_box_defense"</span>, <span class="st">"raptor_box_total"</span>,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">"raptor_onoff_offense"</span>, <span class="st">"raptor_onoff_defense"</span>, <span class="st">"raptor_onoff_total"</span>,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">"raptor_offense"</span>, <span class="st">"raptor_defense"</span>, <span class="st">"raptor_total"</span>, <span class="st">"war_total"</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename for display</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>var_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Box offense score"</span>, <span class="st">"Box defense score"</span>, <span class="st">"Box total score"</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">"On/Off offense score"</span>, <span class="st">"On/Off defense score"</span>, <span class="st">"On/Off total score"</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Comprehensive offense score"</span>, <span class="st">"Comprehensive defense score"</span>, <span class="st">"Comprehensive total score"</span>,</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Wins Above Replacement score"</span>)</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Position Groups (Center vs. Non-Center)</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Position_Group =</span> <span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">"C"</span>, POSITION), <span class="st">"Center"</span>, <span class="st">"Non-Center"</span>))</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute summary statistics</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>summary_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Position_Group) <span class="sc">%&gt;%</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(vars), <span class="fu">list</span>(</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median =</span> <span class="sc">~</span> <span class="fu">median</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q25 =</span> <span class="sc">~</span> <span class="fu">quantile</span>(.x, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q75 =</span> <span class="sc">~</span> <span class="fu">quantile</span>(.x, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>  ))) <span class="sc">%&gt;%</span></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>Position_Group, <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"Variable"</span>, <span class="st">"Stat"</span>), <span class="at">names_sep =</span> <span class="st">"_"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Position_Group, <span class="at">values_from =</span> value) <span class="sc">%&gt;%</span></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> <span class="fu">round</span>(.x, <span class="dv">2</span>))) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Expected 2 pieces. Additional pieces discarded in 30 rows [1, 2, 3, 4, 5, 6, 7,
 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].</code></pre>
@@ -500,50 +506,50 @@ Ignoring unknown parameters: `fill`</code></pre>
   dplyr::summarise(n = dplyr::n(), .by = c(Variable, Stat, Position_Group)) |&gt;
   dplyr::filter(n &gt; 1L)</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute Wilcoxon p-values</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>p_values <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(vars), <span class="sc">~</span> <span class="fu">wilcox.test</span>(.x <span class="sc">~</span> Position_Group, <span class="at">data =</span> data)<span class="sc">$</span>p.value)) <span class="sc">%&gt;%</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Variable"</span>, <span class="at">values_to =</span> <span class="st">"P_Value"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P_Value =</span> <span class="fu">formatC</span>(P_Value, <span class="at">format =</span> <span class="st">"f"</span>, <span class="at">digits =</span> <span class="dv">3</span>)) </span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge summaries and p-values</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>table_data <span class="ot">&lt;-</span> summary_data <span class="sc">%&gt;%</span></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(p_values, <span class="at">by =</span> <span class="st">"Variable"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Variable =</span> <span class="fu">factor</span>(Variable, <span class="at">levels =</span> vars, <span class="at">labels =</span> var_labels))</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create gt table</span></span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>table_gt <span class="ot">&lt;-</span> table_data <span class="sc">%&gt;%</span></span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">rowname_col =</span> <span class="st">"Variable"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(<span class="at">label =</span> <span class="fu">md</span>(<span class="st">"**Center**"</span>), <span class="at">columns =</span> <span class="st">`</span><span class="at">Center</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(<span class="at">label =</span> <span class="fu">md</span>(<span class="st">"**Non-Center**"</span>), <span class="at">columns =</span> <span class="st">`</span><span class="at">Non-Center</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">"Statistic"</span>,</span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Center</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">md</span>(<span class="st">"**Center**"</span>),</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Non-Center</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">md</span>(<span class="st">"**Non-Center**"</span>),</span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">P_Value =</span> <span class="fu">md</span>(<span class="st">"*P-value*"</span>)</span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="st">"medium"</span>)</span>
-<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Display table</span></span>
-<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>table_gt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute Wilcoxon p-values</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>p_values <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(vars), <span class="sc">~</span> <span class="fu">wilcox.test</span>(.x <span class="sc">~</span> Position_Group, <span class="at">data =</span> data)<span class="sc">$</span>p.value)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Variable"</span>, <span class="at">values_to =</span> <span class="st">"P_Value"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P_Value =</span> <span class="fu">formatC</span>(P_Value, <span class="at">format =</span> <span class="st">"f"</span>, <span class="at">digits =</span> <span class="dv">3</span>)) </span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge summaries and p-values</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>table_data <span class="ot">&lt;-</span> summary_data <span class="sc">%&gt;%</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(p_values, <span class="at">by =</span> <span class="st">"Variable"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Variable =</span> <span class="fu">factor</span>(Variable, <span class="at">levels =</span> vars, <span class="at">labels =</span> var_labels))</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create gt table</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>table_gt <span class="ot">&lt;-</span> table_data <span class="sc">%&gt;%</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">rowname_col =</span> <span class="st">"Variable"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(<span class="at">label =</span> <span class="fu">md</span>(<span class="st">"**Center**"</span>), <span class="at">columns =</span> <span class="st">`</span><span class="at">Center</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(<span class="at">label =</span> <span class="fu">md</span>(<span class="st">"**Non-Center**"</span>), <span class="at">columns =</span> <span class="st">`</span><span class="at">Non-Center</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">"Statistic"</span>,</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Center</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">md</span>(<span class="st">"**Center**"</span>),</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Non-Center</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">md</span>(<span class="st">"**Non-Center**"</span>),</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">P_Value =</span> <span class="fu">md</span>(<span class="st">"*P-value*"</span>)</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="st">"medium"</span>)</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Display table</span></span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>table_gt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="jxorlrzrcb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#jxorlrzrcb table {
+<div id="kmqlgpiqmb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kmqlgpiqmb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jxorlrzrcb thead, #jxorlrzrcb tbody, #jxorlrzrcb tfoot, #jxorlrzrcb tr, #jxorlrzrcb td, #jxorlrzrcb th {
+#kmqlgpiqmb thead, #kmqlgpiqmb tbody, #kmqlgpiqmb tfoot, #kmqlgpiqmb tr, #kmqlgpiqmb td, #kmqlgpiqmb th {
   border-style: none;
 }
 
-#jxorlrzrcb p {
+#kmqlgpiqmb p {
   margin: 0;
   padding: 0;
 }
 
-#jxorlrzrcb .gt_table {
+#kmqlgpiqmb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -569,12 +575,12 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#jxorlrzrcb .gt_caption {
+#kmqlgpiqmb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jxorlrzrcb .gt_title {
+#kmqlgpiqmb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -586,7 +592,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-bottom-width: 0;
 }
 
-#jxorlrzrcb .gt_subtitle {
+#kmqlgpiqmb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -598,7 +604,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-top-width: 0;
 }
 
-#jxorlrzrcb .gt_heading {
+#kmqlgpiqmb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -610,13 +616,13 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#jxorlrzrcb .gt_bottom_border {
+#kmqlgpiqmb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jxorlrzrcb .gt_col_headings {
+#kmqlgpiqmb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -631,7 +637,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#jxorlrzrcb .gt_col_heading {
+#kmqlgpiqmb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -651,7 +657,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   overflow-x: hidden;
 }
 
-#jxorlrzrcb .gt_column_spanner_outer {
+#kmqlgpiqmb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -663,15 +669,15 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 4px;
 }
 
-#jxorlrzrcb .gt_column_spanner_outer:first-child {
+#kmqlgpiqmb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jxorlrzrcb .gt_column_spanner_outer:last-child {
+#kmqlgpiqmb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jxorlrzrcb .gt_column_spanner {
+#kmqlgpiqmb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -683,11 +689,11 @@ Ignoring unknown parameters: `fill`</code></pre>
   width: 100%;
 }
 
-#jxorlrzrcb .gt_spanner_row {
+#kmqlgpiqmb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jxorlrzrcb .gt_group_heading {
+#kmqlgpiqmb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -713,7 +719,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   text-align: left;
 }
 
-#jxorlrzrcb .gt_empty_group_heading {
+#kmqlgpiqmb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -728,15 +734,15 @@ Ignoring unknown parameters: `fill`</code></pre>
   vertical-align: middle;
 }
 
-#jxorlrzrcb .gt_from_md > :first-child {
+#kmqlgpiqmb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jxorlrzrcb .gt_from_md > :last-child {
+#kmqlgpiqmb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jxorlrzrcb .gt_row {
+#kmqlgpiqmb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -755,7 +761,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   overflow-x: hidden;
 }
 
-#jxorlrzrcb .gt_stub {
+#kmqlgpiqmb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -768,7 +774,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 5px;
 }
 
-#jxorlrzrcb .gt_stub_row_group {
+#kmqlgpiqmb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -782,15 +788,15 @@ Ignoring unknown parameters: `fill`</code></pre>
   vertical-align: top;
 }
 
-#jxorlrzrcb .gt_row_group_first td {
+#kmqlgpiqmb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jxorlrzrcb .gt_row_group_first th {
+#kmqlgpiqmb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jxorlrzrcb .gt_summary_row {
+#kmqlgpiqmb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -800,16 +806,16 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 5px;
 }
 
-#jxorlrzrcb .gt_first_summary_row {
+#kmqlgpiqmb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jxorlrzrcb .gt_first_summary_row.thick {
+#kmqlgpiqmb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jxorlrzrcb .gt_last_summary_row {
+#kmqlgpiqmb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -819,7 +825,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#jxorlrzrcb .gt_grand_summary_row {
+#kmqlgpiqmb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -829,7 +835,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 5px;
 }
 
-#jxorlrzrcb .gt_first_grand_summary_row {
+#kmqlgpiqmb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -839,7 +845,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#jxorlrzrcb .gt_last_grand_summary_row_top {
+#kmqlgpiqmb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -849,11 +855,11 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#jxorlrzrcb .gt_striped {
+#kmqlgpiqmb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jxorlrzrcb .gt_table_body {
+#kmqlgpiqmb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -862,7 +868,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#jxorlrzrcb .gt_footnotes {
+#kmqlgpiqmb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -876,7 +882,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#jxorlrzrcb .gt_footnote {
+#kmqlgpiqmb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -885,7 +891,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 5px;
 }
 
-#jxorlrzrcb .gt_sourcenotes {
+#kmqlgpiqmb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -899,7 +905,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#jxorlrzrcb .gt_sourcenote {
+#kmqlgpiqmb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -907,63 +913,63 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 5px;
 }
 
-#jxorlrzrcb .gt_left {
+#kmqlgpiqmb .gt_left {
   text-align: left;
 }
 
-#jxorlrzrcb .gt_center {
+#kmqlgpiqmb .gt_center {
   text-align: center;
 }
 
-#jxorlrzrcb .gt_right {
+#kmqlgpiqmb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jxorlrzrcb .gt_font_normal {
+#kmqlgpiqmb .gt_font_normal {
   font-weight: normal;
 }
 
-#jxorlrzrcb .gt_font_bold {
+#kmqlgpiqmb .gt_font_bold {
   font-weight: bold;
 }
 
-#jxorlrzrcb .gt_font_italic {
+#kmqlgpiqmb .gt_font_italic {
   font-style: italic;
 }
 
-#jxorlrzrcb .gt_super {
+#kmqlgpiqmb .gt_super {
   font-size: 65%;
 }
 
-#jxorlrzrcb .gt_footnote_marks {
+#kmqlgpiqmb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jxorlrzrcb .gt_asterisk {
+#kmqlgpiqmb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jxorlrzrcb .gt_indent_1 {
+#kmqlgpiqmb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jxorlrzrcb .gt_indent_2 {
+#kmqlgpiqmb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jxorlrzrcb .gt_indent_3 {
+#kmqlgpiqmb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jxorlrzrcb .gt_indent_4 {
+#kmqlgpiqmb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jxorlrzrcb .gt_indent_5 {
+#kmqlgpiqmb .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1037,57 +1043,57 @@ Ignoring unknown parameters: `fill`</code></pre>
 <p>The table that ChatGPT gave me is not right. Then I realized that this cannot be done using <em>gt</em> family packages. I don’t think it is even doable. Guess this is too hard for R. So, no blame on ChatGPT.</p>
 <p>Actually, to make plots using <em>gt</em> family packages, the data to be plotted must be stored in lists. However, if I create new columns of lists, <em>tbl_summary</em> won’t be able to deal with it and generate a summary table. I will accomplish it in two steps. I will firstly generate a table with comparisons between the two groups. Then I will create another table that contains the density plots I want.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Position Groups (Center vs. Non-Center)</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Group=</span><span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">"C"</span>, POSITION), <span class="st">"Center players"</span>, <span class="st">"Non-Center players"</span>))</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the first table</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>nba_tab <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Group, raptor_box_offense<span class="sc">:</span>war_total) <span class="sc">%&gt;%</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">by=</span>Group, <span class="at">type=</span><span class="fu">list</span>(<span class="fu">where</span>(is.numeric) <span class="sc">~</span> <span class="st">"continuous"</span>),</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">statistic=</span><span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{median} ({p25}, {p75})"</span>),</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">digits=</span><span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">label=</span><span class="fu">list</span>(raptor_box_offense <span class="sc">~</span> <span class="st">"Box offense score"</span>,</span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>                         raptor_box_defense <span class="sc">~</span> <span class="st">"Box defense score"</span>,</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>                         raptor_box_total <span class="sc">~</span> <span class="st">"Box total score"</span>,</span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>                         raptor_onoff_offense <span class="sc">~</span> <span class="st">"On/Off offense score"</span>,</span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>                         raptor_onoff_defense <span class="sc">~</span> <span class="st">"On/Off defense score"</span>,</span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>                         raptor_onoff_total <span class="sc">~</span> <span class="st">"On/Off total score"</span>,</span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>                         raptor_offense <span class="sc">~</span> <span class="st">"Comprehensive offense score"</span>,</span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>                         raptor_defense <span class="sc">~</span> <span class="st">"Comprehensive defense score"</span>,</span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>                         raptor_total <span class="sc">~</span> <span class="st">"Comprehensive total score"</span>,</span>
-<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>                         war_total <span class="sc">~</span> <span class="st">"Wins Above Replacement score"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_p</span>(<span class="at">test=</span><span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"wilcox.test"</span>, <span class="at">pvalue_fun=</span><span class="cf">function</span>(x) <span class="fu">style_number</span>(x, <span class="at">digits=</span><span class="dv">3</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_header</span>(<span class="at">label=</span><span class="st">"**Index**"</span>, <span class="at">p.value=</span><span class="st">"*p*-value"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style_body</span>(<span class="at">style=</span><span class="fu">cell_fill</span>(<span class="at">color=</span><span class="st">"lightskyblue1"</span>), <span class="at">values=</span><span class="st">"Box total score"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style_body</span>(<span class="at">style=</span><span class="fu">cell_fill</span>(<span class="at">color=</span><span class="st">"palevioletred1"</span>), <span class="at">values=</span><span class="st">"On/Off total score"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style_body</span>(<span class="at">style=</span><span class="fu">cell_fill</span>(<span class="at">color=</span><span class="st">"palegreen1"</span>), <span class="at">values=</span><span class="st">"Comprehensive total score"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style_body</span>(<span class="at">style=</span><span class="fu">cell_fill</span>(<span class="at">color=</span><span class="st">"gold1"</span>), <span class="at">values=</span><span class="st">"Wins Above Replacement score"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(<span class="at">style=</span><span class="fu">cell_text</span>(<span class="at">weight=</span><span class="st">"bold"</span>), </span>
-<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations=</span><span class="fu">cells_body</span>(<span class="at">columns=</span>p.value, <span class="at">rows=</span><span class="fu">as.numeric</span>(p.value)<span class="sc">&lt;</span><span class="fl">0.05</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.names=</span><span class="st">"Times New Roman"</span>)</span>
-<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the table</span></span>
-<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>nba_tab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Position Groups (Center vs. Non-Center)</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Group=</span><span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">"C"</span>, POSITION), <span class="st">"Center players"</span>, <span class="st">"Non-Center players"</span>))</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the first table</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>nba_tab <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Group, raptor_box_offense<span class="sc">:</span>war_total) <span class="sc">%&gt;%</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">by=</span>Group, <span class="at">type=</span><span class="fu">list</span>(<span class="fu">where</span>(is.numeric) <span class="sc">~</span> <span class="st">"continuous"</span>),</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">statistic=</span><span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{median} ({p25}, {p75})"</span>),</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">digits=</span><span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">label=</span><span class="fu">list</span>(raptor_box_offense <span class="sc">~</span> <span class="st">"Box offense score"</span>,</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>                         raptor_box_defense <span class="sc">~</span> <span class="st">"Box defense score"</span>,</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>                         raptor_box_total <span class="sc">~</span> <span class="st">"Box total score"</span>,</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>                         raptor_onoff_offense <span class="sc">~</span> <span class="st">"On/Off offense score"</span>,</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>                         raptor_onoff_defense <span class="sc">~</span> <span class="st">"On/Off defense score"</span>,</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>                         raptor_onoff_total <span class="sc">~</span> <span class="st">"On/Off total score"</span>,</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>                         raptor_offense <span class="sc">~</span> <span class="st">"Comprehensive offense score"</span>,</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>                         raptor_defense <span class="sc">~</span> <span class="st">"Comprehensive defense score"</span>,</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>                         raptor_total <span class="sc">~</span> <span class="st">"Comprehensive total score"</span>,</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>                         war_total <span class="sc">~</span> <span class="st">"Wins Above Replacement score"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_p</span>(<span class="at">test=</span><span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"wilcox.test"</span>, <span class="at">pvalue_fun=</span><span class="cf">function</span>(x) <span class="fu">style_number</span>(x, <span class="at">digits=</span><span class="dv">3</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_header</span>(<span class="at">label=</span><span class="st">"**Index**"</span>, <span class="at">p.value=</span><span class="st">"*p*-value"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style_body</span>(<span class="at">style=</span><span class="fu">cell_fill</span>(<span class="at">color=</span><span class="st">"lightskyblue1"</span>), <span class="at">values=</span><span class="st">"Box total score"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style_body</span>(<span class="at">style=</span><span class="fu">cell_fill</span>(<span class="at">color=</span><span class="st">"palevioletred1"</span>), <span class="at">values=</span><span class="st">"On/Off total score"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style_body</span>(<span class="at">style=</span><span class="fu">cell_fill</span>(<span class="at">color=</span><span class="st">"palegreen1"</span>), <span class="at">values=</span><span class="st">"Comprehensive total score"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style_body</span>(<span class="at">style=</span><span class="fu">cell_fill</span>(<span class="at">color=</span><span class="st">"gold1"</span>), <span class="at">values=</span><span class="st">"Wins Above Replacement score"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(<span class="at">style=</span><span class="fu">cell_text</span>(<span class="at">weight=</span><span class="st">"bold"</span>), </span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations=</span><span class="fu">cells_body</span>(<span class="at">columns=</span>p.value, <span class="at">rows=</span><span class="fu">as.numeric</span>(p.value)<span class="sc">&lt;</span><span class="fl">0.05</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.names=</span><span class="st">"Times New Roman"</span>)</span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the table</span></span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a>nba_tab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="djpqfuewut" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#djpqfuewut table {
+<div id="rpjjfdwfqb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rpjjfdwfqb table {
   font-family: 'Times New Roman';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#djpqfuewut thead, #djpqfuewut tbody, #djpqfuewut tfoot, #djpqfuewut tr, #djpqfuewut td, #djpqfuewut th {
+#rpjjfdwfqb thead, #rpjjfdwfqb tbody, #rpjjfdwfqb tfoot, #rpjjfdwfqb tr, #rpjjfdwfqb td, #rpjjfdwfqb th {
   border-style: none;
 }
 
-#djpqfuewut p {
+#rpjjfdwfqb p {
   margin: 0;
   padding: 0;
 }
 
-#djpqfuewut .gt_table {
+#rpjjfdwfqb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1113,12 +1119,12 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#djpqfuewut .gt_caption {
+#rpjjfdwfqb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#djpqfuewut .gt_title {
+#rpjjfdwfqb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1130,7 +1136,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-bottom-width: 0;
 }
 
-#djpqfuewut .gt_subtitle {
+#rpjjfdwfqb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1142,7 +1148,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-top-width: 0;
 }
 
-#djpqfuewut .gt_heading {
+#rpjjfdwfqb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1154,13 +1160,13 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#djpqfuewut .gt_bottom_border {
+#rpjjfdwfqb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#djpqfuewut .gt_col_headings {
+#rpjjfdwfqb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1175,7 +1181,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#djpqfuewut .gt_col_heading {
+#rpjjfdwfqb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1195,7 +1201,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   overflow-x: hidden;
 }
 
-#djpqfuewut .gt_column_spanner_outer {
+#rpjjfdwfqb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1207,15 +1213,15 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 4px;
 }
 
-#djpqfuewut .gt_column_spanner_outer:first-child {
+#rpjjfdwfqb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#djpqfuewut .gt_column_spanner_outer:last-child {
+#rpjjfdwfqb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#djpqfuewut .gt_column_spanner {
+#rpjjfdwfqb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1227,11 +1233,11 @@ Ignoring unknown parameters: `fill`</code></pre>
   width: 100%;
 }
 
-#djpqfuewut .gt_spanner_row {
+#rpjjfdwfqb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#djpqfuewut .gt_group_heading {
+#rpjjfdwfqb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1257,7 +1263,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   text-align: left;
 }
 
-#djpqfuewut .gt_empty_group_heading {
+#rpjjfdwfqb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1272,15 +1278,15 @@ Ignoring unknown parameters: `fill`</code></pre>
   vertical-align: middle;
 }
 
-#djpqfuewut .gt_from_md > :first-child {
+#rpjjfdwfqb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#djpqfuewut .gt_from_md > :last-child {
+#rpjjfdwfqb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#djpqfuewut .gt_row {
+#rpjjfdwfqb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1299,7 +1305,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   overflow-x: hidden;
 }
 
-#djpqfuewut .gt_stub {
+#rpjjfdwfqb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1312,7 +1318,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 5px;
 }
 
-#djpqfuewut .gt_stub_row_group {
+#rpjjfdwfqb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1326,15 +1332,15 @@ Ignoring unknown parameters: `fill`</code></pre>
   vertical-align: top;
 }
 
-#djpqfuewut .gt_row_group_first td {
+#rpjjfdwfqb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#djpqfuewut .gt_row_group_first th {
+#rpjjfdwfqb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#djpqfuewut .gt_summary_row {
+#rpjjfdwfqb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1344,16 +1350,16 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 5px;
 }
 
-#djpqfuewut .gt_first_summary_row {
+#rpjjfdwfqb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#djpqfuewut .gt_first_summary_row.thick {
+#rpjjfdwfqb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#djpqfuewut .gt_last_summary_row {
+#rpjjfdwfqb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1363,7 +1369,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#djpqfuewut .gt_grand_summary_row {
+#rpjjfdwfqb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1373,7 +1379,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 5px;
 }
 
-#djpqfuewut .gt_first_grand_summary_row {
+#rpjjfdwfqb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1383,7 +1389,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#djpqfuewut .gt_last_grand_summary_row_top {
+#rpjjfdwfqb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1393,11 +1399,11 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#djpqfuewut .gt_striped {
+#rpjjfdwfqb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#djpqfuewut .gt_table_body {
+#rpjjfdwfqb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1406,7 +1412,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#djpqfuewut .gt_footnotes {
+#rpjjfdwfqb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1420,7 +1426,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#djpqfuewut .gt_footnote {
+#rpjjfdwfqb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1429,7 +1435,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 5px;
 }
 
-#djpqfuewut .gt_sourcenotes {
+#rpjjfdwfqb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1443,7 +1449,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#djpqfuewut .gt_sourcenote {
+#rpjjfdwfqb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1451,63 +1457,63 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 5px;
 }
 
-#djpqfuewut .gt_left {
+#rpjjfdwfqb .gt_left {
   text-align: left;
 }
 
-#djpqfuewut .gt_center {
+#rpjjfdwfqb .gt_center {
   text-align: center;
 }
 
-#djpqfuewut .gt_right {
+#rpjjfdwfqb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#djpqfuewut .gt_font_normal {
+#rpjjfdwfqb .gt_font_normal {
   font-weight: normal;
 }
 
-#djpqfuewut .gt_font_bold {
+#rpjjfdwfqb .gt_font_bold {
   font-weight: bold;
 }
 
-#djpqfuewut .gt_font_italic {
+#rpjjfdwfqb .gt_font_italic {
   font-style: italic;
 }
 
-#djpqfuewut .gt_super {
+#rpjjfdwfqb .gt_super {
   font-size: 65%;
 }
 
-#djpqfuewut .gt_footnote_marks {
+#rpjjfdwfqb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#djpqfuewut .gt_asterisk {
+#rpjjfdwfqb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#djpqfuewut .gt_indent_1 {
+#rpjjfdwfqb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#djpqfuewut .gt_indent_2 {
+#rpjjfdwfqb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#djpqfuewut .gt_indent_3 {
+#rpjjfdwfqb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#djpqfuewut .gt_indent_4 {
+#rpjjfdwfqb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#djpqfuewut .gt_indent_5 {
+#rpjjfdwfqb .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1597,43 +1603,43 @@ Ignoring unknown parameters: `fill`</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the second table</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nba_tab_c &lt;- data %&gt;%</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   select(Group, raptor_box_offense:war_total) %&gt;%</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   pivot_longer(-Group, names_to="vars", values_to="vals") %&gt;%</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(vars=recode(vars,</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_box_offense="Box Offense Score",</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_box_defense="Box Defense Score",</span></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_box_total="Box Total Score",</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_onoff_offense="On/Off Offense Score",</span></span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_onoff_defense="On/Off Defense Score",</span></span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_onoff_total="On/Off Total Score",</span></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_offense="Comprehensive Offense Score",</span></span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_defense="Comprehensive Defense Score",</span></span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_total="Comprehensive Total Score",</span></span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="co">#                      war_total="Wins Above Replacement Score")) %&gt;%</span></span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="co">#   group_by(Group, vars) %&gt;%</span></span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="co">#   summarize(median=round(median(vals), 2),</span></span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a><span class="co">#             Q1=round(quantile(vals, .25), 2),</span></span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a><span class="co">#             Q3=round(quantile(vals, .75), 2),</span></span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a><span class="co">#             datalist=list(vals)) %&gt;%</span></span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a><span class="co">#   gt() %&gt;%</span></span>
-<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a><span class="co">#   gt_plt_dist(datalist, type="density",</span></span>
-<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a><span class="co">#               line_color="firebrick4", fill_color="lightpink1",</span></span>
-<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a><span class="co">#               same_limit=F) %&gt;%</span></span>
-<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a><span class="co">#   tab_style(style=cell_fill(color="lightskyblue"),</span></span>
-<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a><span class="co">#             locations=cells_body(rows=Group=="Center players")) %&gt;%</span></span>
-<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a><span class="co">#   tab_style(style=cell_fill(color="lightgreen"),</span></span>
-<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a><span class="co">#             locations=cells_body(rows=Group=="Non-Center players")) %&gt;%</span></span>
-<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a><span class="co">#   cols_label(vars=md("**Index**"),</span></span>
-<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a><span class="co">#              median=md("**Median**"),</span></span>
-<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a><span class="co">#              Q1=md("**25th Percentile**"),</span></span>
-<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a><span class="co">#              Q3=md("**75th Percentile**"),</span></span>
-<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a><span class="co">#              datalist=md("**Density Plot**")) %&gt;%</span></span>
-<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a><span class="co">#   tab_options(table.font.names="Times New Roman")</span></span>
-<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Ouput the table</span></span>
-<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a><span class="co"># nba_tab_c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the second table</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nba_tab_c &lt;- data %&gt;%</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   select(Group, raptor_box_offense:war_total) %&gt;%</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   pivot_longer(-Group, names_to="vars", values_to="vals") %&gt;%</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(vars=recode(vars,</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_box_offense="Box Offense Score",</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_box_defense="Box Defense Score",</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_box_total="Box Total Score",</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_onoff_offense="On/Off Offense Score",</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_onoff_defense="On/Off Defense Score",</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_onoff_total="On/Off Total Score",</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_offense="Comprehensive Offense Score",</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_defense="Comprehensive Defense Score",</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="co">#                      raptor_total="Comprehensive Total Score",</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="co">#                      war_total="Wins Above Replacement Score")) %&gt;%</span></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co">#   group_by(Group, vars) %&gt;%</span></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="co">#   summarize(median=round(median(vals), 2),</span></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a><span class="co">#             Q1=round(quantile(vals, .25), 2),</span></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="co">#             Q3=round(quantile(vals, .75), 2),</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a><span class="co">#             datalist=list(vals)) %&gt;%</span></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a><span class="co">#   gt() %&gt;%</span></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a><span class="co">#   gt_plt_dist(datalist, type="density",</span></span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a><span class="co">#               line_color="firebrick4", fill_color="lightpink1",</span></span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a><span class="co">#               same_limit=F) %&gt;%</span></span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a><span class="co">#   tab_style(style=cell_fill(color="lightskyblue"),</span></span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a><span class="co">#             locations=cells_body(rows=Group=="Center players")) %&gt;%</span></span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a><span class="co">#   tab_style(style=cell_fill(color="lightgreen"),</span></span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a><span class="co">#             locations=cells_body(rows=Group=="Non-Center players")) %&gt;%</span></span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a><span class="co">#   cols_label(vars=md("**Index**"),</span></span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a><span class="co">#              median=md("**Median**"),</span></span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a><span class="co">#              Q1=md("**25th Percentile**"),</span></span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a><span class="co">#              Q3=md("**75th Percentile**"),</span></span>
+<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a><span class="co">#              datalist=md("**Density Plot**")) %&gt;%</span></span>
+<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a><span class="co">#   tab_options(table.font.names="Times New Roman")</span></span>
+<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Ouput the table</span></span>
+<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a><span class="co"># nba_tab_c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The code chunk above runs perfectly on my local lap-top. However, whenever I tried to render it into HTML, it keeps saying cannot find the package “gtExtras”. I checked everything to make sure this package is accurately installed in my library folder. It just wouldn’t work. Here I’m attaching the output table as a figure below.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -1643,69 +1649,69 @@ Ignoring unknown parameters: `fill`</code></pre>
 </div>
 <p>I searched the Internet and didn’t find anybody doing the same thing as I’m doing. It has taken me over 40 hrs to solve it so I decided not to be stuck here. I will just make another version of table with plots in it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the second table in a different way</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>nba_tab_c <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Group, raptor_box_offense<span class="sc">:</span>war_total) <span class="sc">%&gt;%</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>Group, <span class="at">names_to=</span><span class="st">"vars"</span>, <span class="at">values_to=</span><span class="st">"vals"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">vars=</span><span class="fu">recode</span>(vars,</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_box_offense=</span><span class="st">"Box Offense Score"</span>,</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_box_defense=</span><span class="st">"Box Defense Score"</span>,</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_box_total=</span><span class="st">"Box Total Score"</span>,</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_onoff_offense=</span><span class="st">"On/Off Offense Score"</span>,</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_onoff_defense=</span><span class="st">"On/Off Defense Score"</span>,</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_onoff_total=</span><span class="st">"On/Off Total Score"</span>,</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_offense=</span><span class="st">"Comprehensive Offense Score"</span>,</span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_defense=</span><span class="st">"Comprehensive Defense Score"</span>,</span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_total=</span><span class="st">"Comprehensive Total Score"</span>,</span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>                     <span class="at">war_total=</span><span class="st">"Wins Above Replacement Score"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest_by</span>(Group, vars) <span class="sc">%&gt;%</span></span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">median=</span><span class="fu">round</span>(<span class="fu">median</span>(data<span class="sc">$</span>vals), <span class="dv">2</span>),</span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">Q1=</span><span class="fu">round</span>(<span class="fu">quantile</span>(data<span class="sc">$</span>vals, .<span class="dv">25</span>), <span class="dv">2</span>),</span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">Q3=</span><span class="fu">round</span>(<span class="fu">quantile</span>(data<span class="sc">$</span>vals, .<span class="dv">75</span>), <span class="dv">2</span>),</span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">dens=</span><span class="fu">list</span>(<span class="fu">ggplot</span>(data, <span class="fu">aes</span>(vals))<span class="sc">+</span></span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">geom_density</span>(<span class="at">color=</span><span class="st">"purple4"</span>,</span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">fill=</span><span class="st">"palevioletred1"</span>)<span class="sc">+</span></span>
-<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">theme_void</span>()), <span class="at">.keep=</span><span class="st">"unused"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>  ungroup <span class="sc">%&gt;%</span></span>
-<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ggplot=</span><span class="cn">NA</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>  {dat <span class="ot">&lt;-</span> .</span>
-<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>  dat <span class="sc">%&gt;%</span></span>
-<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>dens) <span class="sc">%&gt;%</span></span>
-<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text_transform</span>(<span class="at">locations=</span><span class="fu">cells_body</span>(<span class="fu">c</span>(ggplot)),</span>
-<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fn=</span><span class="cf">function</span>(x){<span class="fu">map</span>(dat<span class="sc">$</span>dens, ggplot_image, <span class="at">height=</span><span class="dv">50</span>)})</span>
-<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a>  } <span class="sc">%&gt;%</span></span>
-<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(<span class="at">style=</span><span class="fu">cell_fill</span>(<span class="at">color=</span><span class="st">"lightskyblue1"</span>, <span class="at">alpha=</span>.<span class="dv">2</span>),</span>
-<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations=</span><span class="fu">cells_body</span>(<span class="at">rows=</span>Group<span class="sc">==</span><span class="st">"Center players"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(<span class="at">style=</span><span class="fu">cell_fill</span>(<span class="at">color=</span><span class="st">"palegreen1"</span>, <span class="at">alpha=</span>.<span class="dv">2</span>),</span>
-<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations=</span><span class="fu">cells_body</span>(<span class="at">rows=</span>Group<span class="sc">==</span><span class="st">"Non-Center players"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">vars=</span><span class="fu">md</span>(<span class="st">"**Index**"</span>),</span>
-<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a>             <span class="at">median=</span><span class="fu">md</span>(<span class="st">"**Median**"</span>),</span>
-<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a>             <span class="at">Q1=</span><span class="fu">md</span>(<span class="st">"**25th Percentile**"</span>),</span>
-<span id="cb33-40"><a href="#cb33-40" aria-hidden="true" tabindex="-1"></a>             <span class="at">Q3=</span><span class="fu">md</span>(<span class="st">"**75th Percentile**"</span>),</span>
-<span id="cb33-41"><a href="#cb33-41" aria-hidden="true" tabindex="-1"></a>             <span class="at">ggplot=</span><span class="fu">md</span>(<span class="st">"**Density Plot**"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb33-42"><a href="#cb33-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.names=</span><span class="st">"Times New Roman"</span>)</span>
-<span id="cb33-43"><a href="#cb33-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-44"><a href="#cb33-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Ouput the table</span></span>
-<span id="cb33-45"><a href="#cb33-45" aria-hidden="true" tabindex="-1"></a>nba_tab_c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the second table in a different way</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>nba_tab_c <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Group, raptor_box_offense<span class="sc">:</span>war_total) <span class="sc">%&gt;%</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>Group, <span class="at">names_to=</span><span class="st">"vars"</span>, <span class="at">values_to=</span><span class="st">"vals"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">vars=</span><span class="fu">recode</span>(vars,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_box_offense=</span><span class="st">"Box Offense Score"</span>,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_box_defense=</span><span class="st">"Box Defense Score"</span>,</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_box_total=</span><span class="st">"Box Total Score"</span>,</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_onoff_offense=</span><span class="st">"On/Off Offense Score"</span>,</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_onoff_defense=</span><span class="st">"On/Off Defense Score"</span>,</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_onoff_total=</span><span class="st">"On/Off Total Score"</span>,</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_offense=</span><span class="st">"Comprehensive Offense Score"</span>,</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_defense=</span><span class="st">"Comprehensive Defense Score"</span>,</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">raptor_total=</span><span class="st">"Comprehensive Total Score"</span>,</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>                     <span class="at">war_total=</span><span class="st">"Wins Above Replacement Score"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest_by</span>(Group, vars) <span class="sc">%&gt;%</span></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">median=</span><span class="fu">round</span>(<span class="fu">median</span>(data<span class="sc">$</span>vals), <span class="dv">2</span>),</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">Q1=</span><span class="fu">round</span>(<span class="fu">quantile</span>(data<span class="sc">$</span>vals, .<span class="dv">25</span>), <span class="dv">2</span>),</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">Q3=</span><span class="fu">round</span>(<span class="fu">quantile</span>(data<span class="sc">$</span>vals, .<span class="dv">75</span>), <span class="dv">2</span>),</span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">dens=</span><span class="fu">list</span>(<span class="fu">ggplot</span>(data, <span class="fu">aes</span>(vals))<span class="sc">+</span></span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">geom_density</span>(<span class="at">color=</span><span class="st">"purple4"</span>,</span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">fill=</span><span class="st">"palevioletred1"</span>)<span class="sc">+</span></span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">theme_void</span>()), <span class="at">.keep=</span><span class="st">"unused"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a>  ungroup <span class="sc">%&gt;%</span></span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ggplot=</span><span class="cn">NA</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a>  {dat <span class="ot">&lt;-</span> .</span>
+<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a>  dat <span class="sc">%&gt;%</span></span>
+<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>dens) <span class="sc">%&gt;%</span></span>
+<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text_transform</span>(<span class="at">locations=</span><span class="fu">cells_body</span>(<span class="fu">c</span>(ggplot)),</span>
+<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fn=</span><span class="cf">function</span>(x){<span class="fu">map</span>(dat<span class="sc">$</span>dens, ggplot_image, <span class="at">height=</span><span class="dv">50</span>)})</span>
+<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a>  } <span class="sc">%&gt;%</span></span>
+<span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(<span class="at">style=</span><span class="fu">cell_fill</span>(<span class="at">color=</span><span class="st">"lightskyblue1"</span>, <span class="at">alpha=</span>.<span class="dv">2</span>),</span>
+<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations=</span><span class="fu">cells_body</span>(<span class="at">rows=</span>Group<span class="sc">==</span><span class="st">"Center players"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(<span class="at">style=</span><span class="fu">cell_fill</span>(<span class="at">color=</span><span class="st">"palegreen1"</span>, <span class="at">alpha=</span>.<span class="dv">2</span>),</span>
+<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations=</span><span class="fu">cells_body</span>(<span class="at">rows=</span>Group<span class="sc">==</span><span class="st">"Non-Center players"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb35-37"><a href="#cb35-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">vars=</span><span class="fu">md</span>(<span class="st">"**Index**"</span>),</span>
+<span id="cb35-38"><a href="#cb35-38" aria-hidden="true" tabindex="-1"></a>             <span class="at">median=</span><span class="fu">md</span>(<span class="st">"**Median**"</span>),</span>
+<span id="cb35-39"><a href="#cb35-39" aria-hidden="true" tabindex="-1"></a>             <span class="at">Q1=</span><span class="fu">md</span>(<span class="st">"**25th Percentile**"</span>),</span>
+<span id="cb35-40"><a href="#cb35-40" aria-hidden="true" tabindex="-1"></a>             <span class="at">Q3=</span><span class="fu">md</span>(<span class="st">"**75th Percentile**"</span>),</span>
+<span id="cb35-41"><a href="#cb35-41" aria-hidden="true" tabindex="-1"></a>             <span class="at">ggplot=</span><span class="fu">md</span>(<span class="st">"**Density Plot**"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb35-42"><a href="#cb35-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.names=</span><span class="st">"Times New Roman"</span>)</span>
+<span id="cb35-43"><a href="#cb35-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-44"><a href="#cb35-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Ouput the table</span></span>
+<span id="cb35-45"><a href="#cb35-45" aria-hidden="true" tabindex="-1"></a>nba_tab_c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="dpdjntgstj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dpdjntgstj table {
+<div id="pidgbjqstv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pidgbjqstv table {
   font-family: 'Times New Roman';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#dpdjntgstj thead, #dpdjntgstj tbody, #dpdjntgstj tfoot, #dpdjntgstj tr, #dpdjntgstj td, #dpdjntgstj th {
+#pidgbjqstv thead, #pidgbjqstv tbody, #pidgbjqstv tfoot, #pidgbjqstv tr, #pidgbjqstv td, #pidgbjqstv th {
   border-style: none;
 }
 
-#dpdjntgstj p {
+#pidgbjqstv p {
   margin: 0;
   padding: 0;
 }
 
-#dpdjntgstj .gt_table {
+#pidgbjqstv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1731,12 +1737,12 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#dpdjntgstj .gt_caption {
+#pidgbjqstv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#dpdjntgstj .gt_title {
+#pidgbjqstv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1748,7 +1754,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-bottom-width: 0;
 }
 
-#dpdjntgstj .gt_subtitle {
+#pidgbjqstv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1760,7 +1766,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-top-width: 0;
 }
 
-#dpdjntgstj .gt_heading {
+#pidgbjqstv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1772,13 +1778,13 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#dpdjntgstj .gt_bottom_border {
+#pidgbjqstv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dpdjntgstj .gt_col_headings {
+#pidgbjqstv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1793,7 +1799,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#dpdjntgstj .gt_col_heading {
+#pidgbjqstv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1813,7 +1819,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   overflow-x: hidden;
 }
 
-#dpdjntgstj .gt_column_spanner_outer {
+#pidgbjqstv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1825,15 +1831,15 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 4px;
 }
 
-#dpdjntgstj .gt_column_spanner_outer:first-child {
+#pidgbjqstv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dpdjntgstj .gt_column_spanner_outer:last-child {
+#pidgbjqstv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dpdjntgstj .gt_column_spanner {
+#pidgbjqstv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1845,11 +1851,11 @@ Ignoring unknown parameters: `fill`</code></pre>
   width: 100%;
 }
 
-#dpdjntgstj .gt_spanner_row {
+#pidgbjqstv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#dpdjntgstj .gt_group_heading {
+#pidgbjqstv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1875,7 +1881,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   text-align: left;
 }
 
-#dpdjntgstj .gt_empty_group_heading {
+#pidgbjqstv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1890,15 +1896,15 @@ Ignoring unknown parameters: `fill`</code></pre>
   vertical-align: middle;
 }
 
-#dpdjntgstj .gt_from_md > :first-child {
+#pidgbjqstv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dpdjntgstj .gt_from_md > :last-child {
+#pidgbjqstv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dpdjntgstj .gt_row {
+#pidgbjqstv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1917,7 +1923,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   overflow-x: hidden;
 }
 
-#dpdjntgstj .gt_stub {
+#pidgbjqstv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1930,7 +1936,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 5px;
 }
 
-#dpdjntgstj .gt_stub_row_group {
+#pidgbjqstv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1944,15 +1950,15 @@ Ignoring unknown parameters: `fill`</code></pre>
   vertical-align: top;
 }
 
-#dpdjntgstj .gt_row_group_first td {
+#pidgbjqstv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dpdjntgstj .gt_row_group_first th {
+#pidgbjqstv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#dpdjntgstj .gt_summary_row {
+#pidgbjqstv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1962,16 +1968,16 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 5px;
 }
 
-#dpdjntgstj .gt_first_summary_row {
+#pidgbjqstv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dpdjntgstj .gt_first_summary_row.thick {
+#pidgbjqstv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dpdjntgstj .gt_last_summary_row {
+#pidgbjqstv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1981,7 +1987,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#dpdjntgstj .gt_grand_summary_row {
+#pidgbjqstv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1991,7 +1997,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 5px;
 }
 
-#dpdjntgstj .gt_first_grand_summary_row {
+#pidgbjqstv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2001,7 +2007,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#dpdjntgstj .gt_last_grand_summary_row_top {
+#pidgbjqstv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2011,11 +2017,11 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#dpdjntgstj .gt_striped {
+#pidgbjqstv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dpdjntgstj .gt_table_body {
+#pidgbjqstv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2024,7 +2030,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#dpdjntgstj .gt_footnotes {
+#pidgbjqstv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2038,7 +2044,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#dpdjntgstj .gt_footnote {
+#pidgbjqstv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2047,7 +2053,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 5px;
 }
 
-#dpdjntgstj .gt_sourcenotes {
+#pidgbjqstv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2061,7 +2067,7 @@ Ignoring unknown parameters: `fill`</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#dpdjntgstj .gt_sourcenote {
+#pidgbjqstv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2069,63 +2075,63 @@ Ignoring unknown parameters: `fill`</code></pre>
   padding-right: 5px;
 }
 
-#dpdjntgstj .gt_left {
+#pidgbjqstv .gt_left {
   text-align: left;
 }
 
-#dpdjntgstj .gt_center {
+#pidgbjqstv .gt_center {
   text-align: center;
 }
 
-#dpdjntgstj .gt_right {
+#pidgbjqstv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dpdjntgstj .gt_font_normal {
+#pidgbjqstv .gt_font_normal {
   font-weight: normal;
 }
 
-#dpdjntgstj .gt_font_bold {
+#pidgbjqstv .gt_font_bold {
   font-weight: bold;
 }
 
-#dpdjntgstj .gt_font_italic {
+#pidgbjqstv .gt_font_italic {
   font-style: italic;
 }
 
-#dpdjntgstj .gt_super {
+#pidgbjqstv .gt_super {
   font-size: 65%;
 }
 
-#dpdjntgstj .gt_footnote_marks {
+#pidgbjqstv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#dpdjntgstj .gt_asterisk {
+#pidgbjqstv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dpdjntgstj .gt_indent_1 {
+#pidgbjqstv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#dpdjntgstj .gt_indent_2 {
+#pidgbjqstv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#dpdjntgstj .gt_indent_3 {
+#pidgbjqstv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#dpdjntgstj .gt_indent_4 {
+#pidgbjqstv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#dpdjntgstj .gt_indent_5 {
+#pidgbjqstv .gt_indent_5 {
   text-indent: 25px;
 }
 </style>

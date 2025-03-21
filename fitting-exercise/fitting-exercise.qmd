@@ -676,7 +676,9 @@ As shown, the conclusion still holds after setting a new seed. But considering t
 
 
 # This section added by Hope Grismer
+
 The code below is to visualize model fitting from the null model, model 1, and model 2.
+
 ```{r}
 # Null model: prediction on the train set
 pred_model0_gz <- predict(model0_train, train_data) %>%
@@ -719,6 +721,7 @@ comb_gz
 As shown, the predictions from the null model form a horizontal line because it only predicts the mean value of the response. The predictions from model 1 show three GREEN horizontal lines since this model uses *DOSE* as the only predictor, which has three possible values.
 
 Now, I'm moving on to create a residual plot for model 2.
+
 ```{r}
 # Residual plot for model 2
  pred_model2_res_gz <- pred_model2_gz %>%
@@ -736,6 +739,7 @@ Now, I'm moving on to create a residual plot for model 2.
          axis.text.y=element_text(color="black",size=20,hjust=1))
  pred_model2_res_gz
 ```
+
 The graph shown  suggests that model 2 is performing well overall because even though there are a few points with smaller residuals, the points are randomly scattered around y=0. 
  
 # Model predictions and uncertainty
