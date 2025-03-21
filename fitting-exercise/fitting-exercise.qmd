@@ -676,22 +676,119 @@ As shown, the conclusion still holds after setting a new seed. But considering t
 
 
 # This section added by Hope Grismer
-#
-#
-#
-#
-# Model predictions
-#
-#
-#
-#
-# Model predictions and uncertainty
-#
-#
-#
-#
-# End of Hope Grismer's contribution
+The code below is to visualize model fitting from the null model, model 1, and model 2.
+```{r}
+# Null model: prediction on the train set
+pred_model0_gz <- predict(model0_train, train_data) %>%
+  bind_cols(train_data["Y"])
+colnames(pred_model0_gz) <- c("pred", "Y")
+ 
+# Model 1: prediction on the train set
+pred_model1_gz <- predict(model1_train, train_data) %>%
+ bind_cols(train_data["Y"])
+colnames(pred_model1_gz) <- c("pred", "Y")
+ 
+# Model 2: prediction on the train set
+pred_model2_gz <- predict(model2_train, train_data) %>%
+  bind_cols(train_data["Y"])
+colnames(pred_model2_gz) <- c("pred", "Y")
+ 
+# Combine the three data sets and make a plot
+comb_gz <- rbind(pred_model0_gz, pred_model1_gz, pred_model2_gz) %>%
+   mutate(Model=c(rep("Null model", nrow(pred_model0_gz)), 
+                  rep("Model 1", nrow(pred_model1_gz)), 
+                  rep("Model 2", nrow(pred_model2_gz)))) %>%
+   ggplot(aes(x=Y, y=pred, fill=Model))+
+   geom_point(size=4, stroke=1, alpha=0.7, shape=21)+
+   geom_abline(intercept=0, slope=1, linetype="dashed", color="black", linewidth=2)+
+   scale_fill_manual(name="", values=c("green","palevioletred1","darkorange"))+
+   scale_x_continuous(limits=c(0, 5000))+
+   scale_y_continuous(limits=c(0, 5000))+
+   labs(x="Observed value", y="Predicted value")+
+   theme_bw()+
+   theme(axis.title.x=element_text(size=25,color="black",margin=margin(t=15),face="bold"),
+         axis.title.y=element_text(size=25,color="black",margin=margin(r=15),face="bold"),
+         axis.text.x=element_text(color="black",size=20,vjust=0),
+         axis.text.y=element_text(color="black",size=20,hjust=1), 
+         legend.position="top",
+         legend.title=element_text(size=20), 
+         legend.text=element_text(size=18,vjust=0))
+comb_gz
+```
 
+As shown, the predictions from the null model form a horizontal line because it only predicts the mean value of the response. The predictions from model 1 show three GREEN horizontal lines since this model uses *DOSE* as the only predictor, which has three possible values.
+
+Now, I'm moving on to create a residual plot for model 2.
+```{r}
+# Residual plot for model 2
+ pred_model2_res_gz <- pred_model2_gz %>%
+   mutate(res=pred-Y) %>%
+   ggplot(aes(x=pred, y=res))+
+   geom_point(size=4, stroke=1, alpha=0.7, shape=21, fill="firebrick3")+
+   geom_abline(intercept=0, slope=0, linetype="dashed", color="black", linewidth=2)+
+   scale_x_continuous(limits=c(0, 5000))+
+   scale_y_continuous(limits=c(-2000, 2000))+
+   labs(x="Predicted value", y="Residual")+
+   theme_bw()+
+   theme(axis.title.x=element_text(size=25,color="black",margin=margin(t=15),face="bold"),
+         axis.title.y=element_text(size=25,color="black",margin=margin(r=15),face="bold"),
+         axis.text.x=element_text(color="black",size=20,vjust=0),
+         axis.text.y=element_text(color="black",size=20,hjust=1))
+ pred_model2_res_gz
+```
+The graph shown  suggests that model 2 is performing well overall because even though there are a few points with smaller residuals, the points are randomly scattered around y=0. 
+ 
+# Model predictions and uncertainty
+ 
+Now I want to run a bootstrap to evaluate model 2. The code for that is shown below. 
+```{r}
+library(rsample)
+# Set seed
+set.seed(rngseed)
+ 
+# Bootstrap: 100
+dat_bs <- bootstraps(train_data, times=100)
+
+# Model setting
+model2_spec <- linear_reg() %>% set_engine("lm")
+ 
+# Fit model 2 on 100 bootstraps and store the predictions
+pred_bs <- matrix(NA, nrow=nrow(dat_bs), ncol=nrow(train_data))
+for (i in seq_len(nrow(dat_bs))){
+   fit_i <- fit(model2_spec, Y ~ ., analysis(dat_bs$splits[[i]]))
+   preds_i <- predict(fit_i, new_data=train_data)$.pred
+   pred_bs[i,] <- preds_i
+}
+ 
+# Calculate 95% CIs
+preds <- pred_bs |> apply(2, quantile,  c(0.025, 0.5, 0.975)) |>  t()
+ 
+# Make a plot to show the estimates
+plot_est_gz <- train_data %>%
+  mutate(point_est=pred_model2_gz$pred,
+          median=preds[,2],
+          lower=preds[,1],
+          upper=preds[,3]) %>%
+  ggplot(aes(x=Y))+
+   geom_abline(intercept=0, slope=1, linetype="dashed", color="black", linewidth=1)+
+   geom_point(aes(y=point_est), color="gray20", size=2, shape=16, alpha=.8)+ 
+   geom_point(aes(y=median), color="firebrick2", size=2, shape=16, alpha=.8)+
+   geom_errorbar(aes(ymin=lower, ymax=upper), width=.2, color="palevioletred2", alpha=.8)+
+   labs(x="Observed value", y="Predicted value")+
+   scale_x_continuous(limits=c(0, 5000))+
+   scale_y_continuous(limits=c(0, 5000))+
+   theme_bw()+
+   theme(axis.title.x=element_text(size=25,color="black",margin=margin(t=15),face="bold"),
+         axis.title.y=element_text(size=25,color="black",margin=margin(r=15),face="bold"),
+         axis.text.x=element_text(color="black",size=20,vjust=0),
+         axis.text.y=element_text(color="black",size=20,hjust=1))
+ plot_est_gz
+
+```
+
+Based on the output, the bootstrapping results are pretty much in line with just fitting model 2 on the train set. Almost all the confidence intervals (in red) cover the point predictions (in black). Looking at the big picture, the data points are spread around the diagonal, which means the predicted values are pretty close to the observed ones. So, overall, we can say that model 2 is performing well based on this.
+
+# End of Hope Grismer's contribution 
 
 # Final evaluation using test data
 
