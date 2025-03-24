@@ -13,7 +13,7 @@ library(tidyverse)
 library(ggplot2)
 
 # Look at help file for gapminder data
-help(gapminder)
+#help(gapminder)
 ```
 
 Let's take a look at the dataset first. I want to get an overview of the number of observations, the number of variables, the class of each variable, and the distribution of each variable. 
