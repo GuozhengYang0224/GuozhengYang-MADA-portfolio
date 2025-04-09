@@ -188,6 +188,10 @@ window.Quarto = {
     <a class="dropdown-item" href="../ml-models-exercise/ml-models-exercise.html">
  <span class="dropdown-text">Machine Learning</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../tidytuesday-exercise/tidytuesday-exercise.html">
+ <span class="dropdown-text">Tidytuesday Exercise</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -299,7 +303,7 @@ window.Quarto = {
 ✖ dplyr::lag()      masks stats::lag()
 ✖ yardstick::spec() masks readr::spec()
 ✖ recipes::step()   masks stats::step()
-• Use suppressPackageStartupMessages() to eliminate package startup messages</code></pre>
+• Dig deeper into tidy modeling with R at https://www.tmwr.org</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -539,23 +543,23 @@ The following object is masked from 'package:recipes':
 <span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_gt</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.names=</span><span class="st">"Times New Roman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="joguvkexsj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#joguvkexsj table {
+<div id="gjwwaewdcw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gjwwaewdcw table {
   font-family: 'Times New Roman';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#joguvkexsj thead, #joguvkexsj tbody, #joguvkexsj tfoot, #joguvkexsj tr, #joguvkexsj td, #joguvkexsj th {
+#gjwwaewdcw thead, #gjwwaewdcw tbody, #gjwwaewdcw tfoot, #gjwwaewdcw tr, #gjwwaewdcw td, #gjwwaewdcw th {
   border-style: none;
 }
 
-#joguvkexsj p {
+#gjwwaewdcw p {
   margin: 0;
   padding: 0;
 }
 
-#joguvkexsj .gt_table {
+#gjwwaewdcw .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -581,12 +585,12 @@ The following object is masked from 'package:recipes':
   border-left-color: #D3D3D3;
 }
 
-#joguvkexsj .gt_caption {
+#gjwwaewdcw .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#joguvkexsj .gt_title {
+#gjwwaewdcw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -598,7 +602,7 @@ The following object is masked from 'package:recipes':
   border-bottom-width: 0;
 }
 
-#joguvkexsj .gt_subtitle {
+#gjwwaewdcw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -610,7 +614,7 @@ The following object is masked from 'package:recipes':
   border-top-width: 0;
 }
 
-#joguvkexsj .gt_heading {
+#gjwwaewdcw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -622,13 +626,13 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#joguvkexsj .gt_bottom_border {
+#gjwwaewdcw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#joguvkexsj .gt_col_headings {
+#gjwwaewdcw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -643,7 +647,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#joguvkexsj .gt_col_heading {
+#gjwwaewdcw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -663,7 +667,7 @@ The following object is masked from 'package:recipes':
   overflow-x: hidden;
 }
 
-#joguvkexsj .gt_column_spanner_outer {
+#gjwwaewdcw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -675,15 +679,15 @@ The following object is masked from 'package:recipes':
   padding-right: 4px;
 }
 
-#joguvkexsj .gt_column_spanner_outer:first-child {
+#gjwwaewdcw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#joguvkexsj .gt_column_spanner_outer:last-child {
+#gjwwaewdcw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#joguvkexsj .gt_column_spanner {
+#gjwwaewdcw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -695,11 +699,11 @@ The following object is masked from 'package:recipes':
   width: 100%;
 }
 
-#joguvkexsj .gt_spanner_row {
+#gjwwaewdcw .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#joguvkexsj .gt_group_heading {
+#gjwwaewdcw .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -725,7 +729,7 @@ The following object is masked from 'package:recipes':
   text-align: left;
 }
 
-#joguvkexsj .gt_empty_group_heading {
+#gjwwaewdcw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -740,15 +744,15 @@ The following object is masked from 'package:recipes':
   vertical-align: middle;
 }
 
-#joguvkexsj .gt_from_md > :first-child {
+#gjwwaewdcw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#joguvkexsj .gt_from_md > :last-child {
+#gjwwaewdcw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#joguvkexsj .gt_row {
+#gjwwaewdcw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -767,7 +771,7 @@ The following object is masked from 'package:recipes':
   overflow-x: hidden;
 }
 
-#joguvkexsj .gt_stub {
+#gjwwaewdcw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -780,7 +784,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#joguvkexsj .gt_stub_row_group {
+#gjwwaewdcw .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -794,15 +798,15 @@ The following object is masked from 'package:recipes':
   vertical-align: top;
 }
 
-#joguvkexsj .gt_row_group_first td {
+#gjwwaewdcw .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#joguvkexsj .gt_row_group_first th {
+#gjwwaewdcw .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#joguvkexsj .gt_summary_row {
+#gjwwaewdcw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -812,16 +816,16 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#joguvkexsj .gt_first_summary_row {
+#gjwwaewdcw .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#joguvkexsj .gt_first_summary_row.thick {
+#gjwwaewdcw .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#joguvkexsj .gt_last_summary_row {
+#gjwwaewdcw .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -831,7 +835,7 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#joguvkexsj .gt_grand_summary_row {
+#gjwwaewdcw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -841,7 +845,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#joguvkexsj .gt_first_grand_summary_row {
+#gjwwaewdcw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -851,7 +855,7 @@ The following object is masked from 'package:recipes':
   border-top-color: #D3D3D3;
 }
 
-#joguvkexsj .gt_last_grand_summary_row_top {
+#gjwwaewdcw .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -861,11 +865,11 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#joguvkexsj .gt_striped {
+#gjwwaewdcw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#joguvkexsj .gt_table_body {
+#gjwwaewdcw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -874,7 +878,7 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#joguvkexsj .gt_footnotes {
+#gjwwaewdcw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -888,7 +892,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#joguvkexsj .gt_footnote {
+#gjwwaewdcw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -897,7 +901,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#joguvkexsj .gt_sourcenotes {
+#gjwwaewdcw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -911,7 +915,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#joguvkexsj .gt_sourcenote {
+#gjwwaewdcw .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -919,63 +923,63 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#joguvkexsj .gt_left {
+#gjwwaewdcw .gt_left {
   text-align: left;
 }
 
-#joguvkexsj .gt_center {
+#gjwwaewdcw .gt_center {
   text-align: center;
 }
 
-#joguvkexsj .gt_right {
+#gjwwaewdcw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#joguvkexsj .gt_font_normal {
+#gjwwaewdcw .gt_font_normal {
   font-weight: normal;
 }
 
-#joguvkexsj .gt_font_bold {
+#gjwwaewdcw .gt_font_bold {
   font-weight: bold;
 }
 
-#joguvkexsj .gt_font_italic {
+#gjwwaewdcw .gt_font_italic {
   font-style: italic;
 }
 
-#joguvkexsj .gt_super {
+#gjwwaewdcw .gt_super {
   font-size: 65%;
 }
 
-#joguvkexsj .gt_footnote_marks {
+#gjwwaewdcw .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#joguvkexsj .gt_asterisk {
+#gjwwaewdcw .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#joguvkexsj .gt_indent_1 {
+#gjwwaewdcw .gt_indent_1 {
   text-indent: 5px;
 }
 
-#joguvkexsj .gt_indent_2 {
+#gjwwaewdcw .gt_indent_2 {
   text-indent: 10px;
 }
 
-#joguvkexsj .gt_indent_3 {
+#gjwwaewdcw .gt_indent_3 {
   text-indent: 15px;
 }
 
-#joguvkexsj .gt_indent_4 {
+#gjwwaewdcw .gt_indent_4 {
   text-indent: 20px;
 }
 
-#joguvkexsj .gt_indent_5 {
+#gjwwaewdcw .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1093,23 +1097,23 @@ The following object is masked from 'package:recipes':
 <span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations=</span><span class="fu">cells_body</span>(<span class="at">columns=</span>p.value, <span class="at">rows=</span><span class="fu">as.numeric</span>(p.value)<span class="sc">&lt;</span><span class="fl">0.05</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.names=</span><span class="st">"Times New Roman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="xhmanafcuu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xhmanafcuu table {
+<div id="pzkrdzlcmx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pzkrdzlcmx table {
   font-family: 'Times New Roman';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xhmanafcuu thead, #xhmanafcuu tbody, #xhmanafcuu tfoot, #xhmanafcuu tr, #xhmanafcuu td, #xhmanafcuu th {
+#pzkrdzlcmx thead, #pzkrdzlcmx tbody, #pzkrdzlcmx tfoot, #pzkrdzlcmx tr, #pzkrdzlcmx td, #pzkrdzlcmx th {
   border-style: none;
 }
 
-#xhmanafcuu p {
+#pzkrdzlcmx p {
   margin: 0;
   padding: 0;
 }
 
-#xhmanafcuu .gt_table {
+#pzkrdzlcmx .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1135,12 +1139,12 @@ The following object is masked from 'package:recipes':
   border-left-color: #D3D3D3;
 }
 
-#xhmanafcuu .gt_caption {
+#pzkrdzlcmx .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xhmanafcuu .gt_title {
+#pzkrdzlcmx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1152,7 +1156,7 @@ The following object is masked from 'package:recipes':
   border-bottom-width: 0;
 }
 
-#xhmanafcuu .gt_subtitle {
+#pzkrdzlcmx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1164,7 +1168,7 @@ The following object is masked from 'package:recipes':
   border-top-width: 0;
 }
 
-#xhmanafcuu .gt_heading {
+#pzkrdzlcmx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1176,13 +1180,13 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#xhmanafcuu .gt_bottom_border {
+#pzkrdzlcmx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xhmanafcuu .gt_col_headings {
+#pzkrdzlcmx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1197,7 +1201,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#xhmanafcuu .gt_col_heading {
+#pzkrdzlcmx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1217,7 +1221,7 @@ The following object is masked from 'package:recipes':
   overflow-x: hidden;
 }
 
-#xhmanafcuu .gt_column_spanner_outer {
+#pzkrdzlcmx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1229,15 +1233,15 @@ The following object is masked from 'package:recipes':
   padding-right: 4px;
 }
 
-#xhmanafcuu .gt_column_spanner_outer:first-child {
+#pzkrdzlcmx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xhmanafcuu .gt_column_spanner_outer:last-child {
+#pzkrdzlcmx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xhmanafcuu .gt_column_spanner {
+#pzkrdzlcmx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1249,11 +1253,11 @@ The following object is masked from 'package:recipes':
   width: 100%;
 }
 
-#xhmanafcuu .gt_spanner_row {
+#pzkrdzlcmx .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xhmanafcuu .gt_group_heading {
+#pzkrdzlcmx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1279,7 +1283,7 @@ The following object is masked from 'package:recipes':
   text-align: left;
 }
 
-#xhmanafcuu .gt_empty_group_heading {
+#pzkrdzlcmx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1294,15 +1298,15 @@ The following object is masked from 'package:recipes':
   vertical-align: middle;
 }
 
-#xhmanafcuu .gt_from_md > :first-child {
+#pzkrdzlcmx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xhmanafcuu .gt_from_md > :last-child {
+#pzkrdzlcmx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xhmanafcuu .gt_row {
+#pzkrdzlcmx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1321,7 +1325,7 @@ The following object is masked from 'package:recipes':
   overflow-x: hidden;
 }
 
-#xhmanafcuu .gt_stub {
+#pzkrdzlcmx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1334,7 +1338,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#xhmanafcuu .gt_stub_row_group {
+#pzkrdzlcmx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1348,15 +1352,15 @@ The following object is masked from 'package:recipes':
   vertical-align: top;
 }
 
-#xhmanafcuu .gt_row_group_first td {
+#pzkrdzlcmx .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xhmanafcuu .gt_row_group_first th {
+#pzkrdzlcmx .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xhmanafcuu .gt_summary_row {
+#pzkrdzlcmx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1366,16 +1370,16 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#xhmanafcuu .gt_first_summary_row {
+#pzkrdzlcmx .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xhmanafcuu .gt_first_summary_row.thick {
+#pzkrdzlcmx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xhmanafcuu .gt_last_summary_row {
+#pzkrdzlcmx .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1385,7 +1389,7 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#xhmanafcuu .gt_grand_summary_row {
+#pzkrdzlcmx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1395,7 +1399,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#xhmanafcuu .gt_first_grand_summary_row {
+#pzkrdzlcmx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1405,7 +1409,7 @@ The following object is masked from 'package:recipes':
   border-top-color: #D3D3D3;
 }
 
-#xhmanafcuu .gt_last_grand_summary_row_top {
+#pzkrdzlcmx .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1415,11 +1419,11 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#xhmanafcuu .gt_striped {
+#pzkrdzlcmx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xhmanafcuu .gt_table_body {
+#pzkrdzlcmx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1428,7 +1432,7 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#xhmanafcuu .gt_footnotes {
+#pzkrdzlcmx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1442,7 +1446,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#xhmanafcuu .gt_footnote {
+#pzkrdzlcmx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1451,7 +1455,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#xhmanafcuu .gt_sourcenotes {
+#pzkrdzlcmx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1465,7 +1469,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#xhmanafcuu .gt_sourcenote {
+#pzkrdzlcmx .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1473,63 +1477,63 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#xhmanafcuu .gt_left {
+#pzkrdzlcmx .gt_left {
   text-align: left;
 }
 
-#xhmanafcuu .gt_center {
+#pzkrdzlcmx .gt_center {
   text-align: center;
 }
 
-#xhmanafcuu .gt_right {
+#pzkrdzlcmx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xhmanafcuu .gt_font_normal {
+#pzkrdzlcmx .gt_font_normal {
   font-weight: normal;
 }
 
-#xhmanafcuu .gt_font_bold {
+#pzkrdzlcmx .gt_font_bold {
   font-weight: bold;
 }
 
-#xhmanafcuu .gt_font_italic {
+#pzkrdzlcmx .gt_font_italic {
   font-style: italic;
 }
 
-#xhmanafcuu .gt_super {
+#pzkrdzlcmx .gt_super {
   font-size: 65%;
 }
 
-#xhmanafcuu .gt_footnote_marks {
+#pzkrdzlcmx .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xhmanafcuu .gt_asterisk {
+#pzkrdzlcmx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xhmanafcuu .gt_indent_1 {
+#pzkrdzlcmx .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xhmanafcuu .gt_indent_2 {
+#pzkrdzlcmx .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xhmanafcuu .gt_indent_3 {
+#pzkrdzlcmx .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xhmanafcuu .gt_indent_4 {
+#pzkrdzlcmx .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xhmanafcuu .gt_indent_5 {
+#pzkrdzlcmx .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1680,23 +1684,23 @@ The following object is masked from 'package:recipes':
 <span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations=</span><span class="fu">cells_body</span>(<span class="at">columns=</span>p.value, <span class="at">rows=</span><span class="fu">as.numeric</span>(p.value)<span class="sc">&lt;</span><span class="fl">0.05</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.names=</span><span class="st">"Times New Roman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="qdkqdjttvz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qdkqdjttvz table {
+<div id="jmorctpcbv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jmorctpcbv table {
   font-family: 'Times New Roman';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qdkqdjttvz thead, #qdkqdjttvz tbody, #qdkqdjttvz tfoot, #qdkqdjttvz tr, #qdkqdjttvz td, #qdkqdjttvz th {
+#jmorctpcbv thead, #jmorctpcbv tbody, #jmorctpcbv tfoot, #jmorctpcbv tr, #jmorctpcbv td, #jmorctpcbv th {
   border-style: none;
 }
 
-#qdkqdjttvz p {
+#jmorctpcbv p {
   margin: 0;
   padding: 0;
 }
 
-#qdkqdjttvz .gt_table {
+#jmorctpcbv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1722,12 +1726,12 @@ The following object is masked from 'package:recipes':
   border-left-color: #D3D3D3;
 }
 
-#qdkqdjttvz .gt_caption {
+#jmorctpcbv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qdkqdjttvz .gt_title {
+#jmorctpcbv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1739,7 +1743,7 @@ The following object is masked from 'package:recipes':
   border-bottom-width: 0;
 }
 
-#qdkqdjttvz .gt_subtitle {
+#jmorctpcbv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1751,7 +1755,7 @@ The following object is masked from 'package:recipes':
   border-top-width: 0;
 }
 
-#qdkqdjttvz .gt_heading {
+#jmorctpcbv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1763,13 +1767,13 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#qdkqdjttvz .gt_bottom_border {
+#jmorctpcbv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qdkqdjttvz .gt_col_headings {
+#jmorctpcbv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1784,7 +1788,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#qdkqdjttvz .gt_col_heading {
+#jmorctpcbv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1804,7 +1808,7 @@ The following object is masked from 'package:recipes':
   overflow-x: hidden;
 }
 
-#qdkqdjttvz .gt_column_spanner_outer {
+#jmorctpcbv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1816,15 +1820,15 @@ The following object is masked from 'package:recipes':
   padding-right: 4px;
 }
 
-#qdkqdjttvz .gt_column_spanner_outer:first-child {
+#jmorctpcbv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qdkqdjttvz .gt_column_spanner_outer:last-child {
+#jmorctpcbv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qdkqdjttvz .gt_column_spanner {
+#jmorctpcbv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1836,11 +1840,11 @@ The following object is masked from 'package:recipes':
   width: 100%;
 }
 
-#qdkqdjttvz .gt_spanner_row {
+#jmorctpcbv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qdkqdjttvz .gt_group_heading {
+#jmorctpcbv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1866,7 +1870,7 @@ The following object is masked from 'package:recipes':
   text-align: left;
 }
 
-#qdkqdjttvz .gt_empty_group_heading {
+#jmorctpcbv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1881,15 +1885,15 @@ The following object is masked from 'package:recipes':
   vertical-align: middle;
 }
 
-#qdkqdjttvz .gt_from_md > :first-child {
+#jmorctpcbv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qdkqdjttvz .gt_from_md > :last-child {
+#jmorctpcbv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qdkqdjttvz .gt_row {
+#jmorctpcbv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1908,7 +1912,7 @@ The following object is masked from 'package:recipes':
   overflow-x: hidden;
 }
 
-#qdkqdjttvz .gt_stub {
+#jmorctpcbv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1921,7 +1925,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#qdkqdjttvz .gt_stub_row_group {
+#jmorctpcbv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1935,15 +1939,15 @@ The following object is masked from 'package:recipes':
   vertical-align: top;
 }
 
-#qdkqdjttvz .gt_row_group_first td {
+#jmorctpcbv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qdkqdjttvz .gt_row_group_first th {
+#jmorctpcbv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qdkqdjttvz .gt_summary_row {
+#jmorctpcbv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1953,16 +1957,16 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#qdkqdjttvz .gt_first_summary_row {
+#jmorctpcbv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qdkqdjttvz .gt_first_summary_row.thick {
+#jmorctpcbv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qdkqdjttvz .gt_last_summary_row {
+#jmorctpcbv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1972,7 +1976,7 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#qdkqdjttvz .gt_grand_summary_row {
+#jmorctpcbv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1982,7 +1986,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#qdkqdjttvz .gt_first_grand_summary_row {
+#jmorctpcbv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1992,7 +1996,7 @@ The following object is masked from 'package:recipes':
   border-top-color: #D3D3D3;
 }
 
-#qdkqdjttvz .gt_last_grand_summary_row_top {
+#jmorctpcbv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2002,11 +2006,11 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#qdkqdjttvz .gt_striped {
+#jmorctpcbv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qdkqdjttvz .gt_table_body {
+#jmorctpcbv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2015,7 +2019,7 @@ The following object is masked from 'package:recipes':
   border-bottom-color: #D3D3D3;
 }
 
-#qdkqdjttvz .gt_footnotes {
+#jmorctpcbv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2029,7 +2033,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#qdkqdjttvz .gt_footnote {
+#jmorctpcbv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2038,7 +2042,7 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#qdkqdjttvz .gt_sourcenotes {
+#jmorctpcbv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2052,7 +2056,7 @@ The following object is masked from 'package:recipes':
   border-right-color: #D3D3D3;
 }
 
-#qdkqdjttvz .gt_sourcenote {
+#jmorctpcbv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2060,63 +2064,63 @@ The following object is masked from 'package:recipes':
   padding-right: 5px;
 }
 
-#qdkqdjttvz .gt_left {
+#jmorctpcbv .gt_left {
   text-align: left;
 }
 
-#qdkqdjttvz .gt_center {
+#jmorctpcbv .gt_center {
   text-align: center;
 }
 
-#qdkqdjttvz .gt_right {
+#jmorctpcbv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qdkqdjttvz .gt_font_normal {
+#jmorctpcbv .gt_font_normal {
   font-weight: normal;
 }
 
-#qdkqdjttvz .gt_font_bold {
+#jmorctpcbv .gt_font_bold {
   font-weight: bold;
 }
 
-#qdkqdjttvz .gt_font_italic {
+#jmorctpcbv .gt_font_italic {
   font-style: italic;
 }
 
-#qdkqdjttvz .gt_super {
+#jmorctpcbv .gt_super {
   font-size: 65%;
 }
 
-#qdkqdjttvz .gt_footnote_marks {
+#jmorctpcbv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qdkqdjttvz .gt_asterisk {
+#jmorctpcbv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qdkqdjttvz .gt_indent_1 {
+#jmorctpcbv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qdkqdjttvz .gt_indent_2 {
+#jmorctpcbv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qdkqdjttvz .gt_indent_3 {
+#jmorctpcbv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qdkqdjttvz .gt_indent_4 {
+#jmorctpcbv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qdkqdjttvz .gt_indent_5 {
+#jmorctpcbv .gt_indent_5 {
   text-indent: 25px;
 }
 </style>

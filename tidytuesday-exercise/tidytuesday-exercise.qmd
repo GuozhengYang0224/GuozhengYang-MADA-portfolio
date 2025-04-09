@@ -1,0 +1,246 @@
+---
+title: "Tidytuesday Exercise"
+---
+
+Below is an exercise for analyzing a data set from Tidytuesday. The data set contains state-level results for medicare.gov "timely and effective care" measurements. The data set can be downloaded from the website below: 
+
+https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-04-08
+
+The data set should have 8 variables as listed below.
+
+*state* (character): The two-letter code for the state (or territory, etc) where the hospital is located.
+
+*condition* (character): The condition for which the patient was admitted. Six categories of conditions are included in the data.
+
+*measure_id* (character): The ID of the thing being measured. Note that there are 22 unique IDs but only 21 unique names.
+
+*measure_name* (character): The name of the thing being measured. Note that there are 22 unique IDs but only 21 unique names.
+
+*score* (character): The score of the measure.
+
+*footnote* (character): Footnotes that apply to this measure: 5 = "Results are not available for this reporting period.", 25 = "State and national averages include Veterans Health Administration (VHA) hospital data.", 26 = "State and national averages include Department of Defense (DoD) hospital data.".
+
+*start_date* (date): The date on which measurement began for this measure.
+
+*end_date* (date): The date on which measurement ended for this measure.
+
+My research goal is to study whether geographic location by state (*state*), the percentage of healthcare personnel who are up to date with COVID-19 vaccinations (*HCP_COVID_19*), the percentage of healthcare workers given influenza vaccination (*IMM_3*), and the average time patients spent in the emergency department before leaving from a visit (*OP_18b*) can predict the percentage of patients who left the emergency department before being seen (*OP_22*). 
+
+# Data processing and exploration
+
+First of all, let's import the data set and load required packages.
+
+```{r}
+# Load required package
+#library(xgboost)
+library(here)
+library(tidyverse)
+library(tidymodels)
+library(ggplot2)
+library(ggpubr)
+```
+
+Now let's take a first look at the data set.
+
+```{r}
+# Look at the data
+data <- read.csv(here("tidytuesday-data","care_state.csv"))
+data$start_date <- as.Date(data$start_date) # Convert start date
+data$end_date <- as.Date(data$end_date) # Convert end date
+summary(data)
+```
+
+I want to look at the distribution of the data collection period for each record. If some of the records were collected within too short a period, I will drop them as they are not very representative.
+
+```{r}
+# Distribution of time period
+data$date_diff <- as.numeric(data$end_date - data$start_date)
+hist(data$date_diff)
+table(data$date_diff)
+```
+
+As shown, some of the records covers a time period of 90 days or 182 days. I think that is enough to reflect the average status of a state. I will drop the columns denoting dates. I will also drop *measure_name*, *condition*, and *footnote* as they are redundant for data analysis.
+
+```{r}
+# Drop useless columns
+data <- data %>% select(state, measure_id, score)
+summary(data)
+```
+
+Next, I will only keep the records of interest of this study. To be specific, I will only keep *HCP_COVID_19*, *IMM_3*, *OP_18b*, and *OP_22* from the column *measure_id*. I will also drop 
+
+```{r}
+# Keep *HCP_COVID_19*, *IMM_3*, *OP_18b*, and *OP_22*
+data <- data %>% filter(measure_id %in% c("HCP_COVID_19", "IMM_3", "OP_18b", "OP_22"))
+summary(data)
+```
+
+Now, I will pivot the data to a wider format. Also, I will drop rows with missing scores.
+
+```{r}
+# Transform data structure
+data <- data %>%
+  pivot_wider(names_from=measure_id, values_from=score) %>%
+  filter(!is.na(OP_22))
+summary(data)
+```
+
+As for states, it's hard to integrate geographic locations by too many categories. I will classify the states by their locations. 
+
+```{r}
+# Classify states
+east_states <- c("ME","NH","VT","MA","RI","CT","NY","NJ","PA","MD","DE","VA","NC","SC","GA","FL","WV")
+midwest_states <- c("OH","MI","IN","IL","WI","MN","IA","MO","ND","SD","NE","KS")
+south_states <- c("KY","TN","MS","AL","OK","TX","AR","LA")
+west_states <- c("MT","ID","WY","CO","NM","AZ","UT","NV","CA","OR","WA","AK","HI")
+
+data <- data %>% 
+  mutate(region=case_when(state %in% east_states ~ "East",
+                          state %in% midwest_states ~ "Midwest",
+                          state %in% south_states ~ "South",
+                          state %in% west_states ~ "West",
+                          TRUE ~ "Other")) %>%
+  select(-state)
+summary(data)
+```
+
+Now let's look at the distribution of the four continuous variables and the tables for regions. 
+
+```{r}
+# Distribution of variables
+d1 <- ggplot(data, aes(x=HCP_COVID_19))+ 
+  geom_histogram(binwidth=2, fill = "lightblue1", color="black")+
+  labs(x="HCP_COVID_19", y="Count")+
+  theme_bw()+
+  theme(axis.title.x=element_text(size=15,color="black",margin=margin(t=15),face="bold"),
+        axis.title.y=element_text(size=15,color="black",margin=margin(r=15),face="bold"),
+        axis.text.x=element_text(color="black",size=10,vjust=0),
+        axis.text.y=element_text(color="black",size=10,hjust=1))
+
+d2 <- ggplot(data, aes(x=IMM_3))+ 
+  geom_histogram(binwidth=2, fill="palegreen1", color="black")+ 
+  labs(x="IMM_3", y="Count")+
+  theme_bw()+
+  theme(axis.title.x=element_text(size=15,color="black",margin=margin(t=15),face="bold"),
+        axis.title.y=element_text(size=15,color="black",margin=margin(r=15),face="bold"),
+        axis.text.x=element_text(color="black",size=10,vjust=0),
+        axis.text.y=element_text(color="black",size=10,hjust=1))
+
+d3 <- ggplot(data, aes(x=OP_18b))+ 
+  geom_histogram(binwidth=2, fill="palevioletred1", color="black")+ 
+  labs(x="OP_18b", y="Count")+
+  theme_bw()+
+  theme(axis.title.x=element_text(size=15,color="black",margin=margin(t=15),face="bold"),
+        axis.title.y=element_text(size=15,color="black",margin=margin(r=15),face="bold"),
+        axis.text.x=element_text(color="black",size=10,vjust=0),
+        axis.text.y=element_text(color="black",size=10,hjust=1))
+
+d4 <- ggplot(data, aes(x=OP_22))+ 
+  geom_histogram(binwidth=2, fill="lightgoldenrod", color="black")+ 
+  labs(x="OP_22", y="Count")+
+  theme_bw()+
+  theme(axis.title.x=element_text(size=15,color="black",margin=margin(t=15),face="bold"),
+        axis.title.y=element_text(size=15,color="black",margin=margin(r=15),face="bold"),
+        axis.text.x=element_text(color="black",size=10,vjust=0),
+        axis.text.y=element_text(color="black",size=10,hjust=1))
+
+ggarrange(d1, d2, d3, d4, ncol=2, nrow=2)
+
+table(data$region)
+```
+
+# Random forest
+
+First of all, I want to fit a random forest model on this data set. I will split the data using a split ratio of 1:4. I will also use 5-fold CV to examine the performance of the RF model. Specifically, I want to tune the two parameters in the RF model (i.e., mtry and min_n) and select the best fit model based on RMSE. Finally, I will demonstrate the performance of the RF model by RMSE and R-square. 
+
+```{r}
+# Set a seed
+rngseed <- 1234
+set.seed(rngseed)
+```
+```{r}
+# 5-fold CV
+data_split <- initial_split(data, prop=.8)
+train_data <- training(data_split)
+test_data  <- testing(data_split)
+folds <- vfold_cv(train_data, v=5)
+```
+```{r}
+# Random forest model
+rcp <- recipe(OP_22 ~ HCP_COVID_19 + IMM_3 + OP_18b + region, data=train_data) %>%
+  step_dummy(all_nominal_predictors()) %>%
+  step_normalize(all_numeric_predictors())
+# Add flexibility: tune the two parameters
+rf_spec <- rand_forest(mtry=tune(), min_n=tune(), trees=500) %>%
+  set_engine("ranger") %>%
+  set_mode("regression")
+rf_wf <- workflow() %>% add_model(rf_spec) %>% add_recipe(rcp)
+# Tune the two parameters based on RMSE
+rf_tune <- tune_grid(rf_wf, resamples=folds, grid=10, metrics=metric_set(rmse))
+# Select the best fit model
+best_rf <- select_best(rf_tune, metric="rmse")
+final_rf <- finalize_workflow(rf_wf, best_rf)
+# Try the model fit on the test set
+rf_fit <- last_fit(final_rf, split=data_split)
+collect_metrics(rf_fit)
+```
+
+As shown, the estimated RMSE for the RF model is 1.00 and the R-square is 0.40.
+
+# Regression tree
+
+Then, I want to try if a single regression tree can fit the data set well. I will use the similar workflow as done with the RF model.
+
+```{r}
+# Set a seed
+rngseed <- 1234
+set.seed(rngseed)
+```
+```{r}
+# Add flexibility: tune the cost parameter and tree depth
+tree_spec <- decision_tree(cost_complexity=tune(), tree_depth=tune()) %>%
+  set_engine("rpart") %>%
+  set_mode("regression")
+tree_wf <- workflow() %>% add_model(tree_spec) %>% add_recipe(rcp)
+# Tune the two parameters based on RMSE
+tree_tune <- tune_grid(tree_wf, resamples=folds, grid=10, metrics=metric_set(rmse))
+# Select the best fit model
+best_tree <- select_best(tree_tune, metric="rmse")
+final_tree <- finalize_workflow(tree_wf, best_tree)
+# Try the model fit on the test set
+tree_fit <- last_fit(final_tree, split=data_split)
+collect_metrics(tree_fit)
+```
+
+As shown, the estimated RMSE for the tree model is 1.21 but the R-square is only 0.03. The regression tree model has a higher RMSE but a much lower R-square compared to the RF model.
+
+# Gradient boosting
+
+Last, I want to try the gradient boosting model. I will use the similar workflow as done above.
+
+
+**Somehow, the xgboost package won't be loaded when I render the website. It's the same problem as I encountered for presenting tables, and it has taken me another 20 hrs to fix it. I finally gave up because I tried all the way I could and didn't find myself doing anything wrong. I will just attach all the outputs related to the gradient boosting model as screenshots. **
+
+**All the codes can run through without any error on my lap-top. If you have any questions, please let me know. I can share my screen and show you how annoying this problem is. **
+
+![](tidytuesday-screenshot/2.png){fig-align="center"}
+
+As shown, the estimated RMSE for the gradient boosting model is 0.91 and the R-square is 0.31. The gradient boosting model has a lower RMSE and a lower R-square compared to the RF model.
+
+# Summary
+
+Let's make a plot to see the fitting performance of the three models.
+
+![](tidytuesday-screenshot/3.png){fig-align="center"}
+
+![](tidytuesday-screenshot/4.png){fig-align="center"}
+
+As shown in the figure above, the gradient boosting model and the regression tree models have a more "reasonable" prediction of the response, since their points are more sparse. Somehow the random forest model only predicts the response within a small range, indicating a potential overfitting problem. Based on the numeric output, the random forest model has the highest R-square while the gradient boosting model has the lowest RMSE. Taking all outputs into consideration, I think the gradient boosting model can better fit the data set. 
+
+Back to our research question, let's output the contribution of each predictor from the gradient boosting model. 
+
+![](tidytuesday-screenshot/5.png){fig-align="center"}
+
+![](tidytuesday-screenshot/6.png){fig-align="center"}
+
+As shown, the predictors can predict the response, with *OP_18b* (the average time patients spent in the emergency department before leaving from a visit) and *HCP_COVID_19* (the percentage of healthcare personnel who are up to date with COVID-19 vaccinations) having the greatest contribution. Additionally, no regional difference is observed.
